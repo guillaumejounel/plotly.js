@@ -1,6 +1,6 @@
 /**
 * plotly.js (cartesian) v2.8.3
-* Copyright 2012-2021, Plotly, Inc.
+* Copyright 2012-2022, Plotly, Inc.
 * All rights reserved.
 * Licensed under the MIT license
 */
@@ -72,72 +72,72 @@ for(var selector in rules) {
     Lib.addStyleRule(fullSelector, rules[selector]);
 }
 
-},{"../src/lib":287}],2:[function(_dereq_,module,exports){
+},{"../src/lib":244}],2:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/transforms/aggregate');
 
-},{"../src/transforms/aggregate":547}],3:[function(_dereq_,module,exports){
+},{"../src/transforms/aggregate":504}],3:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/bar');
 
-},{"../src/traces/bar":396}],4:[function(_dereq_,module,exports){
+},{"../src/traces/bar":353}],4:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/box');
 
-},{"../src/traces/box":411}],5:[function(_dereq_,module,exports){
+},{"../src/traces/box":368}],5:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/components/calendars');
 
-},{"../src/components/calendars":155}],6:[function(_dereq_,module,exports){
+},{"../src/components/calendars":112}],6:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/contour');
 
-},{"../src/traces/contour":431}],7:[function(_dereq_,module,exports){
+},{"../src/traces/contour":388}],7:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/core');
 
-},{"../src/core":269}],8:[function(_dereq_,module,exports){
+},{"../src/core":226}],8:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/transforms/filter');
 
-},{"../src/transforms/filter":548}],9:[function(_dereq_,module,exports){
+},{"../src/transforms/filter":505}],9:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/transforms/groupby');
 
-},{"../src/transforms/groupby":549}],10:[function(_dereq_,module,exports){
+},{"../src/transforms/groupby":506}],10:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/heatmap');
 
-},{"../src/traces/heatmap":447}],11:[function(_dereq_,module,exports){
+},{"../src/traces/heatmap":404}],11:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/histogram');
 
-},{"../src/traces/histogram":466}],12:[function(_dereq_,module,exports){
+},{"../src/traces/histogram":423}],12:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/histogram2d');
 
-},{"../src/traces/histogram2d":472}],13:[function(_dereq_,module,exports){
+},{"../src/traces/histogram2d":429}],13:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/histogram2dcontour');
 
-},{"../src/traces/histogram2dcontour":476}],14:[function(_dereq_,module,exports){
+},{"../src/traces/histogram2dcontour":433}],14:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/image');
 
-},{"../src/traces/image":484}],15:[function(_dereq_,module,exports){
+},{"../src/traces/image":441}],15:[function(_dereq_,module,exports){
 'use strict';
 
 var Plotly = _dereq_('./core');
@@ -173,22 +173,22 @@ module.exports = Plotly;
 
 module.exports = _dereq_('../src/traces/pie');
 
-},{"../src/traces/pie":493}],17:[function(_dereq_,module,exports){
+},{"../src/traces/pie":450}],17:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/scatterternary');
 
-},{"../src/traces/scatterternary":534}],18:[function(_dereq_,module,exports){
+},{"../src/traces/scatterternary":491}],18:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/transforms/sort');
 
-},{"../src/transforms/sort":551}],19:[function(_dereq_,module,exports){
+},{"../src/transforms/sort":508}],19:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = _dereq_('../src/traces/violin');
 
-},{"../src/traces/violin":542}],20:[function(_dereq_,module,exports){
+},{"../src/traces/violin":499}],20:[function(_dereq_,module,exports){
 !function() {
   var d3 = {
     version: "3.8.0"
@@ -7017,1138 +7017,6 @@ module.exports = _dereq_('../src/traces/violin');
   if (typeof define === "function" && define.amd) this.d3 = d3, define(d3); else if (typeof module === "object" && module.exports) module.exports = d3; else this.d3 = d3;
 }.apply(self);
 },{}],21:[function(_dereq_,module,exports){
-(function (global){(function (){
-'use strict';
-
-var objectAssign = _dereq_('object-assign');
-
-// compare and isBuffer taken from https://github.com/feross/buffer/blob/680e9e5e488f22aac27599a57dc844a6315928dd/index.js
-// original notice:
-
-/*!
- * The buffer module from node.js, for the browser.
- *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
- * @license  MIT
- */
-function compare(a, b) {
-  if (a === b) {
-    return 0;
-  }
-
-  var x = a.length;
-  var y = b.length;
-
-  for (var i = 0, len = Math.min(x, y); i < len; ++i) {
-    if (a[i] !== b[i]) {
-      x = a[i];
-      y = b[i];
-      break;
-    }
-  }
-
-  if (x < y) {
-    return -1;
-  }
-  if (y < x) {
-    return 1;
-  }
-  return 0;
-}
-function isBuffer(b) {
-  if (global.Buffer && typeof global.Buffer.isBuffer === 'function') {
-    return global.Buffer.isBuffer(b);
-  }
-  return !!(b != null && b._isBuffer);
-}
-
-// based on node assert, original notice:
-// NB: The URL to the CommonJS spec is kept just for tradition.
-//     node-assert has evolved a lot since then, both in API and behavior.
-
-// http://wiki.commonjs.org/wiki/Unit_Testing/1.0
-//
-// THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
-//
-// Originally from narwhal.js (http://narwhaljs.org)
-// Copyright (c) 2009 Thomas Robinson <280north.com>
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the 'Software'), to
-// deal in the Software without restriction, including without limitation the
-// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-// sell copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-// ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var util = _dereq_('util/');
-var hasOwn = Object.prototype.hasOwnProperty;
-var pSlice = Array.prototype.slice;
-var functionsHaveNames = (function () {
-  return function foo() {}.name === 'foo';
-}());
-function pToString (obj) {
-  return Object.prototype.toString.call(obj);
-}
-function isView(arrbuf) {
-  if (isBuffer(arrbuf)) {
-    return false;
-  }
-  if (typeof global.ArrayBuffer !== 'function') {
-    return false;
-  }
-  if (typeof ArrayBuffer.isView === 'function') {
-    return ArrayBuffer.isView(arrbuf);
-  }
-  if (!arrbuf) {
-    return false;
-  }
-  if (arrbuf instanceof DataView) {
-    return true;
-  }
-  if (arrbuf.buffer && arrbuf.buffer instanceof ArrayBuffer) {
-    return true;
-  }
-  return false;
-}
-// 1. The assert module provides functions that throw
-// AssertionError's when particular conditions are not met. The
-// assert module must conform to the following interface.
-
-var assert = module.exports = ok;
-
-// 2. The AssertionError is defined in assert.
-// new assert.AssertionError({ message: message,
-//                             actual: actual,
-//                             expected: expected })
-
-var regex = /\s*function\s+([^\(\s]*)\s*/;
-// based on https://github.com/ljharb/function.prototype.name/blob/adeeeec8bfcc6068b187d7d9fb3d5bb1d3a30899/implementation.js
-function getName(func) {
-  if (!util.isFunction(func)) {
-    return;
-  }
-  if (functionsHaveNames) {
-    return func.name;
-  }
-  var str = func.toString();
-  var match = str.match(regex);
-  return match && match[1];
-}
-assert.AssertionError = function AssertionError(options) {
-  this.name = 'AssertionError';
-  this.actual = options.actual;
-  this.expected = options.expected;
-  this.operator = options.operator;
-  if (options.message) {
-    this.message = options.message;
-    this.generatedMessage = false;
-  } else {
-    this.message = getMessage(this);
-    this.generatedMessage = true;
-  }
-  var stackStartFunction = options.stackStartFunction || fail;
-  if (Error.captureStackTrace) {
-    Error.captureStackTrace(this, stackStartFunction);
-  } else {
-    // non v8 browsers so we can have a stacktrace
-    var err = new Error();
-    if (err.stack) {
-      var out = err.stack;
-
-      // try to strip useless frames
-      var fn_name = getName(stackStartFunction);
-      var idx = out.indexOf('\n' + fn_name);
-      if (idx >= 0) {
-        // once we have located the function frame
-        // we need to strip out everything before it (and its line)
-        var next_line = out.indexOf('\n', idx + 1);
-        out = out.substring(next_line + 1);
-      }
-
-      this.stack = out;
-    }
-  }
-};
-
-// assert.AssertionError instanceof Error
-util.inherits(assert.AssertionError, Error);
-
-function truncate(s, n) {
-  if (typeof s === 'string') {
-    return s.length < n ? s : s.slice(0, n);
-  } else {
-    return s;
-  }
-}
-function inspect(something) {
-  if (functionsHaveNames || !util.isFunction(something)) {
-    return util.inspect(something);
-  }
-  var rawname = getName(something);
-  var name = rawname ? ': ' + rawname : '';
-  return '[Function' +  name + ']';
-}
-function getMessage(self) {
-  return truncate(inspect(self.actual), 128) + ' ' +
-         self.operator + ' ' +
-         truncate(inspect(self.expected), 128);
-}
-
-// At present only the three keys mentioned above are used and
-// understood by the spec. Implementations or sub modules can pass
-// other keys to the AssertionError's constructor - they will be
-// ignored.
-
-// 3. All of the following functions must throw an AssertionError
-// when a corresponding condition is not met, with a message that
-// may be undefined if not provided.  All assertion methods provide
-// both the actual and expected values to the assertion error for
-// display purposes.
-
-function fail(actual, expected, message, operator, stackStartFunction) {
-  throw new assert.AssertionError({
-    message: message,
-    actual: actual,
-    expected: expected,
-    operator: operator,
-    stackStartFunction: stackStartFunction
-  });
-}
-
-// EXTENSION! allows for well behaved errors defined elsewhere.
-assert.fail = fail;
-
-// 4. Pure assertion tests whether a value is truthy, as determined
-// by !!guard.
-// assert.ok(guard, message_opt);
-// This statement is equivalent to assert.equal(true, !!guard,
-// message_opt);. To test strictly for the value true, use
-// assert.strictEqual(true, guard, message_opt);.
-
-function ok(value, message) {
-  if (!value) fail(value, true, message, '==', assert.ok);
-}
-assert.ok = ok;
-
-// 5. The equality assertion tests shallow, coercive equality with
-// ==.
-// assert.equal(actual, expected, message_opt);
-
-assert.equal = function equal(actual, expected, message) {
-  if (actual != expected) fail(actual, expected, message, '==', assert.equal);
-};
-
-// 6. The non-equality assertion tests for whether two objects are not equal
-// with != assert.notEqual(actual, expected, message_opt);
-
-assert.notEqual = function notEqual(actual, expected, message) {
-  if (actual == expected) {
-    fail(actual, expected, message, '!=', assert.notEqual);
-  }
-};
-
-// 7. The equivalence assertion tests a deep equality relation.
-// assert.deepEqual(actual, expected, message_opt);
-
-assert.deepEqual = function deepEqual(actual, expected, message) {
-  if (!_deepEqual(actual, expected, false)) {
-    fail(actual, expected, message, 'deepEqual', assert.deepEqual);
-  }
-};
-
-assert.deepStrictEqual = function deepStrictEqual(actual, expected, message) {
-  if (!_deepEqual(actual, expected, true)) {
-    fail(actual, expected, message, 'deepStrictEqual', assert.deepStrictEqual);
-  }
-};
-
-function _deepEqual(actual, expected, strict, memos) {
-  // 7.1. All identical values are equivalent, as determined by ===.
-  if (actual === expected) {
-    return true;
-  } else if (isBuffer(actual) && isBuffer(expected)) {
-    return compare(actual, expected) === 0;
-
-  // 7.2. If the expected value is a Date object, the actual value is
-  // equivalent if it is also a Date object that refers to the same time.
-  } else if (util.isDate(actual) && util.isDate(expected)) {
-    return actual.getTime() === expected.getTime();
-
-  // 7.3 If the expected value is a RegExp object, the actual value is
-  // equivalent if it is also a RegExp object with the same source and
-  // properties (`global`, `multiline`, `lastIndex`, `ignoreCase`).
-  } else if (util.isRegExp(actual) && util.isRegExp(expected)) {
-    return actual.source === expected.source &&
-           actual.global === expected.global &&
-           actual.multiline === expected.multiline &&
-           actual.lastIndex === expected.lastIndex &&
-           actual.ignoreCase === expected.ignoreCase;
-
-  // 7.4. Other pairs that do not both pass typeof value == 'object',
-  // equivalence is determined by ==.
-  } else if ((actual === null || typeof actual !== 'object') &&
-             (expected === null || typeof expected !== 'object')) {
-    return strict ? actual === expected : actual == expected;
-
-  // If both values are instances of typed arrays, wrap their underlying
-  // ArrayBuffers in a Buffer each to increase performance
-  // This optimization requires the arrays to have the same type as checked by
-  // Object.prototype.toString (aka pToString). Never perform binary
-  // comparisons for Float*Arrays, though, since e.g. +0 === -0 but their
-  // bit patterns are not identical.
-  } else if (isView(actual) && isView(expected) &&
-             pToString(actual) === pToString(expected) &&
-             !(actual instanceof Float32Array ||
-               actual instanceof Float64Array)) {
-    return compare(new Uint8Array(actual.buffer),
-                   new Uint8Array(expected.buffer)) === 0;
-
-  // 7.5 For all other Object pairs, including Array objects, equivalence is
-  // determined by having the same number of owned properties (as verified
-  // with Object.prototype.hasOwnProperty.call), the same set of keys
-  // (although not necessarily the same order), equivalent values for every
-  // corresponding key, and an identical 'prototype' property. Note: this
-  // accounts for both named and indexed properties on Arrays.
-  } else if (isBuffer(actual) !== isBuffer(expected)) {
-    return false;
-  } else {
-    memos = memos || {actual: [], expected: []};
-
-    var actualIndex = memos.actual.indexOf(actual);
-    if (actualIndex !== -1) {
-      if (actualIndex === memos.expected.indexOf(expected)) {
-        return true;
-      }
-    }
-
-    memos.actual.push(actual);
-    memos.expected.push(expected);
-
-    return objEquiv(actual, expected, strict, memos);
-  }
-}
-
-function isArguments(object) {
-  return Object.prototype.toString.call(object) == '[object Arguments]';
-}
-
-function objEquiv(a, b, strict, actualVisitedObjects) {
-  if (a === null || a === undefined || b === null || b === undefined)
-    return false;
-  // if one is a primitive, the other must be same
-  if (util.isPrimitive(a) || util.isPrimitive(b))
-    return a === b;
-  if (strict && Object.getPrototypeOf(a) !== Object.getPrototypeOf(b))
-    return false;
-  var aIsArgs = isArguments(a);
-  var bIsArgs = isArguments(b);
-  if ((aIsArgs && !bIsArgs) || (!aIsArgs && bIsArgs))
-    return false;
-  if (aIsArgs) {
-    a = pSlice.call(a);
-    b = pSlice.call(b);
-    return _deepEqual(a, b, strict);
-  }
-  var ka = objectKeys(a);
-  var kb = objectKeys(b);
-  var key, i;
-  // having the same number of owned properties (keys incorporates
-  // hasOwnProperty)
-  if (ka.length !== kb.length)
-    return false;
-  //the same set of keys (although not necessarily the same order),
-  ka.sort();
-  kb.sort();
-  //~~~cheap key test
-  for (i = ka.length - 1; i >= 0; i--) {
-    if (ka[i] !== kb[i])
-      return false;
-  }
-  //equivalent values for every corresponding key, and
-  //~~~possibly expensive deep test
-  for (i = ka.length - 1; i >= 0; i--) {
-    key = ka[i];
-    if (!_deepEqual(a[key], b[key], strict, actualVisitedObjects))
-      return false;
-  }
-  return true;
-}
-
-// 8. The non-equivalence assertion tests for any deep inequality.
-// assert.notDeepEqual(actual, expected, message_opt);
-
-assert.notDeepEqual = function notDeepEqual(actual, expected, message) {
-  if (_deepEqual(actual, expected, false)) {
-    fail(actual, expected, message, 'notDeepEqual', assert.notDeepEqual);
-  }
-};
-
-assert.notDeepStrictEqual = notDeepStrictEqual;
-function notDeepStrictEqual(actual, expected, message) {
-  if (_deepEqual(actual, expected, true)) {
-    fail(actual, expected, message, 'notDeepStrictEqual', notDeepStrictEqual);
-  }
-}
-
-
-// 9. The strict equality assertion tests strict equality, as determined by ===.
-// assert.strictEqual(actual, expected, message_opt);
-
-assert.strictEqual = function strictEqual(actual, expected, message) {
-  if (actual !== expected) {
-    fail(actual, expected, message, '===', assert.strictEqual);
-  }
-};
-
-// 10. The strict non-equality assertion tests for strict inequality, as
-// determined by !==.  assert.notStrictEqual(actual, expected, message_opt);
-
-assert.notStrictEqual = function notStrictEqual(actual, expected, message) {
-  if (actual === expected) {
-    fail(actual, expected, message, '!==', assert.notStrictEqual);
-  }
-};
-
-function expectedException(actual, expected) {
-  if (!actual || !expected) {
-    return false;
-  }
-
-  if (Object.prototype.toString.call(expected) == '[object RegExp]') {
-    return expected.test(actual);
-  }
-
-  try {
-    if (actual instanceof expected) {
-      return true;
-    }
-  } catch (e) {
-    // Ignore.  The instanceof check doesn't work for arrow functions.
-  }
-
-  if (Error.isPrototypeOf(expected)) {
-    return false;
-  }
-
-  return expected.call({}, actual) === true;
-}
-
-function _tryBlock(block) {
-  var error;
-  try {
-    block();
-  } catch (e) {
-    error = e;
-  }
-  return error;
-}
-
-function _throws(shouldThrow, block, expected, message) {
-  var actual;
-
-  if (typeof block !== 'function') {
-    throw new TypeError('"block" argument must be a function');
-  }
-
-  if (typeof expected === 'string') {
-    message = expected;
-    expected = null;
-  }
-
-  actual = _tryBlock(block);
-
-  message = (expected && expected.name ? ' (' + expected.name + ').' : '.') +
-            (message ? ' ' + message : '.');
-
-  if (shouldThrow && !actual) {
-    fail(actual, expected, 'Missing expected exception' + message);
-  }
-
-  var userProvidedMessage = typeof message === 'string';
-  var isUnwantedException = !shouldThrow && util.isError(actual);
-  var isUnexpectedException = !shouldThrow && actual && !expected;
-
-  if ((isUnwantedException &&
-      userProvidedMessage &&
-      expectedException(actual, expected)) ||
-      isUnexpectedException) {
-    fail(actual, expected, 'Got unwanted exception' + message);
-  }
-
-  if ((shouldThrow && actual && expected &&
-      !expectedException(actual, expected)) || (!shouldThrow && actual)) {
-    throw actual;
-  }
-}
-
-// 11. Expected to throw an error:
-// assert.throws(block, Error_opt, message_opt);
-
-assert.throws = function(block, /*optional*/error, /*optional*/message) {
-  _throws(true, block, error, message);
-};
-
-// EXTENSION! This is annoying to write outside this module.
-assert.doesNotThrow = function(block, /*optional*/error, /*optional*/message) {
-  _throws(false, block, error, message);
-};
-
-assert.ifError = function(err) { if (err) throw err; };
-
-// Expose a strict only variant of assert
-function strict(value, message) {
-  if (!value) fail(value, true, message, '==', strict);
-}
-assert.strict = objectAssign(strict, assert, {
-  equal: assert.strictEqual,
-  deepEqual: assert.deepStrictEqual,
-  notEqual: assert.notStrictEqual,
-  notDeepEqual: assert.notDeepStrictEqual
-});
-assert.strict.strict = assert.strict;
-
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-  for (var key in obj) {
-    if (hasOwn.call(obj, key)) keys.push(key);
-  }
-  return keys;
-};
-
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"object-assign":73,"util/":24}],22:[function(_dereq_,module,exports){
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
-},{}],23:[function(_dereq_,module,exports){
-module.exports = function isBuffer(arg) {
-  return arg && typeof arg === 'object'
-    && typeof arg.copy === 'function'
-    && typeof arg.fill === 'function'
-    && typeof arg.readUInt8 === 'function';
-}
-},{}],24:[function(_dereq_,module,exports){
-(function (process,global){(function (){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var formatRegExp = /%[sdj%]/g;
-exports.format = function(f) {
-  if (!isString(f)) {
-    var objects = [];
-    for (var i = 0; i < arguments.length; i++) {
-      objects.push(inspect(arguments[i]));
-    }
-    return objects.join(' ');
-  }
-
-  var i = 1;
-  var args = arguments;
-  var len = args.length;
-  var str = String(f).replace(formatRegExp, function(x) {
-    if (x === '%%') return '%';
-    if (i >= len) return x;
-    switch (x) {
-      case '%s': return String(args[i++]);
-      case '%d': return Number(args[i++]);
-      case '%j':
-        try {
-          return JSON.stringify(args[i++]);
-        } catch (_) {
-          return '[Circular]';
-        }
-      default:
-        return x;
-    }
-  });
-  for (var x = args[i]; i < len; x = args[++i]) {
-    if (isNull(x) || !isObject(x)) {
-      str += ' ' + x;
-    } else {
-      str += ' ' + inspect(x);
-    }
-  }
-  return str;
-};
-
-
-// Mark that a method should not be used.
-// Returns a modified function which warns once by default.
-// If --no-deprecation is set, then it is a no-op.
-exports.deprecate = function(fn, msg) {
-  // Allow for deprecating things in the process of starting up.
-  if (isUndefined(global.process)) {
-    return function() {
-      return exports.deprecate(fn, msg).apply(this, arguments);
-    };
-  }
-
-  if (process.noDeprecation === true) {
-    return fn;
-  }
-
-  var warned = false;
-  function deprecated() {
-    if (!warned) {
-      if (process.throwDeprecation) {
-        throw new Error(msg);
-      } else if (process.traceDeprecation) {
-        console.trace(msg);
-      } else {
-        console.error(msg);
-      }
-      warned = true;
-    }
-    return fn.apply(this, arguments);
-  }
-
-  return deprecated;
-};
-
-
-var debugs = {};
-var debugEnviron;
-exports.debuglog = function(set) {
-  if (isUndefined(debugEnviron))
-    debugEnviron = process.env.NODE_DEBUG || '';
-  set = set.toUpperCase();
-  if (!debugs[set]) {
-    if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
-      var pid = process.pid;
-      debugs[set] = function() {
-        var msg = exports.format.apply(exports, arguments);
-        console.error('%s %d: %s', set, pid, msg);
-      };
-    } else {
-      debugs[set] = function() {};
-    }
-  }
-  return debugs[set];
-};
-
-
-/**
- * Echos the value of a value. Trys to print the value out
- * in the best way possible given the different types.
- *
- * @param {Object} obj The object to print out.
- * @param {Object} opts Optional options object that alters the output.
- */
-/* legacy: obj, showHidden, depth, colors*/
-function inspect(obj, opts) {
-  // default options
-  var ctx = {
-    seen: [],
-    stylize: stylizeNoColor
-  };
-  // legacy...
-  if (arguments.length >= 3) ctx.depth = arguments[2];
-  if (arguments.length >= 4) ctx.colors = arguments[3];
-  if (isBoolean(opts)) {
-    // legacy...
-    ctx.showHidden = opts;
-  } else if (opts) {
-    // got an "options" object
-    exports._extend(ctx, opts);
-  }
-  // set default options
-  if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
-  if (isUndefined(ctx.depth)) ctx.depth = 2;
-  if (isUndefined(ctx.colors)) ctx.colors = false;
-  if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
-  if (ctx.colors) ctx.stylize = stylizeWithColor;
-  return formatValue(ctx, obj, ctx.depth);
-}
-exports.inspect = inspect;
-
-
-// http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
-inspect.colors = {
-  'bold' : [1, 22],
-  'italic' : [3, 23],
-  'underline' : [4, 24],
-  'inverse' : [7, 27],
-  'white' : [37, 39],
-  'grey' : [90, 39],
-  'black' : [30, 39],
-  'blue' : [34, 39],
-  'cyan' : [36, 39],
-  'green' : [32, 39],
-  'magenta' : [35, 39],
-  'red' : [31, 39],
-  'yellow' : [33, 39]
-};
-
-// Don't use 'blue' not visible on cmd.exe
-inspect.styles = {
-  'special': 'cyan',
-  'number': 'yellow',
-  'boolean': 'yellow',
-  'undefined': 'grey',
-  'null': 'bold',
-  'string': 'green',
-  'date': 'magenta',
-  // "name": intentionally not styling
-  'regexp': 'red'
-};
-
-
-function stylizeWithColor(str, styleType) {
-  var style = inspect.styles[styleType];
-
-  if (style) {
-    return '\u001b[' + inspect.colors[style][0] + 'm' + str +
-           '\u001b[' + inspect.colors[style][1] + 'm';
-  } else {
-    return str;
-  }
-}
-
-
-function stylizeNoColor(str, styleType) {
-  return str;
-}
-
-
-function arrayToHash(array) {
-  var hash = {};
-
-  array.forEach(function(val, idx) {
-    hash[val] = true;
-  });
-
-  return hash;
-}
-
-
-function formatValue(ctx, value, recurseTimes) {
-  // Provide a hook for user-specified inspect functions.
-  // Check that value is an object with an inspect function on it
-  if (ctx.customInspect &&
-      value &&
-      isFunction(value.inspect) &&
-      // Filter out the util module, it's inspect function is special
-      value.inspect !== exports.inspect &&
-      // Also filter out any prototype objects using the circular check.
-      !(value.constructor && value.constructor.prototype === value)) {
-    var ret = value.inspect(recurseTimes, ctx);
-    if (!isString(ret)) {
-      ret = formatValue(ctx, ret, recurseTimes);
-    }
-    return ret;
-  }
-
-  // Primitive types cannot have properties
-  var primitive = formatPrimitive(ctx, value);
-  if (primitive) {
-    return primitive;
-  }
-
-  // Look up the keys of the object.
-  var keys = Object.keys(value);
-  var visibleKeys = arrayToHash(keys);
-
-  if (ctx.showHidden) {
-    keys = Object.getOwnPropertyNames(value);
-  }
-
-  // IE doesn't make error fields non-enumerable
-  // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
-  if (isError(value)
-      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
-    return formatError(value);
-  }
-
-  // Some type of object without properties can be shortcutted.
-  if (keys.length === 0) {
-    if (isFunction(value)) {
-      var name = value.name ? ': ' + value.name : '';
-      return ctx.stylize('[Function' + name + ']', 'special');
-    }
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    }
-    if (isDate(value)) {
-      return ctx.stylize(Date.prototype.toString.call(value), 'date');
-    }
-    if (isError(value)) {
-      return formatError(value);
-    }
-  }
-
-  var base = '', array = false, braces = ['{', '}'];
-
-  // Make Array say that they are Array
-  if (isArray(value)) {
-    array = true;
-    braces = ['[', ']'];
-  }
-
-  // Make functions say that they are functions
-  if (isFunction(value)) {
-    var n = value.name ? ': ' + value.name : '';
-    base = ' [Function' + n + ']';
-  }
-
-  // Make RegExps say that they are RegExps
-  if (isRegExp(value)) {
-    base = ' ' + RegExp.prototype.toString.call(value);
-  }
-
-  // Make dates with properties first say the date
-  if (isDate(value)) {
-    base = ' ' + Date.prototype.toUTCString.call(value);
-  }
-
-  // Make error with message first say the error
-  if (isError(value)) {
-    base = ' ' + formatError(value);
-  }
-
-  if (keys.length === 0 && (!array || value.length == 0)) {
-    return braces[0] + base + braces[1];
-  }
-
-  if (recurseTimes < 0) {
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    } else {
-      return ctx.stylize('[Object]', 'special');
-    }
-  }
-
-  ctx.seen.push(value);
-
-  var output;
-  if (array) {
-    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
-  } else {
-    output = keys.map(function(key) {
-      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
-    });
-  }
-
-  ctx.seen.pop();
-
-  return reduceToSingleString(output, base, braces);
-}
-
-
-function formatPrimitive(ctx, value) {
-  if (isUndefined(value))
-    return ctx.stylize('undefined', 'undefined');
-  if (isString(value)) {
-    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
-                                             .replace(/'/g, "\\'")
-                                             .replace(/\\"/g, '"') + '\'';
-    return ctx.stylize(simple, 'string');
-  }
-  if (isNumber(value))
-    return ctx.stylize('' + value, 'number');
-  if (isBoolean(value))
-    return ctx.stylize('' + value, 'boolean');
-  // For some reason typeof null is "object", so special case here.
-  if (isNull(value))
-    return ctx.stylize('null', 'null');
-}
-
-
-function formatError(value) {
-  return '[' + Error.prototype.toString.call(value) + ']';
-}
-
-
-function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
-  var output = [];
-  for (var i = 0, l = value.length; i < l; ++i) {
-    if (hasOwnProperty(value, String(i))) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          String(i), true));
-    } else {
-      output.push('');
-    }
-  }
-  keys.forEach(function(key) {
-    if (!key.match(/^\d+$/)) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          key, true));
-    }
-  });
-  return output;
-}
-
-
-function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
-  var name, str, desc;
-  desc = Object.getOwnPropertyDescriptor(value, key) || { value: value[key] };
-  if (desc.get) {
-    if (desc.set) {
-      str = ctx.stylize('[Getter/Setter]', 'special');
-    } else {
-      str = ctx.stylize('[Getter]', 'special');
-    }
-  } else {
-    if (desc.set) {
-      str = ctx.stylize('[Setter]', 'special');
-    }
-  }
-  if (!hasOwnProperty(visibleKeys, key)) {
-    name = '[' + key + ']';
-  }
-  if (!str) {
-    if (ctx.seen.indexOf(desc.value) < 0) {
-      if (isNull(recurseTimes)) {
-        str = formatValue(ctx, desc.value, null);
-      } else {
-        str = formatValue(ctx, desc.value, recurseTimes - 1);
-      }
-      if (str.indexOf('\n') > -1) {
-        if (array) {
-          str = str.split('\n').map(function(line) {
-            return '  ' + line;
-          }).join('\n').substr(2);
-        } else {
-          str = '\n' + str.split('\n').map(function(line) {
-            return '   ' + line;
-          }).join('\n');
-        }
-      }
-    } else {
-      str = ctx.stylize('[Circular]', 'special');
-    }
-  }
-  if (isUndefined(name)) {
-    if (array && key.match(/^\d+$/)) {
-      return str;
-    }
-    name = JSON.stringify('' + key);
-    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
-      name = name.substr(1, name.length - 2);
-      name = ctx.stylize(name, 'name');
-    } else {
-      name = name.replace(/'/g, "\\'")
-                 .replace(/\\"/g, '"')
-                 .replace(/(^"|"$)/g, "'");
-      name = ctx.stylize(name, 'string');
-    }
-  }
-
-  return name + ': ' + str;
-}
-
-
-function reduceToSingleString(output, base, braces) {
-  var numLinesEst = 0;
-  var length = output.reduce(function(prev, cur) {
-    numLinesEst++;
-    if (cur.indexOf('\n') >= 0) numLinesEst++;
-    return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
-  }, 0);
-
-  if (length > 60) {
-    return braces[0] +
-           (base === '' ? '' : base + '\n ') +
-           ' ' +
-           output.join(',\n  ') +
-           ' ' +
-           braces[1];
-  }
-
-  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
-}
-
-
-// NOTE: These type checking functions intentionally don't use `instanceof`
-// because it is fragile and can be easily faked with `Object.create()`.
-function isArray(ar) {
-  return Array.isArray(ar);
-}
-exports.isArray = isArray;
-
-function isBoolean(arg) {
-  return typeof arg === 'boolean';
-}
-exports.isBoolean = isBoolean;
-
-function isNull(arg) {
-  return arg === null;
-}
-exports.isNull = isNull;
-
-function isNullOrUndefined(arg) {
-  return arg == null;
-}
-exports.isNullOrUndefined = isNullOrUndefined;
-
-function isNumber(arg) {
-  return typeof arg === 'number';
-}
-exports.isNumber = isNumber;
-
-function isString(arg) {
-  return typeof arg === 'string';
-}
-exports.isString = isString;
-
-function isSymbol(arg) {
-  return typeof arg === 'symbol';
-}
-exports.isSymbol = isSymbol;
-
-function isUndefined(arg) {
-  return arg === void 0;
-}
-exports.isUndefined = isUndefined;
-
-function isRegExp(re) {
-  return isObject(re) && objectToString(re) === '[object RegExp]';
-}
-exports.isRegExp = isRegExp;
-
-function isObject(arg) {
-  return typeof arg === 'object' && arg !== null;
-}
-exports.isObject = isObject;
-
-function isDate(d) {
-  return isObject(d) && objectToString(d) === '[object Date]';
-}
-exports.isDate = isDate;
-
-function isError(e) {
-  return isObject(e) &&
-      (objectToString(e) === '[object Error]' || e instanceof Error);
-}
-exports.isError = isError;
-
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-exports.isFunction = isFunction;
-
-function isPrimitive(arg) {
-  return arg === null ||
-         typeof arg === 'boolean' ||
-         typeof arg === 'number' ||
-         typeof arg === 'string' ||
-         typeof arg === 'symbol' ||  // ES6 symbol
-         typeof arg === 'undefined';
-}
-exports.isPrimitive = isPrimitive;
-
-exports.isBuffer = _dereq_('./support/isBuffer');
-
-function objectToString(o) {
-  return Object.prototype.toString.call(o);
-}
-
-
-function pad(n) {
-  return n < 10 ? '0' + n.toString(10) : n.toString(10);
-}
-
-
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-              'Oct', 'Nov', 'Dec'];
-
-// 26 Feb 16:19:34
-function timestamp() {
-  var d = new Date();
-  var time = [pad(d.getHours()),
-              pad(d.getMinutes()),
-              pad(d.getSeconds())].join(':');
-  return [d.getDate(), months[d.getMonth()], time].join(' ');
-}
-
-
-// log is just a thin wrapper to console.log that prepends a timestamp
-exports.log = function() {
-  console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
-};
-
-
-/**
- * Inherit the prototype methods from one constructor into another.
- *
- * The Function.prototype.inherits from lang.js rewritten as a standalone
- * function (not on Function.prototype). NOTE: If this file is to be loaded
- * during bootstrapping this function needs to be rewritten using some native
- * functions as prototype setup using normal JavaScript does not work as
- * expected during bootstrapping (see mirror.js in r114903).
- *
- * @param {function} ctor Constructor function which needs to inherit the
- *     prototype.
- * @param {function} superCtor Constructor function to inherit prototype from.
- */
-exports.inherits = _dereq_('inherits');
-
-exports._extend = function(origin, add) {
-  // Don't do anything if add isn't an object
-  if (!add || !isObject(add)) return origin;
-
-  var keys = Object.keys(add);
-  var i = keys.length;
-  while (i--) {
-    origin[keys[i]] = add[keys[i]];
-  }
-  return origin;
-};
-
-function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-
-}).call(this)}).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":23,"_process":98,"inherits":22}],25:[function(_dereq_,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -8302,9 +7170,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],26:[function(_dereq_,module,exports){
-
-},{}],27:[function(_dereq_,module,exports){
+},{}],22:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8782,7 +7648,7 @@ function once(emitter, name) {
   });
 }
 
-},{}],28:[function(_dereq_,module,exports){
+},{}],23:[function(_dereq_,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -10563,7 +9429,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,_dereq_("buffer").Buffer)
-},{"base64-js":25,"buffer":28,"ieee754":66}],29:[function(_dereq_,module,exports){
+},{"base64-js":21,"buffer":23,"ieee754":61}],24:[function(_dereq_,module,exports){
 // https://d3js.org/d3-format/ v1.4.5 Copyright 2020 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -10910,7 +9776,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],30:[function(_dereq_,module,exports){
+},{}],25:[function(_dereq_,module,exports){
 // https://d3js.org/d3-time-format/ v2.2.3 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-time')) :
@@ -11619,7 +10485,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{"d3-time":31}],31:[function(_dereq_,module,exports){
+},{"d3-time":26}],26:[function(_dereq_,module,exports){
 // https://d3js.org/d3-time/ v1.1.0 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -11994,9 +10860,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{}],32:[function(_dereq_,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"dup":31}],33:[function(_dereq_,module,exports){
+},{}],27:[function(_dereq_,module,exports){
+arguments[4][26][0].apply(exports,arguments)
+},{"dup":26}],28:[function(_dereq_,module,exports){
 /**
  * inspired by is-number <https://github.com/jonschlinkert/is-number>
  * but significantly simplified and sped up by ignoring number and string constructors
@@ -12022,7 +10888,7 @@ module.exports = function(n) {
     return n - n < 1;
 };
 
-},{"is-string-blank":70}],34:[function(_dereq_,module,exports){
+},{"is-string-blank":64}],29:[function(_dereq_,module,exports){
 module.exports = adjoint;
 
 /**
@@ -12056,7 +10922,7 @@ function adjoint(out, a) {
     out[15] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
     return out;
 };
-},{}],35:[function(_dereq_,module,exports){
+},{}],30:[function(_dereq_,module,exports){
 module.exports = clone;
 
 /**
@@ -12085,7 +10951,7 @@ function clone(a) {
     out[15] = a[15];
     return out;
 };
-},{}],36:[function(_dereq_,module,exports){
+},{}],31:[function(_dereq_,module,exports){
 module.exports = copy;
 
 /**
@@ -12114,7 +10980,7 @@ function copy(out, a) {
     out[15] = a[15];
     return out;
 };
-},{}],37:[function(_dereq_,module,exports){
+},{}],32:[function(_dereq_,module,exports){
 module.exports = create;
 
 /**
@@ -12142,7 +11008,7 @@ function create() {
     out[15] = 1;
     return out;
 };
-},{}],38:[function(_dereq_,module,exports){
+},{}],33:[function(_dereq_,module,exports){
 module.exports = determinant;
 
 /**
@@ -12173,7 +11039,7 @@ function determinant(a) {
     // Calculate the determinant
     return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 };
-},{}],39:[function(_dereq_,module,exports){
+},{}],34:[function(_dereq_,module,exports){
 module.exports = fromQuat;
 
 /**
@@ -12221,7 +11087,7 @@ function fromQuat(out, q) {
 
     return out;
 };
-},{}],40:[function(_dereq_,module,exports){
+},{}],35:[function(_dereq_,module,exports){
 module.exports = fromRotation
 
 /**
@@ -12276,7 +11142,7 @@ function fromRotation(out, rad, axis) {
   return out
 }
 
-},{}],41:[function(_dereq_,module,exports){
+},{}],36:[function(_dereq_,module,exports){
 module.exports = fromRotationTranslation;
 
 /**
@@ -12330,7 +11196,7 @@ function fromRotationTranslation(out, q, v) {
     
     return out;
 };
-},{}],42:[function(_dereq_,module,exports){
+},{}],37:[function(_dereq_,module,exports){
 module.exports = fromScaling
 
 /**
@@ -12364,7 +11230,7 @@ function fromScaling(out, v) {
   return out
 }
 
-},{}],43:[function(_dereq_,module,exports){
+},{}],38:[function(_dereq_,module,exports){
 module.exports = fromTranslation
 
 /**
@@ -12398,7 +11264,7 @@ function fromTranslation(out, v) {
   return out
 }
 
-},{}],44:[function(_dereq_,module,exports){
+},{}],39:[function(_dereq_,module,exports){
 module.exports = fromXRotation
 
 /**
@@ -12435,7 +11301,7 @@ function fromXRotation(out, rad) {
     out[15] = 1
     return out
 }
-},{}],45:[function(_dereq_,module,exports){
+},{}],40:[function(_dereq_,module,exports){
 module.exports = fromYRotation
 
 /**
@@ -12472,7 +11338,7 @@ function fromYRotation(out, rad) {
     out[15] = 1
     return out
 }
-},{}],46:[function(_dereq_,module,exports){
+},{}],41:[function(_dereq_,module,exports){
 module.exports = fromZRotation
 
 /**
@@ -12509,7 +11375,7 @@ function fromZRotation(out, rad) {
     out[15] = 1
     return out
 }
-},{}],47:[function(_dereq_,module,exports){
+},{}],42:[function(_dereq_,module,exports){
 module.exports = frustum;
 
 /**
@@ -12546,7 +11412,7 @@ function frustum(out, left, right, bottom, top, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],48:[function(_dereq_,module,exports){
+},{}],43:[function(_dereq_,module,exports){
 module.exports = identity;
 
 /**
@@ -12574,7 +11440,7 @@ function identity(out) {
     out[15] = 1;
     return out;
 };
-},{}],49:[function(_dereq_,module,exports){
+},{}],44:[function(_dereq_,module,exports){
 module.exports = {
   create: _dereq_('./create')
   , clone: _dereq_('./clone')
@@ -12607,7 +11473,7 @@ module.exports = {
   , str: _dereq_('./str')
 }
 
-},{"./adjoint":34,"./clone":35,"./copy":36,"./create":37,"./determinant":38,"./fromQuat":39,"./fromRotation":40,"./fromRotationTranslation":41,"./fromScaling":42,"./fromTranslation":43,"./fromXRotation":44,"./fromYRotation":45,"./fromZRotation":46,"./frustum":47,"./identity":48,"./invert":50,"./lookAt":51,"./multiply":52,"./ortho":53,"./perspective":54,"./perspectiveFromFieldOfView":55,"./rotate":56,"./rotateX":57,"./rotateY":58,"./rotateZ":59,"./scale":60,"./str":61,"./translate":62,"./transpose":63}],50:[function(_dereq_,module,exports){
+},{"./adjoint":29,"./clone":30,"./copy":31,"./create":32,"./determinant":33,"./fromQuat":34,"./fromRotation":35,"./fromRotationTranslation":36,"./fromScaling":37,"./fromTranslation":38,"./fromXRotation":39,"./fromYRotation":40,"./fromZRotation":41,"./frustum":42,"./identity":43,"./invert":45,"./lookAt":46,"./multiply":47,"./ortho":48,"./perspective":49,"./perspectiveFromFieldOfView":50,"./rotate":51,"./rotateX":52,"./rotateY":53,"./rotateZ":54,"./scale":55,"./str":56,"./translate":57,"./transpose":58}],45:[function(_dereq_,module,exports){
 module.exports = invert;
 
 /**
@@ -12663,7 +11529,7 @@ function invert(out, a) {
 
     return out;
 };
-},{}],51:[function(_dereq_,module,exports){
+},{}],46:[function(_dereq_,module,exports){
 var identity = _dereq_('./identity');
 
 module.exports = lookAt;
@@ -12754,7 +11620,7 @@ function lookAt(out, eye, center, up) {
 
     return out;
 };
-},{"./identity":48}],52:[function(_dereq_,module,exports){
+},{"./identity":43}],47:[function(_dereq_,module,exports){
 module.exports = multiply;
 
 /**
@@ -12797,7 +11663,7 @@ function multiply(out, a, b) {
     out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
-},{}],53:[function(_dereq_,module,exports){
+},{}],48:[function(_dereq_,module,exports){
 module.exports = ortho;
 
 /**
@@ -12834,7 +11700,7 @@ function ortho(out, left, right, bottom, top, near, far) {
     out[15] = 1;
     return out;
 };
-},{}],54:[function(_dereq_,module,exports){
+},{}],49:[function(_dereq_,module,exports){
 module.exports = perspective;
 
 /**
@@ -12868,7 +11734,7 @@ function perspective(out, fovy, aspect, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],55:[function(_dereq_,module,exports){
+},{}],50:[function(_dereq_,module,exports){
 module.exports = perspectiveFromFieldOfView;
 
 /**
@@ -12910,7 +11776,7 @@ function perspectiveFromFieldOfView(out, fov, near, far) {
 }
 
 
-},{}],56:[function(_dereq_,module,exports){
+},{}],51:[function(_dereq_,module,exports){
 module.exports = rotate;
 
 /**
@@ -12975,7 +11841,7 @@ function rotate(out, a, rad, axis) {
     }
     return out;
 };
-},{}],57:[function(_dereq_,module,exports){
+},{}],52:[function(_dereq_,module,exports){
 module.exports = rotateX;
 
 /**
@@ -13020,7 +11886,7 @@ function rotateX(out, a, rad) {
     out[11] = a23 * c - a13 * s;
     return out;
 };
-},{}],58:[function(_dereq_,module,exports){
+},{}],53:[function(_dereq_,module,exports){
 module.exports = rotateY;
 
 /**
@@ -13065,7 +11931,7 @@ function rotateY(out, a, rad) {
     out[11] = a03 * s + a23 * c;
     return out;
 };
-},{}],59:[function(_dereq_,module,exports){
+},{}],54:[function(_dereq_,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -13110,7 +11976,7 @@ function rotateZ(out, a, rad) {
     out[7] = a13 * c - a03 * s;
     return out;
 };
-},{}],60:[function(_dereq_,module,exports){
+},{}],55:[function(_dereq_,module,exports){
 module.exports = scale;
 
 /**
@@ -13142,7 +12008,7 @@ function scale(out, a, v) {
     out[15] = a[15];
     return out;
 };
-},{}],61:[function(_dereq_,module,exports){
+},{}],56:[function(_dereq_,module,exports){
 module.exports = str;
 
 /**
@@ -13157,7 +12023,7 @@ function str(a) {
                     a[8] + ', ' + a[9] + ', ' + a[10] + ', ' + a[11] + ', ' + 
                     a[12] + ', ' + a[13] + ', ' + a[14] + ', ' + a[15] + ')';
 };
-},{}],62:[function(_dereq_,module,exports){
+},{}],57:[function(_dereq_,module,exports){
 module.exports = translate;
 
 /**
@@ -13196,7 +12062,7 @@ function translate(out, a, v) {
 
     return out;
 };
-},{}],63:[function(_dereq_,module,exports){
+},{}],58:[function(_dereq_,module,exports){
 module.exports = transpose;
 
 /**
@@ -13246,7 +12112,7 @@ function transpose(out, a) {
     
     return out;
 };
-},{}],64:[function(_dereq_,module,exports){
+},{}],59:[function(_dereq_,module,exports){
 (function (global){(function (){
 'use strict'
 
@@ -13263,7 +12129,7 @@ else {
 module.exports = hasHover
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"is-browser":68}],65:[function(_dereq_,module,exports){
+},{"is-browser":62}],60:[function(_dereq_,module,exports){
 'use strict'
 
 var isBrowser = _dereq_('is-browser')
@@ -13289,7 +12155,7 @@ function detect() {
 
 module.exports = isBrowser && detect()
 
-},{"is-browser":68}],66:[function(_dereq_,module,exports){
+},{"is-browser":62}],61:[function(_dereq_,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -13375,38 +12241,9 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],67:[function(_dereq_,module,exports){
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor
-      ctor.prototype = Object.create(superCtor.prototype, {
-        constructor: {
-          value: ctor,
-          enumerable: false,
-          writable: true,
-          configurable: true
-        }
-      })
-    }
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    if (superCtor) {
-      ctor.super_ = superCtor
-      var TempCtor = function () {}
-      TempCtor.prototype = superCtor.prototype
-      ctor.prototype = new TempCtor()
-      ctor.prototype.constructor = ctor
-    }
-  }
-}
-
-},{}],68:[function(_dereq_,module,exports){
+},{}],62:[function(_dereq_,module,exports){
 module.exports = true;
-},{}],69:[function(_dereq_,module,exports){
+},{}],63:[function(_dereq_,module,exports){
 'use strict'
 
 module.exports = isMobile
@@ -13443,7 +12280,7 @@ function isMobile (opts) {
   return result
 }
 
-},{}],70:[function(_dereq_,module,exports){
+},{}],64:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -13480,7 +12317,7 @@ module.exports = function(str){
     return true;
 }
 
-},{}],71:[function(_dereq_,module,exports){
+},{}],65:[function(_dereq_,module,exports){
 var rootPosition = { left: 0, top: 0 }
 
 module.exports = mouseEventOffset
@@ -13507,7 +12344,7 @@ function getBoundingClientOffset (element) {
   }
 }
 
-},{}],72:[function(_dereq_,module,exports){
+},{}],66:[function(_dereq_,module,exports){
 (function (global,setImmediate){(function (){
 /*! Native Promise Only
     v0.8.1 (c) Kyle Simpson
@@ -13884,7 +12721,7 @@ function getBoundingClientOffset (element) {
 });
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},_dereq_("timers").setImmediate)
-},{"timers":120}],73:[function(_dereq_,module,exports){
+},{"timers":78}],67:[function(_dereq_,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -13976,7 +12813,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],74:[function(_dereq_,module,exports){
+},{}],68:[function(_dereq_,module,exports){
 
 module.exports = parse
 
@@ -14035,7 +12872,7 @@ function parseValues(args) {
 	return numbers ? numbers.map(Number) : []
 }
 
-},{}],75:[function(_dereq_,module,exports){
+},{}],69:[function(_dereq_,module,exports){
 /*
  * @copyright 2016 Sean Connelly (@voidqk), http://syntheti.cc
  * @license MIT
@@ -14163,7 +13000,7 @@ if (typeof window === 'object')
 
 module.exports = PolyBool;
 
-},{"./lib/build-log":76,"./lib/epsilon":77,"./lib/geojson":78,"./lib/intersecter":79,"./lib/segment-chainer":81,"./lib/segment-selector":82}],76:[function(_dereq_,module,exports){
+},{"./lib/build-log":70,"./lib/epsilon":71,"./lib/geojson":72,"./lib/intersecter":73,"./lib/segment-chainer":75,"./lib/segment-selector":76}],70:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -14278,7 +13115,7 @@ function BuildLog(){
 
 module.exports = BuildLog;
 
-},{}],77:[function(_dereq_,module,exports){
+},{}],71:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -14450,7 +13287,7 @@ function Epsilon(eps){
 
 module.exports = Epsilon;
 
-},{}],78:[function(_dereq_,module,exports){
+},{}],72:[function(_dereq_,module,exports){
 // (c) Copyright 2017, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -14640,7 +13477,7 @@ var GeoJSON = {
 
 module.exports = GeoJSON;
 
-},{}],79:[function(_dereq_,module,exports){
+},{}],73:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15147,7 +13984,7 @@ function Intersecter(selfIntersection, eps, buildLog){
 
 module.exports = Intersecter;
 
-},{"./linked-list":80}],80:[function(_dereq_,module,exports){
+},{"./linked-list":74}],74:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15230,7 +14067,7 @@ var LinkedList = {
 
 module.exports = LinkedList;
 
-},{}],81:[function(_dereq_,module,exports){
+},{}],75:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15484,7 +14321,7 @@ function SegmentChainer(segments, eps, buildLog){
 
 module.exports = SegmentChainer;
 
-},{}],82:[function(_dereq_,module,exports){
+},{}],76:[function(_dereq_,module,exports){
 // (c) Copyright 2016, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
 // Project Home: https://github.com/voidqk/polybooljs
@@ -15652,1408 +14489,7 @@ var SegmentSelector = {
 
 module.exports = SegmentSelector;
 
-},{}],83:[function(_dereq_,module,exports){
-'use strict';
-
-
-var Transform    = _dereq_('stream').Transform;
-var streamParser = _dereq_('stream-parser');
-
-
-function ParserStream() {
-  Transform.call(this, { readableObjectMode: true });
-}
-
-// Inherit from Transform
-ParserStream.prototype = Object.create(Transform.prototype);
-ParserStream.prototype.constructor = ParserStream;
-
-streamParser(ParserStream.prototype);
-
-
-exports.ParserStream = ParserStream;
-
-
-exports.sliceEq = function (src, start, dest) {
-  for (var i = start, j = 0; j < dest.length;) {
-    if (src[i++] !== dest[j++]) return false;
-  }
-  return true;
-};
-
-exports.str2arr = function (str, format) {
-  var arr = [], i = 0;
-
-  if (format && format === 'hex') {
-    while (i < str.length) {
-      arr.push(parseInt(str.slice(i, i + 2), 16));
-      i += 2;
-    }
-  } else {
-    for (; i < str.length; i++) {
-      /* eslint-disable no-bitwise */
-      arr.push(str.charCodeAt(i) & 0xFF);
-    }
-  }
-
-  return arr;
-};
-
-exports.readUInt16LE = function (data, offset) {
-  return data[offset] | (data[offset + 1] << 8);
-};
-
-exports.readUInt16BE = function (data, offset) {
-  return data[offset + 1] | (data[offset] << 8);
-};
-
-exports.readUInt32LE = function (data, offset) {
-  return data[offset] |
-    (data[offset + 1] << 8) |
-    (data[offset + 2] << 16) |
-    (data[offset + 3] * 0x1000000);
-};
-
-exports.readUInt32BE = function (data, offset) {
-  return data[offset + 3] |
-    (data[offset + 2] << 8) |
-    (data[offset + 1] << 16) |
-    (data[offset] * 0x1000000);
-};
-
-
-function ProbeError(message, code, statusCode) {
-  Error.call(this);
-  Error.captureStackTrace(this, this.constructor);
-
-  this.name = this.constructor.name;
-
-  this.message = message;
-  if (code) this.code = code;
-  if (statusCode) this.statusCode = statusCode;
-}
-
-// Inherit from Error
-ProbeError.prototype = Object.create(Error.prototype);
-ProbeError.prototype.constructor = ProbeError;
-
-
-exports.ProbeError = ProbeError;
-
-},{"stream":100,"stream-parser":116}],84:[function(_dereq_,module,exports){
-
-/* eslint-disable no-bitwise */
-/* eslint-disable consistent-return */
-
-'use strict';
-
-//////////////////////////////////////////////////////////////////////////
-// Helpers
-//
-function error(message, code) {
-  var err = new Error(message);
-  err.code = code;
-  return err;
-}
-
-
-function utf8_decode(str) {
-  try {
-    return decodeURIComponent(escape(str));
-  } catch (_) {
-    return str;
-  }
-}
-
-
-//////////////////////////////////////////////////////////////////////////
-// Exif parser
-//
-// Input:
-//  - jpeg_bin:   Uint8Array - jpeg file
-//  - exif_start: Number     - start of TIFF header (after Exif\0\0)
-//  - exif_end:   Number     - end of Exif segment
-//  - on_entry:   Number     - callback
-//
-function ExifParser(jpeg_bin, exif_start, exif_end) {
-  // Uint8Array, exif without signature (which isn't included in offsets)
-  this.input      = jpeg_bin.subarray(exif_start, exif_end);
-
-  // offset correction for `on_entry` callback
-  this.start      = exif_start;
-
-  // Check TIFF header (includes byte alignment and first IFD offset)
-  var sig = String.fromCharCode.apply(null, this.input.subarray(0, 4));
-
-  if (sig !== 'II\x2A\0' && sig !== 'MM\0\x2A') {
-    throw error('invalid TIFF signature', 'EBADDATA');
-  }
-
-  // true if motorola (big endian) byte alignment, false if intel
-  this.big_endian = sig[0] === 'M';
-}
-
-
-ExifParser.prototype.each = function (on_entry) {
-  // allow premature exit
-  this.aborted = false;
-
-  var offset = this.read_uint32(4);
-
-  this.ifds_to_read = [ {
-    id:     0,
-    offset: offset
-  } ];
-
-  while (this.ifds_to_read.length > 0 && !this.aborted) {
-    var i = this.ifds_to_read.shift();
-    if (!i.offset) continue;
-    this.scan_ifd(i.id, i.offset, on_entry);
-  }
-};
-
-
-ExifParser.prototype.read_uint16 = function (offset) {
-  var d = this.input;
-  if (offset + 2 > d.length) throw error('unexpected EOF', 'EBADDATA');
-
-  return this.big_endian ?
-    d[offset] * 0x100 + d[offset + 1] :
-    d[offset] + d[offset + 1] * 0x100;
-};
-
-
-ExifParser.prototype.read_uint32 = function (offset) {
-  var d = this.input;
-  if (offset + 4 > d.length) throw error('unexpected EOF', 'EBADDATA');
-
-  return this.big_endian ?
-    d[offset] * 0x1000000 + d[offset + 1] * 0x10000 + d[offset + 2] * 0x100 + d[offset + 3] :
-    d[offset] + d[offset + 1] * 0x100 + d[offset + 2] * 0x10000 + d[offset + 3] * 0x1000000;
-};
-
-
-ExifParser.prototype.is_subifd_link = function (ifd, tag) {
-  return (ifd === 0 && tag === 0x8769) || // SubIFD
-         (ifd === 0 && tag === 0x8825) || // GPS Info
-         (ifd === 0x8769 && tag === 0xA005); // Interop IFD
-};
-
-
-// Returns byte length of a single component of a given format
-//
-ExifParser.prototype.exif_format_length = function (format) {
-  switch (format) {
-    case 1: // byte
-    case 2: // ascii
-    case 6: // sbyte
-    case 7: // undefined
-      return 1;
-
-    case 3: // short
-    case 8: // sshort
-      return 2;
-
-    case 4:  // long
-    case 9:  // slong
-    case 11: // float
-      return 4;
-
-    case 5:  // rational
-    case 10: // srational
-    case 12: // double
-      return 8;
-
-    default:
-      // unknown type
-      return 0;
-  }
-};
-
-
-// Reads Exif data
-//
-ExifParser.prototype.exif_format_read = function (format, offset) {
-  var v;
-
-  switch (format) {
-    case 1: // byte
-    case 2: // ascii
-      v = this.input[offset];
-      return v;
-
-    case 6: // sbyte
-      v = this.input[offset];
-      return v | (v & 0x80) * 0x1fffffe;
-
-    case 3: // short
-      v = this.read_uint16(offset);
-      return v;
-
-    case 8: // sshort
-      v = this.read_uint16(offset);
-      return v | (v & 0x8000) * 0x1fffe;
-
-    case 4: // long
-      v = this.read_uint32(offset);
-      return v;
-
-    case 9: // slong
-      v = this.read_uint32(offset);
-      return v | 0;
-
-    case 5:  // rational
-    case 10: // srational
-    case 11: // float
-    case 12: // double
-      return null; // not implemented
-
-    case 7: // undefined
-      return null; // blob
-
-    default:
-      // unknown type
-      return null;
-  }
-};
-
-
-ExifParser.prototype.scan_ifd = function (ifd_no, offset, on_entry) {
-  var entry_count = this.read_uint16(offset);
-
-  offset += 2;
-
-  for (var i = 0; i < entry_count; i++) {
-    var tag    = this.read_uint16(offset);
-    var format = this.read_uint16(offset + 2);
-    var count  = this.read_uint32(offset + 4);
-
-    var comp_length    = this.exif_format_length(format);
-    var data_length    = count * comp_length;
-    var data_offset    = data_length <= 4 ? offset + 8 : this.read_uint32(offset + 8);
-    var is_subifd_link = false;
-
-    if (data_offset + data_length > this.input.length) {
-      throw error('unexpected EOF', 'EBADDATA');
-    }
-
-    var value = [];
-    var comp_offset = data_offset;
-
-    for (var j = 0; j < count; j++, comp_offset += comp_length) {
-      var item = this.exif_format_read(format, comp_offset);
-      if (item === null) {
-        value = null;
-        break;
-      }
-      value.push(item);
-    }
-
-    if (Array.isArray(value) && format === 2) {
-      value = utf8_decode(String.fromCharCode.apply(null, value));
-      if (value && value[value.length - 1] === '\0') value = value.slice(0, -1);
-    }
-
-    if (this.is_subifd_link(ifd_no, tag)) {
-      if (Array.isArray(value) && Number.isInteger(value[0]) && value[0] > 0) {
-        this.ifds_to_read.push({
-          id:     tag,
-          offset: value[0]
-        });
-        is_subifd_link = true;
-      }
-    }
-
-    var entry = {
-      is_big_endian:  this.big_endian,
-      ifd:            ifd_no,
-      tag:            tag,
-      format:         format,
-      count:          count,
-      entry_offset:   offset + this.start,
-      data_length:    data_length,
-      data_offset:    data_offset + this.start,
-      value:          value,
-      is_subifd_link: is_subifd_link
-    };
-
-    if (on_entry(entry) === false) {
-      this.aborted = true;
-      return;
-    }
-
-    offset += 12;
-  }
-
-  if (ifd_no === 0) {
-    this.ifds_to_read.push({
-      id:     1,
-      offset: this.read_uint32(offset)
-    });
-  }
-};
-
-
-module.exports.ExifParser = ExifParser;
-
-// returns orientation stored in Exif (1-8), 0 if none was found, -1 if error
-module.exports.get_orientation = function (data) {
-  var orientation = 0;
-  try {
-    new ExifParser(data, 0, data.length).each(function (entry) {
-      if (entry.ifd === 0 && entry.tag === 0x112 && Array.isArray(entry.value)) {
-        orientation = entry.value[0];
-        return false;
-      }
-    });
-    return orientation;
-  } catch (err) {
-    return -1;
-  }
-};
-
-},{}],85:[function(_dereq_,module,exports){
-// Utils used to parse miaf-based files (avif/heic/heif)
-//
-// ISO media file spec:
-// https://web.archive.org/web/20180219054429/http://l.web.umkc.edu/lizhu/teaching/2016sp.video-communication/ref/mp4.pdf
-//
-// ISO image file format spec:
-// https://standards.iso.org/ittf/PubliclyAvailableStandards/c066067_ISO_IEC_23008-12_2017.zip
-//
-
-'use strict';
-
-/* eslint-disable consistent-return */
-/* eslint-disable no-bitwise */
-
-var readUInt16BE = _dereq_('./common').readUInt16BE;
-var readUInt32BE = _dereq_('./common').readUInt32BE;
-
-/*
- * interface Box {
- *   size:       uint32;   // if size == 0, box lasts until EOF
- *   boxtype:    char[4];
- *   largesize?: uint64;   // only if size == 1
- *   usertype?:  char[16]; // only if boxtype == 'uuid'
- * }
- */
-function unbox(data, offset) {
-  if (data.length < 4 + offset) return null;
-
-  var size = readUInt32BE(data, offset);
-
-  // size includes first 4 bytes (length)
-  if (data.length < size + offset || size < 8) return null;
-
-  // if size === 1, real size is following uint64 (only for big boxes, not needed)
-  // if size === 0, real size is until the end of the file (only for big boxes, not needed)
-
-  return {
-    boxtype: String.fromCharCode.apply(null, data.slice(offset + 4, offset + 8)),
-    data:    data.slice(offset + 8, offset + size),
-    end:     offset + size
-  };
-}
-
-
-module.exports.unbox = unbox;
-
-
-// parses `meta` -> `iprp` -> `ipco` box, returns:
-// {
-//   sizes: [ { width, height } ],
-//   transforms: [ { type, value } ]
-// }
-function scan_ipco(data, sandbox) {
-  var offset = 0;
-
-  for (;;) {
-    var box = unbox(data, offset);
-    if (!box) break;
-
-    switch (box.boxtype) {
-      case 'ispe':
-        sandbox.sizes.push({
-          width:  readUInt32BE(box.data, 4),
-          height: readUInt32BE(box.data, 8)
-        });
-        break;
-
-      case 'irot':
-        sandbox.transforms.push({
-          type: 'irot',
-          value: box.data[0] & 3
-        });
-        break;
-
-      case 'imir':
-        sandbox.transforms.push({
-          type: 'imir',
-          value: box.data[0] & 1
-        });
-        break;
-    }
-
-    offset = box.end;
-  }
-}
-
-
-function readUIntBE(data, offset, size) {
-  var result = 0;
-
-  for (var i = 0; i < size; i++) {
-    result = result * 256 + (data[offset + i] || 0);
-  }
-
-  return result;
-}
-
-
-// parses `meta` -> `iloc` box
-function scan_iloc(data, sandbox) {
-  var offset_size = (data[4] >> 4) & 0xF;
-  var length_size = data[4] & 0xF;
-  var base_offset_size = (data[5] >> 4) & 0xF;
-  var item_count = readUInt16BE(data, 6);
-  var offset = 8;
-
-  for (var i = 0; i < item_count; i++) {
-    var item_ID = readUInt16BE(data, offset);
-    offset += 2;
-
-    var data_reference_index = readUInt16BE(data, offset);
-    offset += 2;
-
-    var base_offset = readUIntBE(data, offset, base_offset_size);
-    offset += base_offset_size;
-
-    var extent_count = readUInt16BE(data, offset);
-    offset += 2;
-
-    if (data_reference_index === 0 && extent_count === 1) {
-      var first_extent_offset = readUIntBE(data, offset, offset_size);
-      var first_extent_length = readUIntBE(data, offset + offset_size, length_size);
-      sandbox.item_loc[item_ID] = { length: first_extent_length, offset: first_extent_offset + base_offset };
-    }
-
-    offset += extent_count * (offset_size + length_size);
-  }
-}
-
-
-// parses `meta` -> `iinf` box
-function scan_iinf(data, sandbox) {
-  var item_count = readUInt16BE(data, 4);
-  var offset = 6;
-
-  for (var i = 0; i < item_count; i++) {
-    var box = unbox(data, offset);
-    if (!box) break;
-    if (box.boxtype === 'infe') {
-      var item_id = readUInt16BE(box.data, 4);
-      var item_name = '';
-
-      for (var pos = 8; pos < box.data.length && box.data[pos]; pos++) {
-        item_name += String.fromCharCode(box.data[pos]);
-      }
-
-      sandbox.item_inf[item_name] = item_id;
-    }
-    offset = box.end;
-  }
-}
-
-
-// parses `meta` -> `iprp` box
-function scan_iprp(data, sandbox) {
-  var offset = 0;
-
-  for (;;) {
-    var box = unbox(data, offset);
-    if (!box) break;
-    if (box.boxtype === 'ipco') scan_ipco(box.data, sandbox);
-    offset = box.end;
-  }
-}
-
-
-// parses `meta` box
-function scan_meta(data, sandbox) {
-  var offset = 4; // version + flags
-
-  for (;;) {
-    var box = unbox(data, offset);
-    if (!box) break;
-    if (box.boxtype === 'iprp') scan_iprp(box.data, sandbox);
-    if (box.boxtype === 'iloc') scan_iloc(box.data, sandbox);
-    if (box.boxtype === 'iinf') scan_iinf(box.data, sandbox);
-    offset = box.end;
-  }
-}
-
-
-// get image with largest single dimension as base
-function getMaxSize(sizes) {
-  var maxWidthSize = sizes.reduce(function (a, b) {
-    return a.width > b.width || (a.width === b.width && a.height > b.height) ? a : b;
-  });
-
-  var maxHeightSize = sizes.reduce(function (a, b) {
-    return a.height > b.height || (a.height === b.height && a.width > b.width) ? a : b;
-  });
-
-  var maxSize;
-
-  if (maxWidthSize.width > maxHeightSize.height ||
-      (maxWidthSize.width === maxHeightSize.height && maxWidthSize.height > maxHeightSize.width)) {
-    maxSize = maxWidthSize;
-  } else {
-    maxSize = maxHeightSize;
-  }
-
-  return maxSize;
-}
-
-
-module.exports.readSizeFromMeta = function (data) {
-  var sandbox = {
-    sizes: [],
-    transforms: [],
-    item_inf: {},
-    item_loc: {}
-  };
-
-  scan_meta(data, sandbox);
-
-  if (!sandbox.sizes.length) return;
-
-  var maxSize = getMaxSize(sandbox.sizes);
-
-  var orientation = 1;
-
-  // convert imir/irot to exif orientation
-  sandbox.transforms.forEach(function (transform) {
-    var rotate_ccw  = { 1: 6, 2: 5, 3: 8, 4: 7, 5: 4, 6: 3, 7: 2, 8: 1 };
-    var mirror_vert = { 1: 4, 2: 3, 3: 2, 4: 1, 5: 6, 6: 5, 7: 8, 8: 7 };
-
-    if (transform.type === 'imir') {
-      if (transform.value === 0) {
-        // vertical flip
-        orientation = mirror_vert[orientation];
-      } else {
-        // horizontal flip = vertical flip + 180 deg rotation
-        orientation = mirror_vert[orientation];
-        orientation = rotate_ccw[orientation];
-        orientation = rotate_ccw[orientation];
-      }
-    }
-
-    if (transform.type === 'irot') {
-      // counter-clockwise rotation 90 deg 0-3 times
-      for (var i = 0; i < transform.value; i++) {
-        orientation = rotate_ccw[orientation];
-      }
-    }
-  });
-
-  var exif_location = null;
-
-  if (sandbox.item_inf.Exif) {
-    exif_location = sandbox.item_loc[sandbox.item_inf.Exif];
-  }
-
-  return {
-    width: maxSize.width,
-    height: maxSize.height,
-    orientation: sandbox.transforms.length ? orientation : null,
-    variants: sandbox.sizes,
-    exif_location: exif_location
-  };
-};
-
-
-module.exports.getMimeType = function (data) {
-  var brand = String.fromCharCode.apply(null, data.slice(0, 4));
-  var compat = {};
-
-  compat[brand] = true;
-
-  for (var i = 8; i < data.length; i += 4) {
-    compat[String.fromCharCode.apply(null, data.slice(i, i + 4))] = true;
-  }
-
-  // heic and avif are superset of miaf, so they should all list mif1 as compatible
-  if (!compat.mif1 && !compat.msf1 && !compat.miaf) return;
-
-  if (brand === 'avif' || brand === 'avis' || brand === 'avio') {
-    // `.avifs` and `image/avif-sequence` are removed from spec, all files have single type
-    return { type: 'avif', mime: 'image/avif' };
-  }
-
-  // https://nokiatech.github.io/heif/technical.html
-  if (brand === 'heic' || brand === 'heix') {
-    return { type: 'heic', mime: 'image/heic' };
-  }
-
-  if (brand === 'hevc' || brand === 'hevx') {
-    return { type: 'heic', mime: 'image/heic-sequence' };
-  }
-
-  if (compat.avif || compat.avis) {
-    return { type: 'avif', mime: 'image/avif' };
-  }
-
-  if (compat.heic || compat.heix || compat.hevc || compat.hevx || compat.heis) {
-    if (compat.msf1) {
-      return { type: 'heif', mime: 'image/heif-sequence' };
-    }
-    return { type: 'heif', mime: 'image/heif' };
-  }
-
-  return { type: 'avif', mime: 'image/avif' };
-};
-
-},{"./common":83}],86:[function(_dereq_,module,exports){
-// Utils used to parse miaf-based files (avif/heic/heif)
-//
-//  - image collections are not supported (only last size is reported)
-//  - images with metadata encoded after image data are not supported
-//  - images without any `ispe` box are not supported
-//
-
-/* eslint-disable consistent-return */
-
-'use strict';
-
-
-var str2arr      = _dereq_('../common').str2arr;
-var sliceEq      = _dereq_('../common').sliceEq;
-var readUInt32BE = _dereq_('../common').readUInt32BE;
-var miaf         = _dereq_('../miaf_utils');
-var exif         = _dereq_('../exif_utils');
-
-var SIG_FTYP = str2arr('ftyp');
-
-
-module.exports = function (data) {
-  // ISO media file (avif format) starts with ftyp box:
-  // 0000 0020 6674 7970 6176 6966
-  //  (length)  f t  y p  a v  i f
-  //
-  if (!sliceEq(data, 4, SIG_FTYP)) return;
-
-  var firstBox = miaf.unbox(data, 0);
-  if (!firstBox) return;
-
-  var fileType = miaf.getMimeType(firstBox.data);
-  if (!fileType) return;
-
-  var meta, offset = firstBox.end;
-
-  for (;;) {
-    var box = miaf.unbox(data, offset);
-    if (!box) break;
-    offset = box.end;
-
-    // mdat block SHOULD be last (but not strictly required),
-    // so it's unlikely that metadata is after it
-    if (box.boxtype === 'mdat') return;
-    if (box.boxtype === 'meta') {
-      meta = box.data;
-      break;
-    }
-  }
-
-  if (!meta) return;
-
-  var imgSize = miaf.readSizeFromMeta(meta);
-
-  if (!imgSize) return;
-
-  var result = {
-    width:    imgSize.width,
-    height:   imgSize.height,
-    type:     fileType.type,
-    mime:     fileType.mime,
-    wUnits:   'px',
-    hUnits:   'px'
-  };
-
-  if (imgSize.variants.length > 1) {
-    result.variants = imgSize.variants;
-  }
-
-  if (imgSize.orientation) {
-    result.orientation = imgSize.orientation;
-  }
-
-  if (imgSize.exif_location &&
-      imgSize.exif_location.offset + imgSize.exif_location.length <= data.length) {
-
-    var sig_offset = readUInt32BE(data, imgSize.exif_location.offset);
-    var exif_data = data.slice(
-      imgSize.exif_location.offset + sig_offset + 4,
-      imgSize.exif_location.offset + imgSize.exif_location.length);
-
-    var orientation = exif.get_orientation(exif_data);
-
-    if (orientation > 0) result.orientation = orientation;
-  }
-
-  return result;
-};
-
-},{"../common":83,"../exif_utils":84,"../miaf_utils":85}],87:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-var str2arr      = _dereq_('../common').str2arr;
-var sliceEq      = _dereq_('../common').sliceEq;
-var readUInt16LE = _dereq_('../common').readUInt16LE;
-
-var SIG_BM = str2arr('BM');
-
-
-module.exports = function (data) {
-  if (data.length < 26) return;
-
-  if (!sliceEq(data, 0, SIG_BM)) return;
-
-  return {
-    width:  readUInt16LE(data, 18),
-    height: readUInt16LE(data, 22),
-    type: 'bmp',
-    mime: 'image/bmp',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-};
-
-},{"../common":83}],88:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-var str2arr      = _dereq_('../common').str2arr;
-var sliceEq      = _dereq_('../common').sliceEq;
-var readUInt16LE = _dereq_('../common').readUInt16LE;
-
-
-var SIG_GIF87a = str2arr('GIF87a');
-var SIG_GIF89a = str2arr('GIF89a');
-
-
-module.exports = function (data) {
-  if (data.length < 10) return;
-
-  if (!sliceEq(data, 0, SIG_GIF87a) && !sliceEq(data, 0, SIG_GIF89a)) return;
-
-  return {
-    width:  readUInt16LE(data, 6),
-    height: readUInt16LE(data, 8),
-    type: 'gif',
-    mime: 'image/gif',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-};
-
-},{"../common":83}],89:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-var readUInt16LE = _dereq_('../common').readUInt16LE;
-
-var HEADER = 0;
-var TYPE_ICO = 1;
-var INDEX_SIZE = 16;
-
-// Format specification:
-// https://en.wikipedia.org/wiki/ICO_(file_format)#Icon_resource_structure
-module.exports = function (data) {
-  var header = readUInt16LE(data, 0);
-  var type = readUInt16LE(data, 2);
-  var numImages = readUInt16LE(data, 4);
-
-  if (header !== HEADER || type !== TYPE_ICO || !numImages) {
-    return;
-  }
-
-  var variants = [];
-  var maxSize = { width: 0, height: 0 };
-
-  for (var i = 0; i < numImages; i++) {
-    var width = data[6 + INDEX_SIZE * i] || 256;
-    var height = data[6 + INDEX_SIZE * i + 1] || 256;
-    var size = { width: width, height: height };
-    variants.push(size);
-
-    if (width > maxSize.width || height > maxSize.height) {
-      maxSize = size;
-    }
-  }
-
-  return {
-    width: maxSize.width,
-    height: maxSize.height,
-    variants: variants,
-    type: 'ico',
-    mime: 'image/x-icon',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-};
-
-},{"../common":83}],90:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-var readUInt16BE = _dereq_('../common').readUInt16BE;
-var str2arr      = _dereq_('../common').str2arr;
-var sliceEq      = _dereq_('../common').sliceEq;
-var exif         = _dereq_('../exif_utils');
-
-
-var SIG_EXIF  = str2arr('Exif\0\0');
-
-
-module.exports = function (data) {
-  if (data.length < 2) return;
-
-  // first marker of the file MUST be 0xFFD8,
-  // following by either 0xFFE0, 0xFFE2 or 0xFFE3
-  if (data[0] !== 0xFF || data[1] !== 0xD8 || data[2] !== 0xFF) return;
-
-  var offset = 2;
-
-  for (;;) {
-    // skip until we see 0xFF, see https://github.com/nodeca/probe-image-size/issues/68
-    for (;;) {
-      if (data.length - offset < 2) return;
-      if (data[offset++] === 0xFF) break;
-    }
-
-    var code = data[offset++];
-    var length;
-
-    // skip padding bytes
-    while (code === 0xFF) code = data[offset++];
-
-    // standalone markers, according to JPEG 1992,
-    // http://www.w3.org/Graphics/JPEG/itu-t81.pdf, see Table B.1
-    if ((0xD0 <= code && code <= 0xD9) || code === 0x01) {
-      length = 0;
-    } else if (0xC0 <= code && code <= 0xFE) {
-      // the rest of the unreserved markers
-      if (data.length - offset < 2) return;
-
-      length = readUInt16BE(data, offset) - 2;
-      offset += 2;
-    } else {
-      // unknown markers
-      return;
-    }
-
-    if (code === 0xD9 /* EOI */ || code === 0xDA /* SOS */) {
-      // end of the datastream
-      return;
-    }
-
-    var orientation;
-
-    // try to get orientation from Exif segment
-    if (code === 0xE1 && length >= 10 && sliceEq(data, offset, SIG_EXIF)) {
-      orientation = exif.get_orientation(data.slice(offset + 6, offset + length));
-    }
-
-    if (length >= 5 &&
-        (0xC0 <= code && code <= 0xCF) &&
-        code !== 0xC4 && code !== 0xC8 && code !== 0xCC) {
-
-      if (data.length - offset < length) return;
-
-      var result = {
-        width:  readUInt16BE(data, offset + 3),
-        height: readUInt16BE(data, offset + 1),
-        type:   'jpg',
-        mime:   'image/jpeg',
-        wUnits: 'px',
-        hUnits: 'px'
-      };
-
-      if (orientation > 0) {
-        result.orientation = orientation;
-      }
-
-      return result;
-    }
-
-    offset += length;
-  }
-};
-
-},{"../common":83,"../exif_utils":84}],91:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-var str2arr      = _dereq_('../common').str2arr;
-var sliceEq      = _dereq_('../common').sliceEq;
-var readUInt32BE = _dereq_('../common').readUInt32BE;
-
-
-var SIG_PNG  = str2arr('\x89PNG\r\n\x1a\n');
-var SIG_IHDR = str2arr('IHDR');
-
-
-module.exports = function (data) {
-  if (data.length < 24) return;
-
-  // check PNG signature
-  if (!sliceEq(data, 0, SIG_PNG)) return;
-
-  // check that first chunk is IHDR
-  if (!sliceEq(data, 12, SIG_IHDR)) return;
-
-  return {
-    width:  readUInt32BE(data, 16),
-    height: readUInt32BE(data, 20),
-    type: 'png',
-    mime: 'image/png',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-};
-
-},{"../common":83}],92:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-var str2arr      = _dereq_('../common').str2arr;
-var sliceEq      = _dereq_('../common').sliceEq;
-var readUInt32BE = _dereq_('../common').readUInt32BE;
-
-
-var SIG_8BPS  = str2arr('8BPS\x00\x01');
-
-
-module.exports = function (data) {
-  if (data.length < 6 + 16) return;
-
-  // signature + version
-  if (!sliceEq(data, 0, SIG_8BPS)) return;
-
-  return {
-    width:  readUInt32BE(data, 6 + 12),
-    height: readUInt32BE(data, 6 + 8),
-    type: 'psd',
-    mime: 'image/vnd.adobe.photoshop',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-};
-
-},{"../common":83}],93:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-function isWhiteSpace(chr) {
-  return chr === 0x20 || chr === 0x09 || chr === 0x0D || chr === 0x0A;
-}
-
-// Filter NaN, Infinity, < 0
-function isFinitePositive(val) {
-  return typeof val === 'number' && isFinite(val) && val > 0;
-}
-
-function canBeSvg(buf) {
-  var i = 0, max = buf.length;
-
-  // byte order mark, https://github.com/nodeca/probe-image-size/issues/57
-  if (buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) i = 3;
-
-  while (i < max && isWhiteSpace(buf[i])) i++;
-
-  if (i === max) return false;
-  return buf[i] === 0x3c; /* < */
-}
-
-
-// skip `<?` (comments), `<!` (directives, cdata, doctype),
-// looking for `<svg>` or `<NAMESPACE:svg>`
-var SVG_HEADER_RE  = /<[-_.:a-zA-Z0-9][^>]*>/;
-
-// test if the top level element is svg + optional namespace,
-// used to skip svg embedded in html
-var SVG_TAG_RE     = /^<([-_.:a-zA-Z0-9]+:)?svg\s/;
-
-var SVG_WIDTH_RE   = /[^-]\bwidth="([^%]+?)"|[^-]\bwidth='([^%]+?)'/;
-var SVG_HEIGHT_RE  = /\bheight="([^%]+?)"|\bheight='([^%]+?)'/;
-var SVG_VIEWBOX_RE = /\bview[bB]ox="(.+?)"|\bview[bB]ox='(.+?)'/;
-var SVG_UNITS_RE   = /in$|mm$|cm$|pt$|pc$|px$|em$|ex$/;
-
-function svgAttrs(str) {
-  var width   = str.match(SVG_WIDTH_RE);
-  var height  = str.match(SVG_HEIGHT_RE);
-  var viewbox = str.match(SVG_VIEWBOX_RE);
-
-  return {
-    width:   width && (width[1] || width[2]),
-    height:  height && (height[1] || height[2]),
-    viewbox: viewbox && (viewbox[1] || viewbox[2])
-  };
-}
-
-
-function units(str) {
-  if (!SVG_UNITS_RE.test(str)) return 'px';
-
-  return str.match(SVG_UNITS_RE)[0];
-}
-
-
-module.exports = function (data) {
-  if (!canBeSvg(data)) return;
-
-  var str = '';
-
-  for (var i = 0; i < data.length; i++) {
-    // 1. We can't rely on buffer features
-    // 2. Don't care about UTF16 because ascii is enougth for our goals
-    str += String.fromCharCode(data[i]);
-  }
-
-  // get top level element
-  var svgTag = (str.match(SVG_HEADER_RE) || [ '' ])[0];
-
-  // test if top level element is <svg>
-  if (!SVG_TAG_RE.test(svgTag)) return;
-
-  var attrs  = svgAttrs(svgTag);
-  var width  = parseFloat(attrs.width);
-  var height = parseFloat(attrs.height);
-
-  // Extract from direct values
-
-  if (attrs.width && attrs.height) {
-    if (!isFinitePositive(width) || !isFinitePositive(height)) return;
-
-    return {
-      width:  width,
-      height: height,
-      type:   'svg',
-      mime:   'image/svg+xml',
-      wUnits: units(attrs.width),
-      hUnits: units(attrs.height)
-    };
-  }
-
-  // Extract from viewbox
-
-  var parts = (attrs.viewbox || '').split(' ');
-  var viewbox = {
-    width:  parts[2],
-    height: parts[3]
-  };
-  var vbWidth  = parseFloat(viewbox.width);
-  var vbHeight = parseFloat(viewbox.height);
-
-  if (!isFinitePositive(vbWidth) || !isFinitePositive(vbHeight)) return;
-  if (units(viewbox.width) !== units(viewbox.height)) return;
-
-  var ratio = vbWidth / vbHeight;
-
-  if (attrs.width) {
-    if (!isFinitePositive(width)) return;
-
-    return {
-      width:  width,
-      height: width / ratio,
-      type:   'svg',
-      mime:   'image/svg+xml',
-      wUnits: units(attrs.width),
-      hUnits: units(attrs.width)
-    };
-  }
-
-  if (attrs.height) {
-    if (!isFinitePositive(height)) return;
-
-    return {
-      width:  height * ratio,
-      height: height,
-      type:   'svg',
-      mime:   'image/svg+xml',
-      wUnits: units(attrs.height),
-      hUnits: units(attrs.height)
-    };
-  }
-
-  return {
-    width:  vbWidth,
-    height: vbHeight,
-    type:   'svg',
-    mime:   'image/svg+xml',
-    wUnits: units(viewbox.width),
-    hUnits: units(viewbox.height)
-  };
-};
-
-},{}],94:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable consistent-return */
-
-var str2arr = _dereq_('../common').str2arr;
-var sliceEq = _dereq_('../common').sliceEq;
-var readUInt16LE = _dereq_('../common').readUInt16LE;
-var readUInt16BE = _dereq_('../common').readUInt16BE;
-var readUInt32LE = _dereq_('../common').readUInt32LE;
-var readUInt32BE = _dereq_('../common').readUInt32BE;
-
-
-var SIG_1 = str2arr('II\x2A\0');
-var SIG_2 = str2arr('MM\0\x2A');
-
-
-function readUInt16(buffer, offset, is_big_endian) {
-  return is_big_endian ? readUInt16BE(buffer, offset) : readUInt16LE(buffer, offset);
-}
-
-function readUInt32(buffer, offset, is_big_endian) {
-  return is_big_endian ? readUInt32BE(buffer, offset) : readUInt32LE(buffer, offset);
-}
-
-function readIFDValue(data, data_offset, is_big_endian) {
-  var type       = readUInt16(data, data_offset + 2, is_big_endian);
-  var values     = readUInt32(data, data_offset + 4, is_big_endian);
-
-  if (values !== 1 || (type !== 3 && type !== 4)) return null;
-
-  if (type === 3) {
-    return readUInt16(data, data_offset + 8, is_big_endian);
-  }
-
-  return readUInt32(data, data_offset + 8, is_big_endian);
-}
-
-module.exports = function (data) {
-  if (data.length < 8) return;
-
-  // check TIFF signature
-  if (!sliceEq(data, 0, SIG_1) && !sliceEq(data, 0, SIG_2)) return;
-
-  var is_big_endian = (data[0] === 77 /* 'MM' */);
-  var count = readUInt32(data, 4, is_big_endian) - 8;
-
-  if (count < 0) return;
-
-  // skip until IFD
-  var offset = count + 8;
-
-  if (data.length - offset < 2) return;
-
-  // read number of IFD entries
-  var ifd_size = readUInt16(data, offset + 0, is_big_endian) * 12;
-
-  if (ifd_size <= 0) return;
-
-  offset += 2;
-
-  // read all IFD entries
-  if (data.length - offset < ifd_size) return;
-
-  var i, width, height, tag;
-
-  for (i = 0; i < ifd_size; i += 12) {
-    tag = readUInt16(data, offset + i, is_big_endian);
-
-    if (tag === 256) {
-      width = readIFDValue(data, offset + i, is_big_endian);
-    } else if (tag === 257) {
-      height = readIFDValue(data, offset + i, is_big_endian);
-    }
-  }
-
-  if (width && height) {
-    return {
-      width:  width,
-      height: height,
-      type:   'tiff',
-      mime:   'image/tiff',
-      wUnits: 'px',
-      hUnits: 'px'
-    };
-  }
-};
-
-},{"../common":83}],95:[function(_dereq_,module,exports){
-'use strict';
-
-/* eslint-disable no-bitwise */
-/* eslint-disable consistent-return */
-
-var str2arr      = _dereq_('../common').str2arr;
-var sliceEq      = _dereq_('../common').sliceEq;
-var readUInt16LE = _dereq_('../common').readUInt16LE;
-var readUInt32LE = _dereq_('../common').readUInt32LE;
-var exif         = _dereq_('../exif_utils');
-
-
-var SIG_RIFF = str2arr('RIFF');
-var SIG_WEBP = str2arr('WEBP');
-
-
-function parseVP8(data, offset) {
-  if (data[offset + 3] !== 0x9D || data[offset + 4] !== 0x01 || data[offset + 5] !== 0x2A) {
-    // bad code block signature
-    return;
-  }
-
-  return {
-    width:  readUInt16LE(data, offset + 6) & 0x3FFF,
-    height: readUInt16LE(data, offset + 8) & 0x3FFF,
-    type:   'webp',
-    mime:   'image/webp',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-}
-
-
-function parseVP8L(data, offset) {
-  if (data[offset] !== 0x2F) return;
-
-  var bits = readUInt32LE(data, offset + 1);
-
-  return {
-    width:  (bits & 0x3FFF) + 1,
-    height: ((bits >> 14) & 0x3FFF) + 1,
-    type:   'webp',
-    mime:   'image/webp',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-}
-
-
-function parseVP8X(data, offset) {
-  return  {
-    // TODO: replace with `data.readUIntLE(8, 3) + 1`
-    //       when 0.10 support is dropped
-    width:  ((data[offset + 6] << 16) | (data[offset + 5] << 8) | data[offset + 4]) + 1,
-    height: ((data[offset + 9] << offset) | (data[offset + 8] << 8) | data[offset + 7]) + 1,
-    type:   'webp',
-    mime:   'image/webp',
-    wUnits: 'px',
-    hUnits: 'px'
-  };
-}
-
-
-module.exports = function (data) {
-  if (data.length < 16) return;
-
-  // check /^RIFF....WEBPVP8([ LX])$/ signature
-  if (!sliceEq(data, 0, SIG_RIFF) && !sliceEq(data, 8, SIG_WEBP)) return;
-
-  var offset = 12;
-  var result = null;
-  var exif_orientation = 0;
-  var fileLength = readUInt32LE(data, 4) + 8;
-
-  if (fileLength > data.length) return;
-
-  while (offset + 8 < fileLength) {
-    if (data[offset] === 0) {
-      // after each chunk of odd size there should be 0 byte of padding, skip those
-      offset++;
-      continue;
-    }
-
-    var header = String.fromCharCode.apply(null, data.slice(offset, offset + 4));
-    var length = readUInt32LE(data, offset + 4);
-
-    if (header === 'VP8 ' && length >= 10) {
-      result = result || parseVP8(data, offset + 8);
-    } else if (header === 'VP8L' && length >= 9) {
-      result = result || parseVP8L(data, offset + 8);
-    } else if (header === 'VP8X' && length >= 10) {
-      result = result || parseVP8X(data, offset + 8);
-    } else if (header === 'EXIF') {
-      exif_orientation = exif.get_orientation(data.slice(offset + 8, offset + 8 + length));
-
-      // exif is the last chunk we care about, stop after it
-      offset = Infinity;
-    }
-
-    offset += 8 + length;
-  }
-
-  if (!result) return;
-
-  if (exif_orientation > 0) {
-    result.orientation = exif_orientation;
-  }
-
-  return result;
-};
-
-},{"../common":83,"../exif_utils":84}],96:[function(_dereq_,module,exports){
-'use strict';
-
-
-module.exports = {
-  avif: _dereq_('./parse_sync/avif'),
-  bmp:  _dereq_('./parse_sync/bmp'),
-  gif:  _dereq_('./parse_sync/gif'),
-  ico:  _dereq_('./parse_sync/ico'),
-  jpeg: _dereq_('./parse_sync/jpeg'),
-  png:  _dereq_('./parse_sync/png'),
-  psd:  _dereq_('./parse_sync/psd'),
-  svg:  _dereq_('./parse_sync/svg'),
-  tiff: _dereq_('./parse_sync/tiff'),
-  webp: _dereq_('./parse_sync/webp')
-};
-
-},{"./parse_sync/avif":86,"./parse_sync/bmp":87,"./parse_sync/gif":88,"./parse_sync/ico":89,"./parse_sync/jpeg":90,"./parse_sync/png":91,"./parse_sync/psd":92,"./parse_sync/svg":93,"./parse_sync/tiff":94,"./parse_sync/webp":95}],97:[function(_dereq_,module,exports){
-'use strict';
-
-
-var parsers = _dereq_('./lib/parsers_sync');
-
-
-function probeBuffer(buffer) {
-  var parser_names = Object.keys(parsers);
-
-  for (var i = 0; i < parser_names.length; i++) {
-    var result = parsers[parser_names[i]](buffer);
-
-    if (result) return result;
-  }
-
-  return null;
-}
-
-
-///////////////////////////////////////////////////////////////////////
-// Exports
-//
-
-module.exports = function get_image_size(src) {
-  return probeBuffer(src);
-};
-
-module.exports.parsers = parsers;
-
-},{"./lib/parsers_sync":96}],98:[function(_dereq_,module,exports){
+},{}],77:[function(_dereq_,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -17239,4459 +14675,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],99:[function(_dereq_,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = _dereq_('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.prototype = Object.create(Buffer.prototype)
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":28}],100:[function(_dereq_,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = _dereq_('events').EventEmitter;
-var inherits = _dereq_('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = _dereq_('readable-stream/lib/_stream_readable.js');
-Stream.Writable = _dereq_('readable-stream/lib/_stream_writable.js');
-Stream.Duplex = _dereq_('readable-stream/lib/_stream_duplex.js');
-Stream.Transform = _dereq_('readable-stream/lib/_stream_transform.js');
-Stream.PassThrough = _dereq_('readable-stream/lib/_stream_passthrough.js');
-Stream.finished = _dereq_('readable-stream/lib/internal/streams/end-of-stream.js')
-Stream.pipeline = _dereq_('readable-stream/lib/internal/streams/pipeline.js')
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":27,"inherits":67,"readable-stream/lib/_stream_duplex.js":102,"readable-stream/lib/_stream_passthrough.js":103,"readable-stream/lib/_stream_readable.js":104,"readable-stream/lib/_stream_transform.js":105,"readable-stream/lib/_stream_writable.js":106,"readable-stream/lib/internal/streams/end-of-stream.js":110,"readable-stream/lib/internal/streams/pipeline.js":112}],101:[function(_dereq_,module,exports){
-'use strict';
-
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
-
-var codes = {};
-
-function createErrorType(code, message, Base) {
-  if (!Base) {
-    Base = Error;
-  }
-
-  function getMessage(arg1, arg2, arg3) {
-    if (typeof message === 'string') {
-      return message;
-    } else {
-      return message(arg1, arg2, arg3);
-    }
-  }
-
-  var NodeError =
-  /*#__PURE__*/
-  function (_Base) {
-    _inheritsLoose(NodeError, _Base);
-
-    function NodeError(arg1, arg2, arg3) {
-      return _Base.call(this, getMessage(arg1, arg2, arg3)) || this;
-    }
-
-    return NodeError;
-  }(Base);
-
-  NodeError.prototype.name = Base.name;
-  NodeError.prototype.code = code;
-  codes[code] = NodeError;
-} // https://github.com/nodejs/node/blob/v10.8.0/lib/internal/errors.js
-
-
-function oneOf(expected, thing) {
-  if (Array.isArray(expected)) {
-    var len = expected.length;
-    expected = expected.map(function (i) {
-      return String(i);
-    });
-
-    if (len > 2) {
-      return "one of ".concat(thing, " ").concat(expected.slice(0, len - 1).join(', '), ", or ") + expected[len - 1];
-    } else if (len === 2) {
-      return "one of ".concat(thing, " ").concat(expected[0], " or ").concat(expected[1]);
-    } else {
-      return "of ".concat(thing, " ").concat(expected[0]);
-    }
-  } else {
-    return "of ".concat(thing, " ").concat(String(expected));
-  }
-} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
-
-
-function startsWith(str, search, pos) {
-  return str.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
-} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
-
-
-function endsWith(str, search, this_len) {
-  if (this_len === undefined || this_len > str.length) {
-    this_len = str.length;
-  }
-
-  return str.substring(this_len - search.length, this_len) === search;
-} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
-
-
-function includes(str, search, start) {
-  if (typeof start !== 'number') {
-    start = 0;
-  }
-
-  if (start + search.length > str.length) {
-    return false;
-  } else {
-    return str.indexOf(search, start) !== -1;
-  }
-}
-
-createErrorType('ERR_INVALID_OPT_VALUE', function (name, value) {
-  return 'The value "' + value + '" is invalid for option "' + name + '"';
-}, TypeError);
-createErrorType('ERR_INVALID_ARG_TYPE', function (name, expected, actual) {
-  // determiner: 'must be' or 'must not be'
-  var determiner;
-
-  if (typeof expected === 'string' && startsWith(expected, 'not ')) {
-    determiner = 'must not be';
-    expected = expected.replace(/^not /, '');
-  } else {
-    determiner = 'must be';
-  }
-
-  var msg;
-
-  if (endsWith(name, ' argument')) {
-    // For cases like 'first argument'
-    msg = "The ".concat(name, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
-  } else {
-    var type = includes(name, '.') ? 'property' : 'argument';
-    msg = "The \"".concat(name, "\" ").concat(type, " ").concat(determiner, " ").concat(oneOf(expected, 'type'));
-  }
-
-  msg += ". Received type ".concat(typeof actual);
-  return msg;
-}, TypeError);
-createErrorType('ERR_STREAM_PUSH_AFTER_EOF', 'stream.push() after EOF');
-createErrorType('ERR_METHOD_NOT_IMPLEMENTED', function (name) {
-  return 'The ' + name + ' method is not implemented';
-});
-createErrorType('ERR_STREAM_PREMATURE_CLOSE', 'Premature close');
-createErrorType('ERR_STREAM_DESTROYED', function (name) {
-  return 'Cannot call ' + name + ' after a stream was destroyed';
-});
-createErrorType('ERR_MULTIPLE_CALLBACK', 'Callback called multiple times');
-createErrorType('ERR_STREAM_CANNOT_PIPE', 'Cannot pipe, not readable');
-createErrorType('ERR_STREAM_WRITE_AFTER_END', 'write after end');
-createErrorType('ERR_STREAM_NULL_VALUES', 'May not write null values to stream', TypeError);
-createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
-  return 'Unknown encoding: ' + arg;
-}, TypeError);
-createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
-module.exports.codes = codes;
-
-},{}],102:[function(_dereq_,module,exports){
-(function (process){(function (){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// a duplex stream is just a stream that is both readable and writable.
-// Since JS doesn't have multiple prototypal inheritance, this class
-// prototypally inherits from Readable, and then parasitically from
-// Writable.
-'use strict';
-/*<replacement>*/
-
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-
-  for (var key in obj) {
-    keys.push(key);
-  }
-
-  return keys;
-};
-/*</replacement>*/
-
-
-module.exports = Duplex;
-
-var Readable = _dereq_('./_stream_readable');
-
-var Writable = _dereq_('./_stream_writable');
-
-_dereq_('inherits')(Duplex, Readable);
-
-{
-  // Allow the keys array to be GC'ed.
-  var keys = objectKeys(Writable.prototype);
-
-  for (var v = 0; v < keys.length; v++) {
-    var method = keys[v];
-    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
-  }
-}
-
-function Duplex(options) {
-  if (!(this instanceof Duplex)) return new Duplex(options);
-  Readable.call(this, options);
-  Writable.call(this, options);
-  this.allowHalfOpen = true;
-
-  if (options) {
-    if (options.readable === false) this.readable = false;
-    if (options.writable === false) this.writable = false;
-
-    if (options.allowHalfOpen === false) {
-      this.allowHalfOpen = false;
-      this.once('end', onend);
-    }
-  }
-}
-
-Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.highWaterMark;
-  }
-});
-Object.defineProperty(Duplex.prototype, 'writableBuffer', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState && this._writableState.getBuffer();
-  }
-});
-Object.defineProperty(Duplex.prototype, 'writableLength', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.length;
-  }
-}); // the no-half-open enforcer
-
-function onend() {
-  // If the writable side ended, then we're ok.
-  if (this._writableState.ended) return; // no more data can be written.
-  // But allow more writes to happen in this tick.
-
-  process.nextTick(onEndNT, this);
-}
-
-function onEndNT(self) {
-  self.end();
-}
-
-Object.defineProperty(Duplex.prototype, 'destroyed', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return false;
-    }
-
-    return this._readableState.destroyed && this._writableState.destroyed;
-  },
-  set: function set(value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return;
-    } // backward compatibility, the user is explicitly
-    // managing destroyed
-
-
-    this._readableState.destroyed = value;
-    this._writableState.destroyed = value;
-  }
-});
-}).call(this)}).call(this,_dereq_('_process'))
-},{"./_stream_readable":104,"./_stream_writable":106,"_process":98,"inherits":67}],103:[function(_dereq_,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// a passthrough stream.
-// basically just the most minimal sort of Transform stream.
-// Every written chunk gets output as-is.
-'use strict';
-
-module.exports = PassThrough;
-
-var Transform = _dereq_('./_stream_transform');
-
-_dereq_('inherits')(PassThrough, Transform);
-
-function PassThrough(options) {
-  if (!(this instanceof PassThrough)) return new PassThrough(options);
-  Transform.call(this, options);
-}
-
-PassThrough.prototype._transform = function (chunk, encoding, cb) {
-  cb(null, chunk);
-};
-},{"./_stream_transform":105,"inherits":67}],104:[function(_dereq_,module,exports){
-(function (process,global){(function (){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-'use strict';
-
-module.exports = Readable;
-/*<replacement>*/
-
-var Duplex;
-/*</replacement>*/
-
-Readable.ReadableState = ReadableState;
-/*<replacement>*/
-
-var EE = _dereq_('events').EventEmitter;
-
-var EElistenerCount = function EElistenerCount(emitter, type) {
-  return emitter.listeners(type).length;
-};
-/*</replacement>*/
-
-/*<replacement>*/
-
-
-var Stream = _dereq_('./internal/streams/stream');
-/*</replacement>*/
-
-
-var Buffer = _dereq_('buffer').Buffer;
-
-var OurUint8Array = global.Uint8Array || function () {};
-
-function _uint8ArrayToBuffer(chunk) {
-  return Buffer.from(chunk);
-}
-
-function _isUint8Array(obj) {
-  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
-}
-/*<replacement>*/
-
-
-var debugUtil = _dereq_('util');
-
-var debug;
-
-if (debugUtil && debugUtil.debuglog) {
-  debug = debugUtil.debuglog('stream');
-} else {
-  debug = function debug() {};
-}
-/*</replacement>*/
-
-
-var BufferList = _dereq_('./internal/streams/buffer_list');
-
-var destroyImpl = _dereq_('./internal/streams/destroy');
-
-var _require = _dereq_('./internal/streams/state'),
-    getHighWaterMark = _require.getHighWaterMark;
-
-var _require$codes = _dereq_('../errors').codes,
-    ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
-    ERR_STREAM_PUSH_AFTER_EOF = _require$codes.ERR_STREAM_PUSH_AFTER_EOF,
-    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
-    ERR_STREAM_UNSHIFT_AFTER_END_EVENT = _require$codes.ERR_STREAM_UNSHIFT_AFTER_END_EVENT; // Lazy loaded to improve the startup performance.
-
-
-var StringDecoder;
-var createReadableStreamAsyncIterator;
-var from;
-
-_dereq_('inherits')(Readable, Stream);
-
-var errorOrDestroy = destroyImpl.errorOrDestroy;
-var kProxyEvents = ['error', 'close', 'destroy', 'pause', 'resume'];
-
-function prependListener(emitter, event, fn) {
-  // Sadly this is not cacheable as some libraries bundle their own
-  // event emitter implementation with them.
-  if (typeof emitter.prependListener === 'function') return emitter.prependListener(event, fn); // This is a hack to make sure that our error handler is attached before any
-  // userland ones.  NEVER DO THIS. This is here only because this code needs
-  // to continue to work with older versions of Node.js that do not include
-  // the prependListener() method. The goal is to eventually remove this hack.
-
-  if (!emitter._events || !emitter._events[event]) emitter.on(event, fn);else if (Array.isArray(emitter._events[event])) emitter._events[event].unshift(fn);else emitter._events[event] = [fn, emitter._events[event]];
-}
-
-function ReadableState(options, stream, isDuplex) {
-  Duplex = Duplex || _dereq_('./_stream_duplex');
-  options = options || {}; // Duplex streams are both readable and writable, but share
-  // the same options object.
-  // However, some cases require setting options to different
-  // values for the readable and the writable sides of the duplex stream.
-  // These options can be provided separately as readableXXX and writableXXX.
-
-  if (typeof isDuplex !== 'boolean') isDuplex = stream instanceof Duplex; // object stream flag. Used to make read(n) ignore n and to
-  // make all the buffer merging and length checks go away
-
-  this.objectMode = !!options.objectMode;
-  if (isDuplex) this.objectMode = this.objectMode || !!options.readableObjectMode; // the point at which it stops calling _read() to fill the buffer
-  // Note: 0 is a valid value, means "don't call _read preemptively ever"
-
-  this.highWaterMark = getHighWaterMark(this, options, 'readableHighWaterMark', isDuplex); // A linked list is used to store data chunks instead of an array because the
-  // linked list can remove elements from the beginning faster than
-  // array.shift()
-
-  this.buffer = new BufferList();
-  this.length = 0;
-  this.pipes = null;
-  this.pipesCount = 0;
-  this.flowing = null;
-  this.ended = false;
-  this.endEmitted = false;
-  this.reading = false; // a flag to be able to tell if the event 'readable'/'data' is emitted
-  // immediately, or on a later tick.  We set this to true at first, because
-  // any actions that shouldn't happen until "later" should generally also
-  // not happen before the first read call.
-
-  this.sync = true; // whenever we return null, then we set a flag to say
-  // that we're awaiting a 'readable' event emission.
-
-  this.needReadable = false;
-  this.emittedReadable = false;
-  this.readableListening = false;
-  this.resumeScheduled = false;
-  this.paused = true; // Should close be emitted on destroy. Defaults to true.
-
-  this.emitClose = options.emitClose !== false; // Should .destroy() be called after 'end' (and potentially 'finish')
-
-  this.autoDestroy = !!options.autoDestroy; // has it been destroyed
-
-  this.destroyed = false; // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is 'binary' so we have to make this configurable.
-  // Everything else in the universe uses 'utf8', though.
-
-  this.defaultEncoding = options.defaultEncoding || 'utf8'; // the number of writers that are awaiting a drain event in .pipe()s
-
-  this.awaitDrain = 0; // if true, a maybeReadMore has been scheduled
-
-  this.readingMore = false;
-  this.decoder = null;
-  this.encoding = null;
-
-  if (options.encoding) {
-    if (!StringDecoder) StringDecoder = _dereq_('string_decoder/').StringDecoder;
-    this.decoder = new StringDecoder(options.encoding);
-    this.encoding = options.encoding;
-  }
-}
-
-function Readable(options) {
-  Duplex = Duplex || _dereq_('./_stream_duplex');
-  if (!(this instanceof Readable)) return new Readable(options); // Checking for a Stream.Duplex instance is faster here instead of inside
-  // the ReadableState constructor, at least with V8 6.5
-
-  var isDuplex = this instanceof Duplex;
-  this._readableState = new ReadableState(options, this, isDuplex); // legacy
-
-  this.readable = true;
-
-  if (options) {
-    if (typeof options.read === 'function') this._read = options.read;
-    if (typeof options.destroy === 'function') this._destroy = options.destroy;
-  }
-
-  Stream.call(this);
-}
-
-Object.defineProperty(Readable.prototype, 'destroyed', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    if (this._readableState === undefined) {
-      return false;
-    }
-
-    return this._readableState.destroyed;
-  },
-  set: function set(value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (!this._readableState) {
-      return;
-    } // backward compatibility, the user is explicitly
-    // managing destroyed
-
-
-    this._readableState.destroyed = value;
-  }
-});
-Readable.prototype.destroy = destroyImpl.destroy;
-Readable.prototype._undestroy = destroyImpl.undestroy;
-
-Readable.prototype._destroy = function (err, cb) {
-  cb(err);
-}; // Manually shove something into the read() buffer.
-// This returns true if the highWaterMark has not been hit yet,
-// similar to how Writable.write() returns true if you should
-// write() some more.
-
-
-Readable.prototype.push = function (chunk, encoding) {
-  var state = this._readableState;
-  var skipChunkCheck;
-
-  if (!state.objectMode) {
-    if (typeof chunk === 'string') {
-      encoding = encoding || state.defaultEncoding;
-
-      if (encoding !== state.encoding) {
-        chunk = Buffer.from(chunk, encoding);
-        encoding = '';
-      }
-
-      skipChunkCheck = true;
-    }
-  } else {
-    skipChunkCheck = true;
-  }
-
-  return readableAddChunk(this, chunk, encoding, false, skipChunkCheck);
-}; // Unshift should *always* be something directly out of read()
-
-
-Readable.prototype.unshift = function (chunk) {
-  return readableAddChunk(this, chunk, null, true, false);
-};
-
-function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
-  debug('readableAddChunk', chunk);
-  var state = stream._readableState;
-
-  if (chunk === null) {
-    state.reading = false;
-    onEofChunk(stream, state);
-  } else {
-    var er;
-    if (!skipChunkCheck) er = chunkInvalid(state, chunk);
-
-    if (er) {
-      errorOrDestroy(stream, er);
-    } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
-        chunk = _uint8ArrayToBuffer(chunk);
-      }
-
-      if (addToFront) {
-        if (state.endEmitted) errorOrDestroy(stream, new ERR_STREAM_UNSHIFT_AFTER_END_EVENT());else addChunk(stream, state, chunk, true);
-      } else if (state.ended) {
-        errorOrDestroy(stream, new ERR_STREAM_PUSH_AFTER_EOF());
-      } else if (state.destroyed) {
-        return false;
-      } else {
-        state.reading = false;
-
-        if (state.decoder && !encoding) {
-          chunk = state.decoder.write(chunk);
-          if (state.objectMode || chunk.length !== 0) addChunk(stream, state, chunk, false);else maybeReadMore(stream, state);
-        } else {
-          addChunk(stream, state, chunk, false);
-        }
-      }
-    } else if (!addToFront) {
-      state.reading = false;
-      maybeReadMore(stream, state);
-    }
-  } // We can push more data if we are below the highWaterMark.
-  // Also, if we have no data yet, we can stand some more bytes.
-  // This is to work around cases where hwm=0, such as the repl.
-
-
-  return !state.ended && (state.length < state.highWaterMark || state.length === 0);
-}
-
-function addChunk(stream, state, chunk, addToFront) {
-  if (state.flowing && state.length === 0 && !state.sync) {
-    state.awaitDrain = 0;
-    stream.emit('data', chunk);
-  } else {
-    // update the buffer info.
-    state.length += state.objectMode ? 1 : chunk.length;
-    if (addToFront) state.buffer.unshift(chunk);else state.buffer.push(chunk);
-    if (state.needReadable) emitReadable(stream);
-  }
-
-  maybeReadMore(stream, state);
-}
-
-function chunkInvalid(state, chunk) {
-  var er;
-
-  if (!_isUint8Array(chunk) && typeof chunk !== 'string' && chunk !== undefined && !state.objectMode) {
-    er = new ERR_INVALID_ARG_TYPE('chunk', ['string', 'Buffer', 'Uint8Array'], chunk);
-  }
-
-  return er;
-}
-
-Readable.prototype.isPaused = function () {
-  return this._readableState.flowing === false;
-}; // backwards compatibility.
-
-
-Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = _dereq_('string_decoder/').StringDecoder;
-  var decoder = new StringDecoder(enc);
-  this._readableState.decoder = decoder; // If setEncoding(null), decoder.encoding equals utf8
-
-  this._readableState.encoding = this._readableState.decoder.encoding; // Iterate over current buffer to convert already stored Buffers:
-
-  var p = this._readableState.buffer.head;
-  var content = '';
-
-  while (p !== null) {
-    content += decoder.write(p.data);
-    p = p.next;
-  }
-
-  this._readableState.buffer.clear();
-
-  if (content !== '') this._readableState.buffer.push(content);
-  this._readableState.length = content.length;
-  return this;
-}; // Don't raise the hwm > 1GB
-
-
-var MAX_HWM = 0x40000000;
-
-function computeNewHighWaterMark(n) {
-  if (n >= MAX_HWM) {
-    // TODO(ronag): Throw ERR_VALUE_OUT_OF_RANGE.
-    n = MAX_HWM;
-  } else {
-    // Get the next highest power of 2 to prevent increasing hwm excessively in
-    // tiny amounts
-    n--;
-    n |= n >>> 1;
-    n |= n >>> 2;
-    n |= n >>> 4;
-    n |= n >>> 8;
-    n |= n >>> 16;
-    n++;
-  }
-
-  return n;
-} // This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-
-
-function howMuchToRead(n, state) {
-  if (n <= 0 || state.length === 0 && state.ended) return 0;
-  if (state.objectMode) return 1;
-
-  if (n !== n) {
-    // Only flow one buffer at a time
-    if (state.flowing && state.length) return state.buffer.head.data.length;else return state.length;
-  } // If we're asking for more than the current hwm, then raise the hwm.
-
-
-  if (n > state.highWaterMark) state.highWaterMark = computeNewHighWaterMark(n);
-  if (n <= state.length) return n; // Don't have enough
-
-  if (!state.ended) {
-    state.needReadable = true;
-    return 0;
-  }
-
-  return state.length;
-} // you can override either this method, or the async _read(n) below.
-
-
-Readable.prototype.read = function (n) {
-  debug('read', n);
-  n = parseInt(n, 10);
-  var state = this._readableState;
-  var nOrig = n;
-  if (n !== 0) state.emittedReadable = false; // if we're doing read(0) to trigger a readable event, but we
-  // already have a bunch of data in the buffer, then just trigger
-  // the 'readable' event and move on.
-
-  if (n === 0 && state.needReadable && ((state.highWaterMark !== 0 ? state.length >= state.highWaterMark : state.length > 0) || state.ended)) {
-    debug('read: emitReadable', state.length, state.ended);
-    if (state.length === 0 && state.ended) endReadable(this);else emitReadable(this);
-    return null;
-  }
-
-  n = howMuchToRead(n, state); // if we've ended, and we're now clear, then finish it up.
-
-  if (n === 0 && state.ended) {
-    if (state.length === 0) endReadable(this);
-    return null;
-  } // All the actual chunk generation logic needs to be
-  // *below* the call to _read.  The reason is that in certain
-  // synthetic stream cases, such as passthrough streams, _read
-  // may be a completely synchronous operation which may change
-  // the state of the read buffer, providing enough data when
-  // before there was *not* enough.
-  //
-  // So, the steps are:
-  // 1. Figure out what the state of things will be after we do
-  // a read from the buffer.
-  //
-  // 2. If that resulting state will trigger a _read, then call _read.
-  // Note that this may be asynchronous, or synchronous.  Yes, it is
-  // deeply ugly to write APIs this way, but that still doesn't mean
-  // that the Readable class should behave improperly, as streams are
-  // designed to be sync/async agnostic.
-  // Take note if the _read call is sync or async (ie, if the read call
-  // has returned yet), so that we know whether or not it's safe to emit
-  // 'readable' etc.
-  //
-  // 3. Actually pull the requested chunks out of the buffer and return.
-  // if we need a readable event, then we need to do some reading.
-
-
-  var doRead = state.needReadable;
-  debug('need readable', doRead); // if we currently have less than the highWaterMark, then also read some
-
-  if (state.length === 0 || state.length - n < state.highWaterMark) {
-    doRead = true;
-    debug('length less than watermark', doRead);
-  } // however, if we've ended, then there's no point, and if we're already
-  // reading, then it's unnecessary.
-
-
-  if (state.ended || state.reading) {
-    doRead = false;
-    debug('reading or ended', doRead);
-  } else if (doRead) {
-    debug('do read');
-    state.reading = true;
-    state.sync = true; // if the length is currently zero, then we *need* a readable event.
-
-    if (state.length === 0) state.needReadable = true; // call internal read method
-
-    this._read(state.highWaterMark);
-
-    state.sync = false; // If _read pushed data synchronously, then `reading` will be false,
-    // and we need to re-evaluate how much data we can return to the user.
-
-    if (!state.reading) n = howMuchToRead(nOrig, state);
-  }
-
-  var ret;
-  if (n > 0) ret = fromList(n, state);else ret = null;
-
-  if (ret === null) {
-    state.needReadable = state.length <= state.highWaterMark;
-    n = 0;
-  } else {
-    state.length -= n;
-    state.awaitDrain = 0;
-  }
-
-  if (state.length === 0) {
-    // If we have nothing in the buffer, then we want to know
-    // as soon as we *do* get something into the buffer.
-    if (!state.ended) state.needReadable = true; // If we tried to read() past the EOF, then emit end on the next tick.
-
-    if (nOrig !== n && state.ended) endReadable(this);
-  }
-
-  if (ret !== null) this.emit('data', ret);
-  return ret;
-};
-
-function onEofChunk(stream, state) {
-  debug('onEofChunk');
-  if (state.ended) return;
-
-  if (state.decoder) {
-    var chunk = state.decoder.end();
-
-    if (chunk && chunk.length) {
-      state.buffer.push(chunk);
-      state.length += state.objectMode ? 1 : chunk.length;
-    }
-  }
-
-  state.ended = true;
-
-  if (state.sync) {
-    // if we are sync, wait until next tick to emit the data.
-    // Otherwise we risk emitting data in the flow()
-    // the readable code triggers during a read() call
-    emitReadable(stream);
-  } else {
-    // emit 'readable' now to make sure it gets picked up.
-    state.needReadable = false;
-
-    if (!state.emittedReadable) {
-      state.emittedReadable = true;
-      emitReadable_(stream);
-    }
-  }
-} // Don't emit readable right away in sync mode, because this can trigger
-// another read() call => stack overflow.  This way, it might trigger
-// a nextTick recursion warning, but that's not so bad.
-
-
-function emitReadable(stream) {
-  var state = stream._readableState;
-  debug('emitReadable', state.needReadable, state.emittedReadable);
-  state.needReadable = false;
-
-  if (!state.emittedReadable) {
-    debug('emitReadable', state.flowing);
-    state.emittedReadable = true;
-    process.nextTick(emitReadable_, stream);
-  }
-}
-
-function emitReadable_(stream) {
-  var state = stream._readableState;
-  debug('emitReadable_', state.destroyed, state.length, state.ended);
-
-  if (!state.destroyed && (state.length || state.ended)) {
-    stream.emit('readable');
-    state.emittedReadable = false;
-  } // The stream needs another readable event if
-  // 1. It is not flowing, as the flow mechanism will take
-  //    care of it.
-  // 2. It is not ended.
-  // 3. It is below the highWaterMark, so we can schedule
-  //    another readable later.
-
-
-  state.needReadable = !state.flowing && !state.ended && state.length <= state.highWaterMark;
-  flow(stream);
-} // at this point, the user has presumably seen the 'readable' event,
-// and called read() to consume some data.  that may have triggered
-// in turn another _read(n) call, in which case reading = true if
-// it's in progress.
-// However, if we're not ended, or reading, and the length < hwm,
-// then go ahead and try to read some more preemptively.
-
-
-function maybeReadMore(stream, state) {
-  if (!state.readingMore) {
-    state.readingMore = true;
-    process.nextTick(maybeReadMore_, stream, state);
-  }
-}
-
-function maybeReadMore_(stream, state) {
-  // Attempt to read more data if we should.
-  //
-  // The conditions for reading more data are (one of):
-  // - Not enough data buffered (state.length < state.highWaterMark). The loop
-  //   is responsible for filling the buffer with enough data if such data
-  //   is available. If highWaterMark is 0 and we are not in the flowing mode
-  //   we should _not_ attempt to buffer any extra data. We'll get more data
-  //   when the stream consumer calls read() instead.
-  // - No data in the buffer, and the stream is in flowing mode. In this mode
-  //   the loop below is responsible for ensuring read() is called. Failing to
-  //   call read here would abort the flow and there's no other mechanism for
-  //   continuing the flow if the stream consumer has just subscribed to the
-  //   'data' event.
-  //
-  // In addition to the above conditions to keep reading data, the following
-  // conditions prevent the data from being read:
-  // - The stream has ended (state.ended).
-  // - There is already a pending 'read' operation (state.reading). This is a
-  //   case where the the stream has called the implementation defined _read()
-  //   method, but they are processing the call asynchronously and have _not_
-  //   called push() with new data. In this case we skip performing more
-  //   read()s. The execution ends in this method again after the _read() ends
-  //   up calling push() with more data.
-  while (!state.reading && !state.ended && (state.length < state.highWaterMark || state.flowing && state.length === 0)) {
-    var len = state.length;
-    debug('maybeReadMore read 0');
-    stream.read(0);
-    if (len === state.length) // didn't get any data, stop spinning.
-      break;
-  }
-
-  state.readingMore = false;
-} // abstract method.  to be overridden in specific implementation classes.
-// call cb(er, data) where data is <= n in length.
-// for virtual (non-string, non-buffer) streams, "length" is somewhat
-// arbitrary, and perhaps not very meaningful.
-
-
-Readable.prototype._read = function (n) {
-  errorOrDestroy(this, new ERR_METHOD_NOT_IMPLEMENTED('_read()'));
-};
-
-Readable.prototype.pipe = function (dest, pipeOpts) {
-  var src = this;
-  var state = this._readableState;
-
-  switch (state.pipesCount) {
-    case 0:
-      state.pipes = dest;
-      break;
-
-    case 1:
-      state.pipes = [state.pipes, dest];
-      break;
-
-    default:
-      state.pipes.push(dest);
-      break;
-  }
-
-  state.pipesCount += 1;
-  debug('pipe count=%d opts=%j', state.pipesCount, pipeOpts);
-  var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
-  var endFn = doEnd ? onend : unpipe;
-  if (state.endEmitted) process.nextTick(endFn);else src.once('end', endFn);
-  dest.on('unpipe', onunpipe);
-
-  function onunpipe(readable, unpipeInfo) {
-    debug('onunpipe');
-
-    if (readable === src) {
-      if (unpipeInfo && unpipeInfo.hasUnpiped === false) {
-        unpipeInfo.hasUnpiped = true;
-        cleanup();
-      }
-    }
-  }
-
-  function onend() {
-    debug('onend');
-    dest.end();
-  } // when the dest drains, it reduces the awaitDrain counter
-  // on the source.  This would be more elegant with a .once()
-  // handler in flow(), but adding and removing repeatedly is
-  // too slow.
-
-
-  var ondrain = pipeOnDrain(src);
-  dest.on('drain', ondrain);
-  var cleanedUp = false;
-
-  function cleanup() {
-    debug('cleanup'); // cleanup event handlers once the pipe is broken
-
-    dest.removeListener('close', onclose);
-    dest.removeListener('finish', onfinish);
-    dest.removeListener('drain', ondrain);
-    dest.removeListener('error', onerror);
-    dest.removeListener('unpipe', onunpipe);
-    src.removeListener('end', onend);
-    src.removeListener('end', unpipe);
-    src.removeListener('data', ondata);
-    cleanedUp = true; // if the reader is waiting for a drain event from this
-    // specific writer, then it would cause it to never start
-    // flowing again.
-    // So, if this is awaiting a drain, then we just call it now.
-    // If we don't know, then assume that we are waiting for one.
-
-    if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
-  }
-
-  src.on('data', ondata);
-
-  function ondata(chunk) {
-    debug('ondata');
-    var ret = dest.write(chunk);
-    debug('dest.write', ret);
-
-    if (ret === false) {
-      // If the user unpiped during `dest.write()`, it is possible
-      // to get stuck in a permanently paused state if that write
-      // also returned false.
-      // => Check whether `dest` is still a piping destination.
-      if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
-        debug('false write response, pause', state.awaitDrain);
-        state.awaitDrain++;
-      }
-
-      src.pause();
-    }
-  } // if the dest has an error, then stop piping into it.
-  // however, don't suppress the throwing behavior for this.
-
-
-  function onerror(er) {
-    debug('onerror', er);
-    unpipe();
-    dest.removeListener('error', onerror);
-    if (EElistenerCount(dest, 'error') === 0) errorOrDestroy(dest, er);
-  } // Make sure our error handler is attached before userland ones.
-
-
-  prependListener(dest, 'error', onerror); // Both close and finish should trigger unpipe, but only once.
-
-  function onclose() {
-    dest.removeListener('finish', onfinish);
-    unpipe();
-  }
-
-  dest.once('close', onclose);
-
-  function onfinish() {
-    debug('onfinish');
-    dest.removeListener('close', onclose);
-    unpipe();
-  }
-
-  dest.once('finish', onfinish);
-
-  function unpipe() {
-    debug('unpipe');
-    src.unpipe(dest);
-  } // tell the dest that it's being piped to
-
-
-  dest.emit('pipe', src); // start the flow if it hasn't been started already.
-
-  if (!state.flowing) {
-    debug('pipe resume');
-    src.resume();
-  }
-
-  return dest;
-};
-
-function pipeOnDrain(src) {
-  return function pipeOnDrainFunctionResult() {
-    var state = src._readableState;
-    debug('pipeOnDrain', state.awaitDrain);
-    if (state.awaitDrain) state.awaitDrain--;
-
-    if (state.awaitDrain === 0 && EElistenerCount(src, 'data')) {
-      state.flowing = true;
-      flow(src);
-    }
-  };
-}
-
-Readable.prototype.unpipe = function (dest) {
-  var state = this._readableState;
-  var unpipeInfo = {
-    hasUnpiped: false
-  }; // if we're not piping anywhere, then do nothing.
-
-  if (state.pipesCount === 0) return this; // just one destination.  most common case.
-
-  if (state.pipesCount === 1) {
-    // passed in one, but it's not the right one.
-    if (dest && dest !== state.pipes) return this;
-    if (!dest) dest = state.pipes; // got a match.
-
-    state.pipes = null;
-    state.pipesCount = 0;
-    state.flowing = false;
-    if (dest) dest.emit('unpipe', this, unpipeInfo);
-    return this;
-  } // slow case. multiple pipe destinations.
-
-
-  if (!dest) {
-    // remove all.
-    var dests = state.pipes;
-    var len = state.pipesCount;
-    state.pipes = null;
-    state.pipesCount = 0;
-    state.flowing = false;
-
-    for (var i = 0; i < len; i++) {
-      dests[i].emit('unpipe', this, {
-        hasUnpiped: false
-      });
-    }
-
-    return this;
-  } // try to find the right one.
-
-
-  var index = indexOf(state.pipes, dest);
-  if (index === -1) return this;
-  state.pipes.splice(index, 1);
-  state.pipesCount -= 1;
-  if (state.pipesCount === 1) state.pipes = state.pipes[0];
-  dest.emit('unpipe', this, unpipeInfo);
-  return this;
-}; // set up data events if they are asked for
-// Ensure readable listeners eventually get something
-
-
-Readable.prototype.on = function (ev, fn) {
-  var res = Stream.prototype.on.call(this, ev, fn);
-  var state = this._readableState;
-
-  if (ev === 'data') {
-    // update readableListening so that resume() may be a no-op
-    // a few lines down. This is needed to support once('readable').
-    state.readableListening = this.listenerCount('readable') > 0; // Try start flowing on next tick if stream isn't explicitly paused
-
-    if (state.flowing !== false) this.resume();
-  } else if (ev === 'readable') {
-    if (!state.endEmitted && !state.readableListening) {
-      state.readableListening = state.needReadable = true;
-      state.flowing = false;
-      state.emittedReadable = false;
-      debug('on readable', state.length, state.reading);
-
-      if (state.length) {
-        emitReadable(this);
-      } else if (!state.reading) {
-        process.nextTick(nReadingNextTick, this);
-      }
-    }
-  }
-
-  return res;
-};
-
-Readable.prototype.addListener = Readable.prototype.on;
-
-Readable.prototype.removeListener = function (ev, fn) {
-  var res = Stream.prototype.removeListener.call(this, ev, fn);
-
-  if (ev === 'readable') {
-    // We need to check if there is someone still listening to
-    // readable and reset the state. However this needs to happen
-    // after readable has been emitted but before I/O (nextTick) to
-    // support once('readable', fn) cycles. This means that calling
-    // resume within the same tick will have no
-    // effect.
-    process.nextTick(updateReadableListening, this);
-  }
-
-  return res;
-};
-
-Readable.prototype.removeAllListeners = function (ev) {
-  var res = Stream.prototype.removeAllListeners.apply(this, arguments);
-
-  if (ev === 'readable' || ev === undefined) {
-    // We need to check if there is someone still listening to
-    // readable and reset the state. However this needs to happen
-    // after readable has been emitted but before I/O (nextTick) to
-    // support once('readable', fn) cycles. This means that calling
-    // resume within the same tick will have no
-    // effect.
-    process.nextTick(updateReadableListening, this);
-  }
-
-  return res;
-};
-
-function updateReadableListening(self) {
-  var state = self._readableState;
-  state.readableListening = self.listenerCount('readable') > 0;
-
-  if (state.resumeScheduled && !state.paused) {
-    // flowing needs to be set to true now, otherwise
-    // the upcoming resume will not flow.
-    state.flowing = true; // crude way to check if we should resume
-  } else if (self.listenerCount('data') > 0) {
-    self.resume();
-  }
-}
-
-function nReadingNextTick(self) {
-  debug('readable nexttick read 0');
-  self.read(0);
-} // pause() and resume() are remnants of the legacy readable stream API
-// If the user uses them, then switch into old mode.
-
-
-Readable.prototype.resume = function () {
-  var state = this._readableState;
-
-  if (!state.flowing) {
-    debug('resume'); // we flow only if there is no one listening
-    // for readable, but we still have to call
-    // resume()
-
-    state.flowing = !state.readableListening;
-    resume(this, state);
-  }
-
-  state.paused = false;
-  return this;
-};
-
-function resume(stream, state) {
-  if (!state.resumeScheduled) {
-    state.resumeScheduled = true;
-    process.nextTick(resume_, stream, state);
-  }
-}
-
-function resume_(stream, state) {
-  debug('resume', state.reading);
-
-  if (!state.reading) {
-    stream.read(0);
-  }
-
-  state.resumeScheduled = false;
-  stream.emit('resume');
-  flow(stream);
-  if (state.flowing && !state.reading) stream.read(0);
-}
-
-Readable.prototype.pause = function () {
-  debug('call pause flowing=%j', this._readableState.flowing);
-
-  if (this._readableState.flowing !== false) {
-    debug('pause');
-    this._readableState.flowing = false;
-    this.emit('pause');
-  }
-
-  this._readableState.paused = true;
-  return this;
-};
-
-function flow(stream) {
-  var state = stream._readableState;
-  debug('flow', state.flowing);
-
-  while (state.flowing && stream.read() !== null) {
-    ;
-  }
-} // wrap an old-style stream as the async data source.
-// This is *not* part of the readable stream interface.
-// It is an ugly unfortunate mess of history.
-
-
-Readable.prototype.wrap = function (stream) {
-  var _this = this;
-
-  var state = this._readableState;
-  var paused = false;
-  stream.on('end', function () {
-    debug('wrapped end');
-
-    if (state.decoder && !state.ended) {
-      var chunk = state.decoder.end();
-      if (chunk && chunk.length) _this.push(chunk);
-    }
-
-    _this.push(null);
-  });
-  stream.on('data', function (chunk) {
-    debug('wrapped data');
-    if (state.decoder) chunk = state.decoder.write(chunk); // don't skip over falsy values in objectMode
-
-    if (state.objectMode && (chunk === null || chunk === undefined)) return;else if (!state.objectMode && (!chunk || !chunk.length)) return;
-
-    var ret = _this.push(chunk);
-
-    if (!ret) {
-      paused = true;
-      stream.pause();
-    }
-  }); // proxy all the other methods.
-  // important when wrapping filters and duplexes.
-
-  for (var i in stream) {
-    if (this[i] === undefined && typeof stream[i] === 'function') {
-      this[i] = function methodWrap(method) {
-        return function methodWrapReturnFunction() {
-          return stream[method].apply(stream, arguments);
-        };
-      }(i);
-    }
-  } // proxy certain important events.
-
-
-  for (var n = 0; n < kProxyEvents.length; n++) {
-    stream.on(kProxyEvents[n], this.emit.bind(this, kProxyEvents[n]));
-  } // when we try to consume some more bytes, simply unpause the
-  // underlying stream.
-
-
-  this._read = function (n) {
-    debug('wrapped _read', n);
-
-    if (paused) {
-      paused = false;
-      stream.resume();
-    }
-  };
-
-  return this;
-};
-
-if (typeof Symbol === 'function') {
-  Readable.prototype[Symbol.asyncIterator] = function () {
-    if (createReadableStreamAsyncIterator === undefined) {
-      createReadableStreamAsyncIterator = _dereq_('./internal/streams/async_iterator');
-    }
-
-    return createReadableStreamAsyncIterator(this);
-  };
-}
-
-Object.defineProperty(Readable.prototype, 'readableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState.highWaterMark;
-  }
-});
-Object.defineProperty(Readable.prototype, 'readableBuffer', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState && this._readableState.buffer;
-  }
-});
-Object.defineProperty(Readable.prototype, 'readableFlowing', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState.flowing;
-  },
-  set: function set(state) {
-    if (this._readableState) {
-      this._readableState.flowing = state;
-    }
-  }
-}); // exposed for testing purposes only.
-
-Readable._fromList = fromList;
-Object.defineProperty(Readable.prototype, 'readableLength', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._readableState.length;
-  }
-}); // Pluck off n bytes from an array of buffers.
-// Length is the combined lengths of all the buffers in the list.
-// This function is designed to be inlinable, so please take care when making
-// changes to the function body.
-
-function fromList(n, state) {
-  // nothing buffered
-  if (state.length === 0) return null;
-  var ret;
-  if (state.objectMode) ret = state.buffer.shift();else if (!n || n >= state.length) {
-    // read it all, truncate the list
-    if (state.decoder) ret = state.buffer.join('');else if (state.buffer.length === 1) ret = state.buffer.first();else ret = state.buffer.concat(state.length);
-    state.buffer.clear();
-  } else {
-    // read part of list
-    ret = state.buffer.consume(n, state.decoder);
-  }
-  return ret;
-}
-
-function endReadable(stream) {
-  var state = stream._readableState;
-  debug('endReadable', state.endEmitted);
-
-  if (!state.endEmitted) {
-    state.ended = true;
-    process.nextTick(endReadableNT, state, stream);
-  }
-}
-
-function endReadableNT(state, stream) {
-  debug('endReadableNT', state.endEmitted, state.length); // Check that we didn't get one last unshift.
-
-  if (!state.endEmitted && state.length === 0) {
-    state.endEmitted = true;
-    stream.readable = false;
-    stream.emit('end');
-
-    if (state.autoDestroy) {
-      // In case of duplex streams we need a way to detect
-      // if the writable side is ready for autoDestroy as well
-      var wState = stream._writableState;
-
-      if (!wState || wState.autoDestroy && wState.finished) {
-        stream.destroy();
-      }
-    }
-  }
-}
-
-if (typeof Symbol === 'function') {
-  Readable.from = function (iterable, opts) {
-    if (from === undefined) {
-      from = _dereq_('./internal/streams/from');
-    }
-
-    return from(Readable, iterable, opts);
-  };
-}
-
-function indexOf(xs, x) {
-  for (var i = 0, l = xs.length; i < l; i++) {
-    if (xs[i] === x) return i;
-  }
-
-  return -1;
-}
-}).call(this)}).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":101,"./_stream_duplex":102,"./internal/streams/async_iterator":107,"./internal/streams/buffer_list":108,"./internal/streams/destroy":109,"./internal/streams/from":111,"./internal/streams/state":113,"./internal/streams/stream":114,"_process":98,"buffer":28,"events":27,"inherits":67,"string_decoder/":115,"util":26}],105:[function(_dereq_,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// a transform stream is a readable/writable stream where you do
-// something with the data.  Sometimes it's called a "filter",
-// but that's not a great name for it, since that implies a thing where
-// some bits pass through, and others are simply ignored.  (That would
-// be a valid example of a transform, of course.)
-//
-// While the output is causally related to the input, it's not a
-// necessarily symmetric or synchronous transformation.  For example,
-// a zlib stream might take multiple plain-text writes(), and then
-// emit a single compressed chunk some time in the future.
-//
-// Here's how this works:
-//
-// The Transform stream has all the aspects of the readable and writable
-// stream classes.  When you write(chunk), that calls _write(chunk,cb)
-// internally, and returns false if there's a lot of pending writes
-// buffered up.  When you call read(), that calls _read(n) until
-// there's enough pending readable data buffered up.
-//
-// In a transform stream, the written data is placed in a buffer.  When
-// _read(n) is called, it transforms the queued up data, calling the
-// buffered _write cb's as it consumes chunks.  If consuming a single
-// written chunk would result in multiple output chunks, then the first
-// outputted bit calls the readcb, and subsequent chunks just go into
-// the read buffer, and will cause it to emit 'readable' if necessary.
-//
-// This way, back-pressure is actually determined by the reading side,
-// since _read has to be called to start processing a new chunk.  However,
-// a pathological inflate type of transform can cause excessive buffering
-// here.  For example, imagine a stream where every byte of input is
-// interpreted as an integer from 0-255, and then results in that many
-// bytes of output.  Writing the 4 bytes {ff,ff,ff,ff} would result in
-// 1kb of data being output.  In this case, you could write a very small
-// amount of input, and end up with a very large amount of output.  In
-// such a pathological inflating mechanism, there'd be no way to tell
-// the system to stop doing the transform.  A single 4MB write could
-// cause the system to run out of memory.
-//
-// However, even in such a pathological case, only a single written chunk
-// would be consumed, and then the rest would wait (un-transformed) until
-// the results of the previous transformed chunk were consumed.
-'use strict';
-
-module.exports = Transform;
-
-var _require$codes = _dereq_('../errors').codes,
-    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
-    ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
-    ERR_TRANSFORM_ALREADY_TRANSFORMING = _require$codes.ERR_TRANSFORM_ALREADY_TRANSFORMING,
-    ERR_TRANSFORM_WITH_LENGTH_0 = _require$codes.ERR_TRANSFORM_WITH_LENGTH_0;
-
-var Duplex = _dereq_('./_stream_duplex');
-
-_dereq_('inherits')(Transform, Duplex);
-
-function afterTransform(er, data) {
-  var ts = this._transformState;
-  ts.transforming = false;
-  var cb = ts.writecb;
-
-  if (cb === null) {
-    return this.emit('error', new ERR_MULTIPLE_CALLBACK());
-  }
-
-  ts.writechunk = null;
-  ts.writecb = null;
-  if (data != null) // single equals check for both `null` and `undefined`
-    this.push(data);
-  cb(er);
-  var rs = this._readableState;
-  rs.reading = false;
-
-  if (rs.needReadable || rs.length < rs.highWaterMark) {
-    this._read(rs.highWaterMark);
-  }
-}
-
-function Transform(options) {
-  if (!(this instanceof Transform)) return new Transform(options);
-  Duplex.call(this, options);
-  this._transformState = {
-    afterTransform: afterTransform.bind(this),
-    needTransform: false,
-    transforming: false,
-    writecb: null,
-    writechunk: null,
-    writeencoding: null
-  }; // start out asking for a readable event once data is transformed.
-
-  this._readableState.needReadable = true; // we have implemented the _read method, and done the other things
-  // that Readable wants before the first _read call, so unset the
-  // sync guard flag.
-
-  this._readableState.sync = false;
-
-  if (options) {
-    if (typeof options.transform === 'function') this._transform = options.transform;
-    if (typeof options.flush === 'function') this._flush = options.flush;
-  } // When the writable side finishes, then flush out anything remaining.
-
-
-  this.on('prefinish', prefinish);
-}
-
-function prefinish() {
-  var _this = this;
-
-  if (typeof this._flush === 'function' && !this._readableState.destroyed) {
-    this._flush(function (er, data) {
-      done(_this, er, data);
-    });
-  } else {
-    done(this, null, null);
-  }
-}
-
-Transform.prototype.push = function (chunk, encoding) {
-  this._transformState.needTransform = false;
-  return Duplex.prototype.push.call(this, chunk, encoding);
-}; // This is the part where you do stuff!
-// override this function in implementation classes.
-// 'chunk' is an input chunk.
-//
-// Call `push(newChunk)` to pass along transformed output
-// to the readable side.  You may call 'push' zero or more times.
-//
-// Call `cb(err)` when you are done with this chunk.  If you pass
-// an error, then that'll put the hurt on the whole operation.  If you
-// never call cb(), then you'll never get another chunk.
-
-
-Transform.prototype._transform = function (chunk, encoding, cb) {
-  cb(new ERR_METHOD_NOT_IMPLEMENTED('_transform()'));
-};
-
-Transform.prototype._write = function (chunk, encoding, cb) {
-  var ts = this._transformState;
-  ts.writecb = cb;
-  ts.writechunk = chunk;
-  ts.writeencoding = encoding;
-
-  if (!ts.transforming) {
-    var rs = this._readableState;
-    if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
-  }
-}; // Doesn't matter what the args are here.
-// _transform does all the work.
-// That we got here means that the readable side wants more data.
-
-
-Transform.prototype._read = function (n) {
-  var ts = this._transformState;
-
-  if (ts.writechunk !== null && !ts.transforming) {
-    ts.transforming = true;
-
-    this._transform(ts.writechunk, ts.writeencoding, ts.afterTransform);
-  } else {
-    // mark that we need a transform, so that any data that comes in
-    // will get processed, now that we've asked for it.
-    ts.needTransform = true;
-  }
-};
-
-Transform.prototype._destroy = function (err, cb) {
-  Duplex.prototype._destroy.call(this, err, function (err2) {
-    cb(err2);
-  });
-};
-
-function done(stream, er, data) {
-  if (er) return stream.emit('error', er);
-  if (data != null) // single equals check for both `null` and `undefined`
-    stream.push(data); // TODO(BridgeAR): Write a test for these two error cases
-  // if there's nothing in the write buffer, then that means
-  // that nothing more will ever be provided
-
-  if (stream._writableState.length) throw new ERR_TRANSFORM_WITH_LENGTH_0();
-  if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
-  return stream.push(null);
-}
-},{"../errors":101,"./_stream_duplex":102,"inherits":67}],106:[function(_dereq_,module,exports){
-(function (process,global){(function (){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-// A bit simpler than readable streams.
-// Implement an async ._write(chunk, encoding, cb), and it'll handle all
-// the drain event emission and buffering.
-'use strict';
-
-module.exports = Writable;
-/* <replacement> */
-
-function WriteReq(chunk, encoding, cb) {
-  this.chunk = chunk;
-  this.encoding = encoding;
-  this.callback = cb;
-  this.next = null;
-} // It seems a linked list but it is not
-// there will be only 2 of these for each stream
-
-
-function CorkedRequest(state) {
-  var _this = this;
-
-  this.next = null;
-  this.entry = null;
-
-  this.finish = function () {
-    onCorkedFinish(_this, state);
-  };
-}
-/* </replacement> */
-
-/*<replacement>*/
-
-
-var Duplex;
-/*</replacement>*/
-
-Writable.WritableState = WritableState;
-/*<replacement>*/
-
-var internalUtil = {
-  deprecate: _dereq_('util-deprecate')
-};
-/*</replacement>*/
-
-/*<replacement>*/
-
-var Stream = _dereq_('./internal/streams/stream');
-/*</replacement>*/
-
-
-var Buffer = _dereq_('buffer').Buffer;
-
-var OurUint8Array = global.Uint8Array || function () {};
-
-function _uint8ArrayToBuffer(chunk) {
-  return Buffer.from(chunk);
-}
-
-function _isUint8Array(obj) {
-  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
-}
-
-var destroyImpl = _dereq_('./internal/streams/destroy');
-
-var _require = _dereq_('./internal/streams/state'),
-    getHighWaterMark = _require.getHighWaterMark;
-
-var _require$codes = _dereq_('../errors').codes,
-    ERR_INVALID_ARG_TYPE = _require$codes.ERR_INVALID_ARG_TYPE,
-    ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED,
-    ERR_MULTIPLE_CALLBACK = _require$codes.ERR_MULTIPLE_CALLBACK,
-    ERR_STREAM_CANNOT_PIPE = _require$codes.ERR_STREAM_CANNOT_PIPE,
-    ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED,
-    ERR_STREAM_NULL_VALUES = _require$codes.ERR_STREAM_NULL_VALUES,
-    ERR_STREAM_WRITE_AFTER_END = _require$codes.ERR_STREAM_WRITE_AFTER_END,
-    ERR_UNKNOWN_ENCODING = _require$codes.ERR_UNKNOWN_ENCODING;
-
-var errorOrDestroy = destroyImpl.errorOrDestroy;
-
-_dereq_('inherits')(Writable, Stream);
-
-function nop() {}
-
-function WritableState(options, stream, isDuplex) {
-  Duplex = Duplex || _dereq_('./_stream_duplex');
-  options = options || {}; // Duplex streams are both readable and writable, but share
-  // the same options object.
-  // However, some cases require setting options to different
-  // values for the readable and the writable sides of the duplex stream,
-  // e.g. options.readableObjectMode vs. options.writableObjectMode, etc.
-
-  if (typeof isDuplex !== 'boolean') isDuplex = stream instanceof Duplex; // object stream flag to indicate whether or not this stream
-  // contains buffers or objects.
-
-  this.objectMode = !!options.objectMode;
-  if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode; // the point at which write() starts returning false
-  // Note: 0 is a valid value, means that we always return false if
-  // the entire buffer is not flushed immediately on write()
-
-  this.highWaterMark = getHighWaterMark(this, options, 'writableHighWaterMark', isDuplex); // if _final has been called
-
-  this.finalCalled = false; // drain event flag.
-
-  this.needDrain = false; // at the start of calling end()
-
-  this.ending = false; // when end() has been called, and returned
-
-  this.ended = false; // when 'finish' is emitted
-
-  this.finished = false; // has it been destroyed
-
-  this.destroyed = false; // should we decode strings into buffers before passing to _write?
-  // this is here so that some node-core streams can optimize string
-  // handling at a lower level.
-
-  var noDecode = options.decodeStrings === false;
-  this.decodeStrings = !noDecode; // Crypto is kind of old and crusty.  Historically, its default string
-  // encoding is 'binary' so we have to make this configurable.
-  // Everything else in the universe uses 'utf8', though.
-
-  this.defaultEncoding = options.defaultEncoding || 'utf8'; // not an actual buffer we keep track of, but a measurement
-  // of how much we're waiting to get pushed to some underlying
-  // socket or file.
-
-  this.length = 0; // a flag to see when we're in the middle of a write.
-
-  this.writing = false; // when true all writes will be buffered until .uncork() call
-
-  this.corked = 0; // a flag to be able to tell if the onwrite cb is called immediately,
-  // or on a later tick.  We set this to true at first, because any
-  // actions that shouldn't happen until "later" should generally also
-  // not happen before the first write call.
-
-  this.sync = true; // a flag to know if we're processing previously buffered items, which
-  // may call the _write() callback in the same tick, so that we don't
-  // end up in an overlapped onwrite situation.
-
-  this.bufferProcessing = false; // the callback that's passed to _write(chunk,cb)
-
-  this.onwrite = function (er) {
-    onwrite(stream, er);
-  }; // the callback that the user supplies to write(chunk,encoding,cb)
-
-
-  this.writecb = null; // the amount that is being written when _write is called.
-
-  this.writelen = 0;
-  this.bufferedRequest = null;
-  this.lastBufferedRequest = null; // number of pending user-supplied write callbacks
-  // this must be 0 before 'finish' can be emitted
-
-  this.pendingcb = 0; // emit prefinish if the only thing we're waiting for is _write cbs
-  // This is relevant for synchronous Transform streams
-
-  this.prefinished = false; // True if the error was already emitted and should not be thrown again
-
-  this.errorEmitted = false; // Should close be emitted on destroy. Defaults to true.
-
-  this.emitClose = options.emitClose !== false; // Should .destroy() be called after 'finish' (and potentially 'end')
-
-  this.autoDestroy = !!options.autoDestroy; // count buffered requests
-
-  this.bufferedRequestCount = 0; // allocate the first CorkedRequest, there is always
-  // one allocated and free to use, and we maintain at most two
-
-  this.corkedRequestsFree = new CorkedRequest(this);
-}
-
-WritableState.prototype.getBuffer = function getBuffer() {
-  var current = this.bufferedRequest;
-  var out = [];
-
-  while (current) {
-    out.push(current);
-    current = current.next;
-  }
-
-  return out;
-};
-
-(function () {
-  try {
-    Object.defineProperty(WritableState.prototype, 'buffer', {
-      get: internalUtil.deprecate(function writableStateBufferGetter() {
-        return this.getBuffer();
-      }, '_writableState.buffer is deprecated. Use _writableState.getBuffer ' + 'instead.', 'DEP0003')
-    });
-  } catch (_) {}
-})(); // Test _writableState for inheritance to account for Duplex streams,
-// whose prototype chain only points to Readable.
-
-
-var realHasInstance;
-
-if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.prototype[Symbol.hasInstance] === 'function') {
-  realHasInstance = Function.prototype[Symbol.hasInstance];
-  Object.defineProperty(Writable, Symbol.hasInstance, {
-    value: function value(object) {
-      if (realHasInstance.call(this, object)) return true;
-      if (this !== Writable) return false;
-      return object && object._writableState instanceof WritableState;
-    }
-  });
-} else {
-  realHasInstance = function realHasInstance(object) {
-    return object instanceof this;
-  };
-}
-
-function Writable(options) {
-  Duplex = Duplex || _dereq_('./_stream_duplex'); // Writable ctor is applied to Duplexes, too.
-  // `realHasInstance` is necessary because using plain `instanceof`
-  // would return false, as no `_writableState` property is attached.
-  // Trying to use the custom `instanceof` for Writable here will also break the
-  // Node.js LazyTransform implementation, which has a non-trivial getter for
-  // `_writableState` that would lead to infinite recursion.
-  // Checking for a Stream.Duplex instance is faster here instead of inside
-  // the WritableState constructor, at least with V8 6.5
-
-  var isDuplex = this instanceof Duplex;
-  if (!isDuplex && !realHasInstance.call(Writable, this)) return new Writable(options);
-  this._writableState = new WritableState(options, this, isDuplex); // legacy.
-
-  this.writable = true;
-
-  if (options) {
-    if (typeof options.write === 'function') this._write = options.write;
-    if (typeof options.writev === 'function') this._writev = options.writev;
-    if (typeof options.destroy === 'function') this._destroy = options.destroy;
-    if (typeof options.final === 'function') this._final = options.final;
-  }
-
-  Stream.call(this);
-} // Otherwise people can pipe Writable streams, which is just wrong.
-
-
-Writable.prototype.pipe = function () {
-  errorOrDestroy(this, new ERR_STREAM_CANNOT_PIPE());
-};
-
-function writeAfterEnd(stream, cb) {
-  var er = new ERR_STREAM_WRITE_AFTER_END(); // TODO: defer error events consistently everywhere, not just the cb
-
-  errorOrDestroy(stream, er);
-  process.nextTick(cb, er);
-} // Checks that a user-supplied chunk is valid, especially for the particular
-// mode the stream is in. Currently this means that `null` is never accepted
-// and undefined/non-string values are only allowed in object mode.
-
-
-function validChunk(stream, state, chunk, cb) {
-  var er;
-
-  if (chunk === null) {
-    er = new ERR_STREAM_NULL_VALUES();
-  } else if (typeof chunk !== 'string' && !state.objectMode) {
-    er = new ERR_INVALID_ARG_TYPE('chunk', ['string', 'Buffer'], chunk);
-  }
-
-  if (er) {
-    errorOrDestroy(stream, er);
-    process.nextTick(cb, er);
-    return false;
-  }
-
-  return true;
-}
-
-Writable.prototype.write = function (chunk, encoding, cb) {
-  var state = this._writableState;
-  var ret = false;
-
-  var isBuf = !state.objectMode && _isUint8Array(chunk);
-
-  if (isBuf && !Buffer.isBuffer(chunk)) {
-    chunk = _uint8ArrayToBuffer(chunk);
-  }
-
-  if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
-  }
-
-  if (isBuf) encoding = 'buffer';else if (!encoding) encoding = state.defaultEncoding;
-  if (typeof cb !== 'function') cb = nop;
-  if (state.ending) writeAfterEnd(this, cb);else if (isBuf || validChunk(this, state, chunk, cb)) {
-    state.pendingcb++;
-    ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
-  }
-  return ret;
-};
-
-Writable.prototype.cork = function () {
-  this._writableState.corked++;
-};
-
-Writable.prototype.uncork = function () {
-  var state = this._writableState;
-
-  if (state.corked) {
-    state.corked--;
-    if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
-  }
-};
-
-Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
-  // node::ParseEncoding() requires lower case.
-  if (typeof encoding === 'string') encoding = encoding.toLowerCase();
-  if (!(['hex', 'utf8', 'utf-8', 'ascii', 'binary', 'base64', 'ucs2', 'ucs-2', 'utf16le', 'utf-16le', 'raw'].indexOf((encoding + '').toLowerCase()) > -1)) throw new ERR_UNKNOWN_ENCODING(encoding);
-  this._writableState.defaultEncoding = encoding;
-  return this;
-};
-
-Object.defineProperty(Writable.prototype, 'writableBuffer', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState && this._writableState.getBuffer();
-  }
-});
-
-function decodeChunk(state, chunk, encoding) {
-  if (!state.objectMode && state.decodeStrings !== false && typeof chunk === 'string') {
-    chunk = Buffer.from(chunk, encoding);
-  }
-
-  return chunk;
-}
-
-Object.defineProperty(Writable.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.highWaterMark;
-  }
-}); // if we're already writing something, then just put this
-// in the queue, and wait our turn.  Otherwise, call _write
-// If we return false, then we need a drain event, so set that flag.
-
-function writeOrBuffer(stream, state, isBuf, chunk, encoding, cb) {
-  if (!isBuf) {
-    var newChunk = decodeChunk(state, chunk, encoding);
-
-    if (chunk !== newChunk) {
-      isBuf = true;
-      encoding = 'buffer';
-      chunk = newChunk;
-    }
-  }
-
-  var len = state.objectMode ? 1 : chunk.length;
-  state.length += len;
-  var ret = state.length < state.highWaterMark; // we must ensure that previous needDrain will not be reset to false.
-
-  if (!ret) state.needDrain = true;
-
-  if (state.writing || state.corked) {
-    var last = state.lastBufferedRequest;
-    state.lastBufferedRequest = {
-      chunk: chunk,
-      encoding: encoding,
-      isBuf: isBuf,
-      callback: cb,
-      next: null
-    };
-
-    if (last) {
-      last.next = state.lastBufferedRequest;
-    } else {
-      state.bufferedRequest = state.lastBufferedRequest;
-    }
-
-    state.bufferedRequestCount += 1;
-  } else {
-    doWrite(stream, state, false, len, chunk, encoding, cb);
-  }
-
-  return ret;
-}
-
-function doWrite(stream, state, writev, len, chunk, encoding, cb) {
-  state.writelen = len;
-  state.writecb = cb;
-  state.writing = true;
-  state.sync = true;
-  if (state.destroyed) state.onwrite(new ERR_STREAM_DESTROYED('write'));else if (writev) stream._writev(chunk, state.onwrite);else stream._write(chunk, encoding, state.onwrite);
-  state.sync = false;
-}
-
-function onwriteError(stream, state, sync, er, cb) {
-  --state.pendingcb;
-
-  if (sync) {
-    // defer the callback if we are being called synchronously
-    // to avoid piling up things on the stack
-    process.nextTick(cb, er); // this can emit finish, and it will always happen
-    // after error
-
-    process.nextTick(finishMaybe, stream, state);
-    stream._writableState.errorEmitted = true;
-    errorOrDestroy(stream, er);
-  } else {
-    // the caller expect this to happen before if
-    // it is async
-    cb(er);
-    stream._writableState.errorEmitted = true;
-    errorOrDestroy(stream, er); // this can emit finish, but finish must
-    // always follow error
-
-    finishMaybe(stream, state);
-  }
-}
-
-function onwriteStateUpdate(state) {
-  state.writing = false;
-  state.writecb = null;
-  state.length -= state.writelen;
-  state.writelen = 0;
-}
-
-function onwrite(stream, er) {
-  var state = stream._writableState;
-  var sync = state.sync;
-  var cb = state.writecb;
-  if (typeof cb !== 'function') throw new ERR_MULTIPLE_CALLBACK();
-  onwriteStateUpdate(state);
-  if (er) onwriteError(stream, state, sync, er, cb);else {
-    // Check if we're actually ready to finish, but don't emit yet
-    var finished = needFinish(state) || stream.destroyed;
-
-    if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
-      clearBuffer(stream, state);
-    }
-
-    if (sync) {
-      process.nextTick(afterWrite, stream, state, finished, cb);
-    } else {
-      afterWrite(stream, state, finished, cb);
-    }
-  }
-}
-
-function afterWrite(stream, state, finished, cb) {
-  if (!finished) onwriteDrain(stream, state);
-  state.pendingcb--;
-  cb();
-  finishMaybe(stream, state);
-} // Must force callback to be called on nextTick, so that we don't
-// emit 'drain' before the write() consumer gets the 'false' return
-// value, and has a chance to attach a 'drain' listener.
-
-
-function onwriteDrain(stream, state) {
-  if (state.length === 0 && state.needDrain) {
-    state.needDrain = false;
-    stream.emit('drain');
-  }
-} // if there's something in the buffer waiting, then process it
-
-
-function clearBuffer(stream, state) {
-  state.bufferProcessing = true;
-  var entry = state.bufferedRequest;
-
-  if (stream._writev && entry && entry.next) {
-    // Fast case, write everything using _writev()
-    var l = state.bufferedRequestCount;
-    var buffer = new Array(l);
-    var holder = state.corkedRequestsFree;
-    holder.entry = entry;
-    var count = 0;
-    var allBuffers = true;
-
-    while (entry) {
-      buffer[count] = entry;
-      if (!entry.isBuf) allBuffers = false;
-      entry = entry.next;
-      count += 1;
-    }
-
-    buffer.allBuffers = allBuffers;
-    doWrite(stream, state, true, state.length, buffer, '', holder.finish); // doWrite is almost always async, defer these to save a bit of time
-    // as the hot path ends with doWrite
-
-    state.pendingcb++;
-    state.lastBufferedRequest = null;
-
-    if (holder.next) {
-      state.corkedRequestsFree = holder.next;
-      holder.next = null;
-    } else {
-      state.corkedRequestsFree = new CorkedRequest(state);
-    }
-
-    state.bufferedRequestCount = 0;
-  } else {
-    // Slow case, write chunks one-by-one
-    while (entry) {
-      var chunk = entry.chunk;
-      var encoding = entry.encoding;
-      var cb = entry.callback;
-      var len = state.objectMode ? 1 : chunk.length;
-      doWrite(stream, state, false, len, chunk, encoding, cb);
-      entry = entry.next;
-      state.bufferedRequestCount--; // if we didn't call the onwrite immediately, then
-      // it means that we need to wait until it does.
-      // also, that means that the chunk and cb are currently
-      // being processed, so move the buffer counter past them.
-
-      if (state.writing) {
-        break;
-      }
-    }
-
-    if (entry === null) state.lastBufferedRequest = null;
-  }
-
-  state.bufferedRequest = entry;
-  state.bufferProcessing = false;
-}
-
-Writable.prototype._write = function (chunk, encoding, cb) {
-  cb(new ERR_METHOD_NOT_IMPLEMENTED('_write()'));
-};
-
-Writable.prototype._writev = null;
-
-Writable.prototype.end = function (chunk, encoding, cb) {
-  var state = this._writableState;
-
-  if (typeof chunk === 'function') {
-    cb = chunk;
-    chunk = null;
-    encoding = null;
-  } else if (typeof encoding === 'function') {
-    cb = encoding;
-    encoding = null;
-  }
-
-  if (chunk !== null && chunk !== undefined) this.write(chunk, encoding); // .end() fully uncorks
-
-  if (state.corked) {
-    state.corked = 1;
-    this.uncork();
-  } // ignore unnecessary end() calls.
-
-
-  if (!state.ending) endWritable(this, state, cb);
-  return this;
-};
-
-Object.defineProperty(Writable.prototype, 'writableLength', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    return this._writableState.length;
-  }
-});
-
-function needFinish(state) {
-  return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
-}
-
-function callFinal(stream, state) {
-  stream._final(function (err) {
-    state.pendingcb--;
-
-    if (err) {
-      errorOrDestroy(stream, err);
-    }
-
-    state.prefinished = true;
-    stream.emit('prefinish');
-    finishMaybe(stream, state);
-  });
-}
-
-function prefinish(stream, state) {
-  if (!state.prefinished && !state.finalCalled) {
-    if (typeof stream._final === 'function' && !state.destroyed) {
-      state.pendingcb++;
-      state.finalCalled = true;
-      process.nextTick(callFinal, stream, state);
-    } else {
-      state.prefinished = true;
-      stream.emit('prefinish');
-    }
-  }
-}
-
-function finishMaybe(stream, state) {
-  var need = needFinish(state);
-
-  if (need) {
-    prefinish(stream, state);
-
-    if (state.pendingcb === 0) {
-      state.finished = true;
-      stream.emit('finish');
-
-      if (state.autoDestroy) {
-        // In case of duplex streams we need a way to detect
-        // if the readable side is ready for autoDestroy as well
-        var rState = stream._readableState;
-
-        if (!rState || rState.autoDestroy && rState.endEmitted) {
-          stream.destroy();
-        }
-      }
-    }
-  }
-
-  return need;
-}
-
-function endWritable(stream, state, cb) {
-  state.ending = true;
-  finishMaybe(stream, state);
-
-  if (cb) {
-    if (state.finished) process.nextTick(cb);else stream.once('finish', cb);
-  }
-
-  state.ended = true;
-  stream.writable = false;
-}
-
-function onCorkedFinish(corkReq, state, err) {
-  var entry = corkReq.entry;
-  corkReq.entry = null;
-
-  while (entry) {
-    var cb = entry.callback;
-    state.pendingcb--;
-    cb(err);
-    entry = entry.next;
-  } // reuse the free corkReq.
-
-
-  state.corkedRequestsFree.next = corkReq;
-}
-
-Object.defineProperty(Writable.prototype, 'destroyed', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function get() {
-    if (this._writableState === undefined) {
-      return false;
-    }
-
-    return this._writableState.destroyed;
-  },
-  set: function set(value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (!this._writableState) {
-      return;
-    } // backward compatibility, the user is explicitly
-    // managing destroyed
-
-
-    this._writableState.destroyed = value;
-  }
-});
-Writable.prototype.destroy = destroyImpl.destroy;
-Writable.prototype._undestroy = destroyImpl.undestroy;
-
-Writable.prototype._destroy = function (err, cb) {
-  cb(err);
-};
-}).call(this)}).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":101,"./_stream_duplex":102,"./internal/streams/destroy":109,"./internal/streams/state":113,"./internal/streams/stream":114,"_process":98,"buffer":28,"inherits":67,"util-deprecate":122}],107:[function(_dereq_,module,exports){
-(function (process){(function (){
-'use strict';
-
-var _Object$setPrototypeO;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var finished = _dereq_('./end-of-stream');
-
-var kLastResolve = Symbol('lastResolve');
-var kLastReject = Symbol('lastReject');
-var kError = Symbol('error');
-var kEnded = Symbol('ended');
-var kLastPromise = Symbol('lastPromise');
-var kHandlePromise = Symbol('handlePromise');
-var kStream = Symbol('stream');
-
-function createIterResult(value, done) {
-  return {
-    value: value,
-    done: done
-  };
-}
-
-function readAndResolve(iter) {
-  var resolve = iter[kLastResolve];
-
-  if (resolve !== null) {
-    var data = iter[kStream].read(); // we defer if data is null
-    // we can be expecting either 'end' or
-    // 'error'
-
-    if (data !== null) {
-      iter[kLastPromise] = null;
-      iter[kLastResolve] = null;
-      iter[kLastReject] = null;
-      resolve(createIterResult(data, false));
-    }
-  }
-}
-
-function onReadable(iter) {
-  // we wait for the next tick, because it might
-  // emit an error with process.nextTick
-  process.nextTick(readAndResolve, iter);
-}
-
-function wrapForNext(lastPromise, iter) {
-  return function (resolve, reject) {
-    lastPromise.then(function () {
-      if (iter[kEnded]) {
-        resolve(createIterResult(undefined, true));
-        return;
-      }
-
-      iter[kHandlePromise](resolve, reject);
-    }, reject);
-  };
-}
-
-var AsyncIteratorPrototype = Object.getPrototypeOf(function () {});
-var ReadableStreamAsyncIteratorPrototype = Object.setPrototypeOf((_Object$setPrototypeO = {
-  get stream() {
-    return this[kStream];
-  },
-
-  next: function next() {
-    var _this = this;
-
-    // if we have detected an error in the meanwhile
-    // reject straight away
-    var error = this[kError];
-
-    if (error !== null) {
-      return Promise.reject(error);
-    }
-
-    if (this[kEnded]) {
-      return Promise.resolve(createIterResult(undefined, true));
-    }
-
-    if (this[kStream].destroyed) {
-      // We need to defer via nextTick because if .destroy(err) is
-      // called, the error will be emitted via nextTick, and
-      // we cannot guarantee that there is no error lingering around
-      // waiting to be emitted.
-      return new Promise(function (resolve, reject) {
-        process.nextTick(function () {
-          if (_this[kError]) {
-            reject(_this[kError]);
-          } else {
-            resolve(createIterResult(undefined, true));
-          }
-        });
-      });
-    } // if we have multiple next() calls
-    // we will wait for the previous Promise to finish
-    // this logic is optimized to support for await loops,
-    // where next() is only called once at a time
-
-
-    var lastPromise = this[kLastPromise];
-    var promise;
-
-    if (lastPromise) {
-      promise = new Promise(wrapForNext(lastPromise, this));
-    } else {
-      // fast path needed to support multiple this.push()
-      // without triggering the next() queue
-      var data = this[kStream].read();
-
-      if (data !== null) {
-        return Promise.resolve(createIterResult(data, false));
-      }
-
-      promise = new Promise(this[kHandlePromise]);
-    }
-
-    this[kLastPromise] = promise;
-    return promise;
-  }
-}, _defineProperty(_Object$setPrototypeO, Symbol.asyncIterator, function () {
-  return this;
-}), _defineProperty(_Object$setPrototypeO, "return", function _return() {
-  var _this2 = this;
-
-  // destroy(err, cb) is a private API
-  // we can guarantee we have that here, because we control the
-  // Readable class this is attached to
-  return new Promise(function (resolve, reject) {
-    _this2[kStream].destroy(null, function (err) {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(createIterResult(undefined, true));
-    });
-  });
-}), _Object$setPrototypeO), AsyncIteratorPrototype);
-
-var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterator(stream) {
-  var _Object$create;
-
-  var iterator = Object.create(ReadableStreamAsyncIteratorPrototype, (_Object$create = {}, _defineProperty(_Object$create, kStream, {
-    value: stream,
-    writable: true
-  }), _defineProperty(_Object$create, kLastResolve, {
-    value: null,
-    writable: true
-  }), _defineProperty(_Object$create, kLastReject, {
-    value: null,
-    writable: true
-  }), _defineProperty(_Object$create, kError, {
-    value: null,
-    writable: true
-  }), _defineProperty(_Object$create, kEnded, {
-    value: stream._readableState.endEmitted,
-    writable: true
-  }), _defineProperty(_Object$create, kHandlePromise, {
-    value: function value(resolve, reject) {
-      var data = iterator[kStream].read();
-
-      if (data) {
-        iterator[kLastPromise] = null;
-        iterator[kLastResolve] = null;
-        iterator[kLastReject] = null;
-        resolve(createIterResult(data, false));
-      } else {
-        iterator[kLastResolve] = resolve;
-        iterator[kLastReject] = reject;
-      }
-    },
-    writable: true
-  }), _Object$create));
-  iterator[kLastPromise] = null;
-  finished(stream, function (err) {
-    if (err && err.code !== 'ERR_STREAM_PREMATURE_CLOSE') {
-      var reject = iterator[kLastReject]; // reject if we are waiting for data in the Promise
-      // returned by next() and store the error
-
-      if (reject !== null) {
-        iterator[kLastPromise] = null;
-        iterator[kLastResolve] = null;
-        iterator[kLastReject] = null;
-        reject(err);
-      }
-
-      iterator[kError] = err;
-      return;
-    }
-
-    var resolve = iterator[kLastResolve];
-
-    if (resolve !== null) {
-      iterator[kLastPromise] = null;
-      iterator[kLastResolve] = null;
-      iterator[kLastReject] = null;
-      resolve(createIterResult(undefined, true));
-    }
-
-    iterator[kEnded] = true;
-  });
-  stream.on('readable', onReadable.bind(null, iterator));
-  return iterator;
-};
-
-module.exports = createReadableStreamAsyncIterator;
-}).call(this)}).call(this,_dereq_('_process'))
-},{"./end-of-stream":110,"_process":98}],108:[function(_dereq_,module,exports){
-'use strict';
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var _require = _dereq_('buffer'),
-    Buffer = _require.Buffer;
-
-var _require2 = _dereq_('util'),
-    inspect = _require2.inspect;
-
-var custom = inspect && inspect.custom || 'inspect';
-
-function copyBuffer(src, target, offset) {
-  Buffer.prototype.copy.call(src, target, offset);
-}
-
-module.exports =
-/*#__PURE__*/
-function () {
-  function BufferList() {
-    _classCallCheck(this, BufferList);
-
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-  }
-
-  _createClass(BufferList, [{
-    key: "push",
-    value: function push(v) {
-      var entry = {
-        data: v,
-        next: null
-      };
-      if (this.length > 0) this.tail.next = entry;else this.head = entry;
-      this.tail = entry;
-      ++this.length;
-    }
-  }, {
-    key: "unshift",
-    value: function unshift(v) {
-      var entry = {
-        data: v,
-        next: this.head
-      };
-      if (this.length === 0) this.tail = entry;
-      this.head = entry;
-      ++this.length;
-    }
-  }, {
-    key: "shift",
-    value: function shift() {
-      if (this.length === 0) return;
-      var ret = this.head.data;
-      if (this.length === 1) this.head = this.tail = null;else this.head = this.head.next;
-      --this.length;
-      return ret;
-    }
-  }, {
-    key: "clear",
-    value: function clear() {
-      this.head = this.tail = null;
-      this.length = 0;
-    }
-  }, {
-    key: "join",
-    value: function join(s) {
-      if (this.length === 0) return '';
-      var p = this.head;
-      var ret = '' + p.data;
-
-      while (p = p.next) {
-        ret += s + p.data;
-      }
-
-      return ret;
-    }
-  }, {
-    key: "concat",
-    value: function concat(n) {
-      if (this.length === 0) return Buffer.alloc(0);
-      var ret = Buffer.allocUnsafe(n >>> 0);
-      var p = this.head;
-      var i = 0;
-
-      while (p) {
-        copyBuffer(p.data, ret, i);
-        i += p.data.length;
-        p = p.next;
-      }
-
-      return ret;
-    } // Consumes a specified amount of bytes or characters from the buffered data.
-
-  }, {
-    key: "consume",
-    value: function consume(n, hasStrings) {
-      var ret;
-
-      if (n < this.head.data.length) {
-        // `slice` is the same for buffers and strings.
-        ret = this.head.data.slice(0, n);
-        this.head.data = this.head.data.slice(n);
-      } else if (n === this.head.data.length) {
-        // First chunk is a perfect match.
-        ret = this.shift();
-      } else {
-        // Result spans more than one buffer.
-        ret = hasStrings ? this._getString(n) : this._getBuffer(n);
-      }
-
-      return ret;
-    }
-  }, {
-    key: "first",
-    value: function first() {
-      return this.head.data;
-    } // Consumes a specified amount of characters from the buffered data.
-
-  }, {
-    key: "_getString",
-    value: function _getString(n) {
-      var p = this.head;
-      var c = 1;
-      var ret = p.data;
-      n -= ret.length;
-
-      while (p = p.next) {
-        var str = p.data;
-        var nb = n > str.length ? str.length : n;
-        if (nb === str.length) ret += str;else ret += str.slice(0, n);
-        n -= nb;
-
-        if (n === 0) {
-          if (nb === str.length) {
-            ++c;
-            if (p.next) this.head = p.next;else this.head = this.tail = null;
-          } else {
-            this.head = p;
-            p.data = str.slice(nb);
-          }
-
-          break;
-        }
-
-        ++c;
-      }
-
-      this.length -= c;
-      return ret;
-    } // Consumes a specified amount of bytes from the buffered data.
-
-  }, {
-    key: "_getBuffer",
-    value: function _getBuffer(n) {
-      var ret = Buffer.allocUnsafe(n);
-      var p = this.head;
-      var c = 1;
-      p.data.copy(ret);
-      n -= p.data.length;
-
-      while (p = p.next) {
-        var buf = p.data;
-        var nb = n > buf.length ? buf.length : n;
-        buf.copy(ret, ret.length - n, 0, nb);
-        n -= nb;
-
-        if (n === 0) {
-          if (nb === buf.length) {
-            ++c;
-            if (p.next) this.head = p.next;else this.head = this.tail = null;
-          } else {
-            this.head = p;
-            p.data = buf.slice(nb);
-          }
-
-          break;
-        }
-
-        ++c;
-      }
-
-      this.length -= c;
-      return ret;
-    } // Make sure the linked list only shows the minimal necessary information.
-
-  }, {
-    key: custom,
-    value: function value(_, options) {
-      return inspect(this, _objectSpread({}, options, {
-        // Only inspect one level.
-        depth: 0,
-        // It should not recurse.
-        customInspect: false
-      }));
-    }
-  }]);
-
-  return BufferList;
-}();
-},{"buffer":28,"util":26}],109:[function(_dereq_,module,exports){
-(function (process){(function (){
-'use strict'; // undocumented cb() API, needed for core, not for public API
-
-function destroy(err, cb) {
-  var _this = this;
-
-  var readableDestroyed = this._readableState && this._readableState.destroyed;
-  var writableDestroyed = this._writableState && this._writableState.destroyed;
-
-  if (readableDestroyed || writableDestroyed) {
-    if (cb) {
-      cb(err);
-    } else if (err) {
-      if (!this._writableState) {
-        process.nextTick(emitErrorNT, this, err);
-      } else if (!this._writableState.errorEmitted) {
-        this._writableState.errorEmitted = true;
-        process.nextTick(emitErrorNT, this, err);
-      }
-    }
-
-    return this;
-  } // we set destroyed to true before firing error callbacks in order
-  // to make it re-entrance safe in case destroy() is called within callbacks
-
-
-  if (this._readableState) {
-    this._readableState.destroyed = true;
-  } // if this is a duplex stream mark the writable part as destroyed as well
-
-
-  if (this._writableState) {
-    this._writableState.destroyed = true;
-  }
-
-  this._destroy(err || null, function (err) {
-    if (!cb && err) {
-      if (!_this._writableState) {
-        process.nextTick(emitErrorAndCloseNT, _this, err);
-      } else if (!_this._writableState.errorEmitted) {
-        _this._writableState.errorEmitted = true;
-        process.nextTick(emitErrorAndCloseNT, _this, err);
-      } else {
-        process.nextTick(emitCloseNT, _this);
-      }
-    } else if (cb) {
-      process.nextTick(emitCloseNT, _this);
-      cb(err);
-    } else {
-      process.nextTick(emitCloseNT, _this);
-    }
-  });
-
-  return this;
-}
-
-function emitErrorAndCloseNT(self, err) {
-  emitErrorNT(self, err);
-  emitCloseNT(self);
-}
-
-function emitCloseNT(self) {
-  if (self._writableState && !self._writableState.emitClose) return;
-  if (self._readableState && !self._readableState.emitClose) return;
-  self.emit('close');
-}
-
-function undestroy() {
-  if (this._readableState) {
-    this._readableState.destroyed = false;
-    this._readableState.reading = false;
-    this._readableState.ended = false;
-    this._readableState.endEmitted = false;
-  }
-
-  if (this._writableState) {
-    this._writableState.destroyed = false;
-    this._writableState.ended = false;
-    this._writableState.ending = false;
-    this._writableState.finalCalled = false;
-    this._writableState.prefinished = false;
-    this._writableState.finished = false;
-    this._writableState.errorEmitted = false;
-  }
-}
-
-function emitErrorNT(self, err) {
-  self.emit('error', err);
-}
-
-function errorOrDestroy(stream, err) {
-  // We have tests that rely on errors being emitted
-  // in the same tick, so changing this is semver major.
-  // For now when you opt-in to autoDestroy we allow
-  // the error to be emitted nextTick. In a future
-  // semver major update we should change the default to this.
-  var rState = stream._readableState;
-  var wState = stream._writableState;
-  if (rState && rState.autoDestroy || wState && wState.autoDestroy) stream.destroy(err);else stream.emit('error', err);
-}
-
-module.exports = {
-  destroy: destroy,
-  undestroy: undestroy,
-  errorOrDestroy: errorOrDestroy
-};
-}).call(this)}).call(this,_dereq_('_process'))
-},{"_process":98}],110:[function(_dereq_,module,exports){
-// Ported from https://github.com/mafintosh/end-of-stream with
-// permission from the author, Mathias Buus (@mafintosh).
-'use strict';
-
-var ERR_STREAM_PREMATURE_CLOSE = _dereq_('../../../errors').codes.ERR_STREAM_PREMATURE_CLOSE;
-
-function once(callback) {
-  var called = false;
-  return function () {
-    if (called) return;
-    called = true;
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    callback.apply(this, args);
-  };
-}
-
-function noop() {}
-
-function isRequest(stream) {
-  return stream.setHeader && typeof stream.abort === 'function';
-}
-
-function eos(stream, opts, callback) {
-  if (typeof opts === 'function') return eos(stream, null, opts);
-  if (!opts) opts = {};
-  callback = once(callback || noop);
-  var readable = opts.readable || opts.readable !== false && stream.readable;
-  var writable = opts.writable || opts.writable !== false && stream.writable;
-
-  var onlegacyfinish = function onlegacyfinish() {
-    if (!stream.writable) onfinish();
-  };
-
-  var writableEnded = stream._writableState && stream._writableState.finished;
-
-  var onfinish = function onfinish() {
-    writable = false;
-    writableEnded = true;
-    if (!readable) callback.call(stream);
-  };
-
-  var readableEnded = stream._readableState && stream._readableState.endEmitted;
-
-  var onend = function onend() {
-    readable = false;
-    readableEnded = true;
-    if (!writable) callback.call(stream);
-  };
-
-  var onerror = function onerror(err) {
-    callback.call(stream, err);
-  };
-
-  var onclose = function onclose() {
-    var err;
-
-    if (readable && !readableEnded) {
-      if (!stream._readableState || !stream._readableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
-      return callback.call(stream, err);
-    }
-
-    if (writable && !writableEnded) {
-      if (!stream._writableState || !stream._writableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
-      return callback.call(stream, err);
-    }
-  };
-
-  var onrequest = function onrequest() {
-    stream.req.on('finish', onfinish);
-  };
-
-  if (isRequest(stream)) {
-    stream.on('complete', onfinish);
-    stream.on('abort', onclose);
-    if (stream.req) onrequest();else stream.on('request', onrequest);
-  } else if (writable && !stream._writableState) {
-    // legacy streams
-    stream.on('end', onlegacyfinish);
-    stream.on('close', onlegacyfinish);
-  }
-
-  stream.on('end', onend);
-  stream.on('finish', onfinish);
-  if (opts.error !== false) stream.on('error', onerror);
-  stream.on('close', onclose);
-  return function () {
-    stream.removeListener('complete', onfinish);
-    stream.removeListener('abort', onclose);
-    stream.removeListener('request', onrequest);
-    if (stream.req) stream.req.removeListener('finish', onfinish);
-    stream.removeListener('end', onlegacyfinish);
-    stream.removeListener('close', onlegacyfinish);
-    stream.removeListener('finish', onfinish);
-    stream.removeListener('end', onend);
-    stream.removeListener('error', onerror);
-    stream.removeListener('close', onclose);
-  };
-}
-
-module.exports = eos;
-},{"../../../errors":101}],111:[function(_dereq_,module,exports){
-module.exports = function () {
-  throw new Error('Readable.from is not available in the browser')
-};
-
-},{}],112:[function(_dereq_,module,exports){
-// Ported from https://github.com/mafintosh/pump with
-// permission from the author, Mathias Buus (@mafintosh).
-'use strict';
-
-var eos;
-
-function once(callback) {
-  var called = false;
-  return function () {
-    if (called) return;
-    called = true;
-    callback.apply(void 0, arguments);
-  };
-}
-
-var _require$codes = _dereq_('../../../errors').codes,
-    ERR_MISSING_ARGS = _require$codes.ERR_MISSING_ARGS,
-    ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED;
-
-function noop(err) {
-  // Rethrow the error if it exists to avoid swallowing it
-  if (err) throw err;
-}
-
-function isRequest(stream) {
-  return stream.setHeader && typeof stream.abort === 'function';
-}
-
-function destroyer(stream, reading, writing, callback) {
-  callback = once(callback);
-  var closed = false;
-  stream.on('close', function () {
-    closed = true;
-  });
-  if (eos === undefined) eos = _dereq_('./end-of-stream');
-  eos(stream, {
-    readable: reading,
-    writable: writing
-  }, function (err) {
-    if (err) return callback(err);
-    closed = true;
-    callback();
-  });
-  var destroyed = false;
-  return function (err) {
-    if (closed) return;
-    if (destroyed) return;
-    destroyed = true; // request.destroy just do .end - .abort is what we want
-
-    if (isRequest(stream)) return stream.abort();
-    if (typeof stream.destroy === 'function') return stream.destroy();
-    callback(err || new ERR_STREAM_DESTROYED('pipe'));
-  };
-}
-
-function call(fn) {
-  fn();
-}
-
-function pipe(from, to) {
-  return from.pipe(to);
-}
-
-function popCallback(streams) {
-  if (!streams.length) return noop;
-  if (typeof streams[streams.length - 1] !== 'function') return noop;
-  return streams.pop();
-}
-
-function pipeline() {
-  for (var _len = arguments.length, streams = new Array(_len), _key = 0; _key < _len; _key++) {
-    streams[_key] = arguments[_key];
-  }
-
-  var callback = popCallback(streams);
-  if (Array.isArray(streams[0])) streams = streams[0];
-
-  if (streams.length < 2) {
-    throw new ERR_MISSING_ARGS('streams');
-  }
-
-  var error;
-  var destroys = streams.map(function (stream, i) {
-    var reading = i < streams.length - 1;
-    var writing = i > 0;
-    return destroyer(stream, reading, writing, function (err) {
-      if (!error) error = err;
-      if (err) destroys.forEach(call);
-      if (reading) return;
-      destroys.forEach(call);
-      callback(error);
-    });
-  });
-  return streams.reduce(pipe);
-}
-
-module.exports = pipeline;
-},{"../../../errors":101,"./end-of-stream":110}],113:[function(_dereq_,module,exports){
-'use strict';
-
-var ERR_INVALID_OPT_VALUE = _dereq_('../../../errors').codes.ERR_INVALID_OPT_VALUE;
-
-function highWaterMarkFrom(options, isDuplex, duplexKey) {
-  return options.highWaterMark != null ? options.highWaterMark : isDuplex ? options[duplexKey] : null;
-}
-
-function getHighWaterMark(state, options, duplexKey, isDuplex) {
-  var hwm = highWaterMarkFrom(options, isDuplex, duplexKey);
-
-  if (hwm != null) {
-    if (!(isFinite(hwm) && Math.floor(hwm) === hwm) || hwm < 0) {
-      var name = isDuplex ? duplexKey : 'highWaterMark';
-      throw new ERR_INVALID_OPT_VALUE(name, hwm);
-    }
-
-    return Math.floor(hwm);
-  } // Default value
-
-
-  return state.objectMode ? 16 : 16 * 1024;
-}
-
-module.exports = {
-  getHighWaterMark: getHighWaterMark
-};
-},{"../../../errors":101}],114:[function(_dereq_,module,exports){
-module.exports = _dereq_('events').EventEmitter;
-
-},{"events":27}],115:[function(_dereq_,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-'use strict';
-
-/*<replacement>*/
-
-var Buffer = _dereq_('safe-buffer').Buffer;
-/*</replacement>*/
-
-var isEncoding = Buffer.isEncoding || function (encoding) {
-  encoding = '' + encoding;
-  switch (encoding && encoding.toLowerCase()) {
-    case 'hex':case 'utf8':case 'utf-8':case 'ascii':case 'binary':case 'base64':case 'ucs2':case 'ucs-2':case 'utf16le':case 'utf-16le':case 'raw':
-      return true;
-    default:
-      return false;
-  }
-};
-
-function _normalizeEncoding(enc) {
-  if (!enc) return 'utf8';
-  var retried;
-  while (true) {
-    switch (enc) {
-      case 'utf8':
-      case 'utf-8':
-        return 'utf8';
-      case 'ucs2':
-      case 'ucs-2':
-      case 'utf16le':
-      case 'utf-16le':
-        return 'utf16le';
-      case 'latin1':
-      case 'binary':
-        return 'latin1';
-      case 'base64':
-      case 'ascii':
-      case 'hex':
-        return enc;
-      default:
-        if (retried) return; // undefined
-        enc = ('' + enc).toLowerCase();
-        retried = true;
-    }
-  }
-};
-
-// Do not cache `Buffer.isEncoding` when checking encoding names as some
-// modules monkey-patch it to support additional encodings
-function normalizeEncoding(enc) {
-  var nenc = _normalizeEncoding(enc);
-  if (typeof nenc !== 'string' && (Buffer.isEncoding === isEncoding || !isEncoding(enc))) throw new Error('Unknown encoding: ' + enc);
-  return nenc || enc;
-}
-
-// StringDecoder provides an interface for efficiently splitting a series of
-// buffers into a series of JS strings without breaking apart multi-byte
-// characters.
-exports.StringDecoder = StringDecoder;
-function StringDecoder(encoding) {
-  this.encoding = normalizeEncoding(encoding);
-  var nb;
-  switch (this.encoding) {
-    case 'utf16le':
-      this.text = utf16Text;
-      this.end = utf16End;
-      nb = 4;
-      break;
-    case 'utf8':
-      this.fillLast = utf8FillLast;
-      nb = 4;
-      break;
-    case 'base64':
-      this.text = base64Text;
-      this.end = base64End;
-      nb = 3;
-      break;
-    default:
-      this.write = simpleWrite;
-      this.end = simpleEnd;
-      return;
-  }
-  this.lastNeed = 0;
-  this.lastTotal = 0;
-  this.lastChar = Buffer.allocUnsafe(nb);
-}
-
-StringDecoder.prototype.write = function (buf) {
-  if (buf.length === 0) return '';
-  var r;
-  var i;
-  if (this.lastNeed) {
-    r = this.fillLast(buf);
-    if (r === undefined) return '';
-    i = this.lastNeed;
-    this.lastNeed = 0;
-  } else {
-    i = 0;
-  }
-  if (i < buf.length) return r ? r + this.text(buf, i) : this.text(buf, i);
-  return r || '';
-};
-
-StringDecoder.prototype.end = utf8End;
-
-// Returns only complete characters in a Buffer
-StringDecoder.prototype.text = utf8Text;
-
-// Attempts to complete a partial non-UTF-8 character using bytes from a Buffer
-StringDecoder.prototype.fillLast = function (buf) {
-  if (this.lastNeed <= buf.length) {
-    buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed);
-    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
-  }
-  buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, buf.length);
-  this.lastNeed -= buf.length;
-};
-
-// Checks the type of a UTF-8 byte, whether it's ASCII, a leading byte, or a
-// continuation byte. If an invalid byte is detected, -2 is returned.
-function utf8CheckByte(byte) {
-  if (byte <= 0x7F) return 0;else if (byte >> 5 === 0x06) return 2;else if (byte >> 4 === 0x0E) return 3;else if (byte >> 3 === 0x1E) return 4;
-  return byte >> 6 === 0x02 ? -1 : -2;
-}
-
-// Checks at most 3 bytes at the end of a Buffer in order to detect an
-// incomplete multi-byte UTF-8 character. The total number of bytes (2, 3, or 4)
-// needed to complete the UTF-8 character (if applicable) are returned.
-function utf8CheckIncomplete(self, buf, i) {
-  var j = buf.length - 1;
-  if (j < i) return 0;
-  var nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) self.lastNeed = nb - 1;
-    return nb;
-  }
-  if (--j < i || nb === -2) return 0;
-  nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) self.lastNeed = nb - 2;
-    return nb;
-  }
-  if (--j < i || nb === -2) return 0;
-  nb = utf8CheckByte(buf[j]);
-  if (nb >= 0) {
-    if (nb > 0) {
-      if (nb === 2) nb = 0;else self.lastNeed = nb - 3;
-    }
-    return nb;
-  }
-  return 0;
-}
-
-// Validates as many continuation bytes for a multi-byte UTF-8 character as
-// needed or are available. If we see a non-continuation byte where we expect
-// one, we "replace" the validated continuation bytes we've seen so far with
-// a single UTF-8 replacement character ('\ufffd'), to match v8's UTF-8 decoding
-// behavior. The continuation byte check is included three times in the case
-// where all of the continuation bytes for a character exist in the same buffer.
-// It is also done this way as a slight performance increase instead of using a
-// loop.
-function utf8CheckExtraBytes(self, buf, p) {
-  if ((buf[0] & 0xC0) !== 0x80) {
-    self.lastNeed = 0;
-    return '\ufffd';
-  }
-  if (self.lastNeed > 1 && buf.length > 1) {
-    if ((buf[1] & 0xC0) !== 0x80) {
-      self.lastNeed = 1;
-      return '\ufffd';
-    }
-    if (self.lastNeed > 2 && buf.length > 2) {
-      if ((buf[2] & 0xC0) !== 0x80) {
-        self.lastNeed = 2;
-        return '\ufffd';
-      }
-    }
-  }
-}
-
-// Attempts to complete a multi-byte UTF-8 character using bytes from a Buffer.
-function utf8FillLast(buf) {
-  var p = this.lastTotal - this.lastNeed;
-  var r = utf8CheckExtraBytes(this, buf, p);
-  if (r !== undefined) return r;
-  if (this.lastNeed <= buf.length) {
-    buf.copy(this.lastChar, p, 0, this.lastNeed);
-    return this.lastChar.toString(this.encoding, 0, this.lastTotal);
-  }
-  buf.copy(this.lastChar, p, 0, buf.length);
-  this.lastNeed -= buf.length;
-}
-
-// Returns all complete UTF-8 characters in a Buffer. If the Buffer ended on a
-// partial character, the character's bytes are buffered until the required
-// number of bytes are available.
-function utf8Text(buf, i) {
-  var total = utf8CheckIncomplete(this, buf, i);
-  if (!this.lastNeed) return buf.toString('utf8', i);
-  this.lastTotal = total;
-  var end = buf.length - (total - this.lastNeed);
-  buf.copy(this.lastChar, 0, end);
-  return buf.toString('utf8', i, end);
-}
-
-// For UTF-8, a replacement character is added when ending on a partial
-// character.
-function utf8End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) return r + '\ufffd';
-  return r;
-}
-
-// UTF-16LE typically needs two bytes per character, but even if we have an even
-// number of bytes available, we need to check if we end on a leading/high
-// surrogate. In that case, we need to wait for the next two bytes in order to
-// decode the last character properly.
-function utf16Text(buf, i) {
-  if ((buf.length - i) % 2 === 0) {
-    var r = buf.toString('utf16le', i);
-    if (r) {
-      var c = r.charCodeAt(r.length - 1);
-      if (c >= 0xD800 && c <= 0xDBFF) {
-        this.lastNeed = 2;
-        this.lastTotal = 4;
-        this.lastChar[0] = buf[buf.length - 2];
-        this.lastChar[1] = buf[buf.length - 1];
-        return r.slice(0, -1);
-      }
-    }
-    return r;
-  }
-  this.lastNeed = 1;
-  this.lastTotal = 2;
-  this.lastChar[0] = buf[buf.length - 1];
-  return buf.toString('utf16le', i, buf.length - 1);
-}
-
-// For UTF-16LE we do not explicitly append special replacement characters if we
-// end on a partial character, we simply let v8 handle that.
-function utf16End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) {
-    var end = this.lastTotal - this.lastNeed;
-    return r + this.lastChar.toString('utf16le', 0, end);
-  }
-  return r;
-}
-
-function base64Text(buf, i) {
-  var n = (buf.length - i) % 3;
-  if (n === 0) return buf.toString('base64', i);
-  this.lastNeed = 3 - n;
-  this.lastTotal = 3;
-  if (n === 1) {
-    this.lastChar[0] = buf[buf.length - 1];
-  } else {
-    this.lastChar[0] = buf[buf.length - 2];
-    this.lastChar[1] = buf[buf.length - 1];
-  }
-  return buf.toString('base64', i, buf.length - n);
-}
-
-function base64End(buf) {
-  var r = buf && buf.length ? this.write(buf) : '';
-  if (this.lastNeed) return r + this.lastChar.toString('base64', 0, 3 - this.lastNeed);
-  return r;
-}
-
-// Pass bytes on through for single-byte encodings (e.g. ascii, latin1, hex)
-function simpleWrite(buf) {
-  return buf.toString(this.encoding);
-}
-
-function simpleEnd(buf) {
-  return buf && buf.length ? this.write(buf) : '';
-}
-},{"safe-buffer":99}],116:[function(_dereq_,module,exports){
-(function (process,Buffer){(function (){
-
-/**
- * Module dependencies.
- */
-
-var assert = _dereq_('assert');
-var debug = _dereq_('debug')('stream-parser');
-
-/**
- * Module exports.
- */
-
-module.exports = Parser;
-
-/**
- * Parser states.
- */
-
-var INIT        = -1;
-var BUFFERING   = 0;
-var SKIPPING    = 1;
-var PASSTHROUGH = 2;
-
-/**
- * The `Parser` stream mixin works with either `Writable` or `Transform` stream
- * instances/subclasses. Provides a convenient generic "parsing" API:
- *
- *   _bytes(n, cb) - buffers "n" bytes and then calls "cb" with the "chunk"
- *   _skipBytes(n, cb) - skips "n" bytes and then calls "cb" when done
- *
- * If you extend a `Transform` stream, then the `_passthrough()` function is also
- * added:
- *
- *   _passthrough(n, cb) - passes through "n" bytes untouched and then calls "cb"
- *
- * @param {Stream} stream Transform or Writable stream instance to extend
- * @api public
- */
-
-function Parser (stream) {
-  var isTransform = stream && 'function' == typeof stream._transform;
-  var isWritable = stream && 'function' == typeof stream._write;
-
-  if (!isTransform && !isWritable) throw new Error('must pass a Writable or Transform stream in');
-  debug('extending Parser into stream');
-
-  // Transform streams and Writable streams get `_bytes()` and `_skipBytes()`
-  stream._bytes = _bytes;
-  stream._skipBytes = _skipBytes;
-
-  // only Transform streams get the `_passthrough()` function
-  if (isTransform) stream._passthrough = _passthrough;
-
-  // take control of the streams2 callback functions for this stream
-  if (isTransform) {
-    stream._transform = transform;
-  } else {
-    stream._write = write;
-  }
-}
-
-function init (stream) {
-  debug('initializing parser stream');
-
-  // number of bytes left to parser for the next "chunk"
-  stream._parserBytesLeft = 0;
-
-  // array of Buffer instances that make up the next "chunk"
-  stream._parserBuffers = [];
-
-  // number of bytes parsed so far for the next "chunk"
-  stream._parserBuffered = 0;
-
-  // flag that keeps track of if what the parser should do with bytes received
-  stream._parserState = INIT;
-
-  // the callback for the next "chunk"
-  stream._parserCallback = null;
-
-  // XXX: backwards compat with the old Transform API... remove at some point..
-  if ('function' == typeof stream.push) {
-    stream._parserOutput = stream.push.bind(stream);
-  }
-
-  stream._parserInit = true;
-}
-
-/**
- * Buffers `n` bytes and then invokes `fn` once that amount has been collected.
- *
- * @param {Number} n the number of bytes to buffer
- * @param {Function} fn callback function to invoke when `n` bytes are buffered
- * @api public
- */
-
-function _bytes (n, fn) {
-  assert(!this._parserCallback, 'there is already a "callback" set!');
-  assert(isFinite(n) && n > 0, 'can only buffer a finite number of bytes > 0, got "' + n + '"');
-  if (!this._parserInit) init(this);
-  debug('buffering %o bytes', n);
-  this._parserBytesLeft = n;
-  this._parserCallback = fn;
-  this._parserState = BUFFERING;
-}
-
-/**
- * Skips over the next `n` bytes, then invokes `fn` once that amount has
- * been discarded.
- *
- * @param {Number} n the number of bytes to discard
- * @param {Function} fn callback function to invoke when `n` bytes have been skipped
- * @api public
- */
-
-function _skipBytes (n, fn) {
-  assert(!this._parserCallback, 'there is already a "callback" set!');
-  assert(n > 0, 'can only skip > 0 bytes, got "' + n + '"');
-  if (!this._parserInit) init(this);
-  debug('skipping %o bytes', n);
-  this._parserBytesLeft = n;
-  this._parserCallback = fn;
-  this._parserState = SKIPPING;
-}
-
-/**
- * Passes through `n` bytes to the readable side of this stream untouched,
- * then invokes `fn` once that amount has been passed through.
- *
- * @param {Number} n the number of bytes to pass through
- * @param {Function} fn callback function to invoke when `n` bytes have passed through
- * @api public
- */
-
-function _passthrough (n, fn) {
-  assert(!this._parserCallback, 'There is already a "callback" set!');
-  assert(n > 0, 'can only pass through > 0 bytes, got "' + n + '"');
-  if (!this._parserInit) init(this);
-  debug('passing through %o bytes', n);
-  this._parserBytesLeft = n;
-  this._parserCallback = fn;
-  this._parserState = PASSTHROUGH;
-}
-
-/**
- * The `_write()` callback function implementation.
- *
- * @api private
- */
-
-function write (chunk, encoding, fn) {
-  if (!this._parserInit) init(this);
-  debug('write(%o bytes)', chunk.length);
-
-  // XXX: old Writable stream API compat... remove at some point...
-  if ('function' == typeof encoding) fn = encoding;
-
-  data(this, chunk, null, fn);
-}
-
-/**
- * The `_transform()` callback function implementation.
- *
- * @api private
- */
-
-
-function transform (chunk, output, fn) {
-  if (!this._parserInit) init(this);
-  debug('transform(%o bytes)', chunk.length);
-
-  // XXX: old Transform stream API compat... remove at some point...
-  if ('function' != typeof output) {
-    output = this._parserOutput;
-  }
-
-  data(this, chunk, output, fn);
-}
-
-/**
- * The internal buffering/passthrough logic...
- *
- * This `_data` function get's "trampolined" to prevent stack overflows for tight
- * loops. This technique requires us to return a "thunk" function for any
- * synchronous action. Async stuff breaks the trampoline, but that's ok since it's
- * working with a new stack at that point anyway.
- *
- * @api private
- */
-
-function _data (stream, chunk, output, fn) {
-  if (stream._parserBytesLeft <= 0) {
-    return fn(new Error('got data but not currently parsing anything'));
-  }
-
-  if (chunk.length <= stream._parserBytesLeft) {
-    // small buffer fits within the "_parserBytesLeft" window
-    return function () {
-      return process(stream, chunk, output, fn);
-    };
-  } else {
-    // large buffer needs to be sliced on "_parserBytesLeft" and processed
-    return function () {
-      var b = chunk.slice(0, stream._parserBytesLeft);
-      return process(stream, b, output, function (err) {
-        if (err) return fn(err);
-        if (chunk.length > b.length) {
-          return function () {
-            return _data(stream, chunk.slice(b.length), output, fn);
-          };
-        }
-      });
-    };
-  }
-}
-
-/**
- * The internal `process` function gets called by the `data` function when
- * something "interesting" happens. This function takes care of buffering the
- * bytes when buffering, passing through the bytes when doing that, and invoking
- * the user callback when the number of bytes has been reached.
- *
- * @api private
- */
-
-function process (stream, chunk, output, fn) {
-  stream._parserBytesLeft -= chunk.length;
-  debug('%o bytes left for stream piece', stream._parserBytesLeft);
-
-  if (stream._parserState === BUFFERING) {
-    // buffer
-    stream._parserBuffers.push(chunk);
-    stream._parserBuffered += chunk.length;
-  } else if (stream._parserState === PASSTHROUGH) {
-    // passthrough
-    output(chunk);
-  }
-  // don't need to do anything for the SKIPPING case
-
-  if (0 === stream._parserBytesLeft) {
-    // done with stream "piece", invoke the callback
-    var cb = stream._parserCallback;
-    if (cb && stream._parserState === BUFFERING && stream._parserBuffers.length > 1) {
-      chunk = Buffer.concat(stream._parserBuffers, stream._parserBuffered);
-    }
-    if (stream._parserState !== BUFFERING) {
-      chunk = null;
-    }
-    stream._parserCallback = null;
-    stream._parserBuffered = 0;
-    stream._parserState = INIT;
-    stream._parserBuffers.splice(0); // empty
-
-    if (cb) {
-      var args = [];
-      if (chunk) {
-        // buffered
-        args.push(chunk);
-      } else {
-        // passthrough
-      }
-      if (output) {
-        // on a Transform stream, has "output" function
-        args.push(output);
-      }
-      var async = cb.length > args.length;
-      if (async) {
-        args.push(trampoline(fn));
-      }
-      // invoke cb
-      var rtn = cb.apply(stream, args);
-      if (!async || fn === rtn) return fn;
-    }
-  } else {
-    // need more bytes
-    return fn;
-  }
-}
-
-var data = trampoline(_data);
-
-/**
- * Generic thunk-based "trampoline" helper function.
- *
- * @param {Function} input function
- * @return {Function} "trampolined" function
- * @api private
- */
-
-function trampoline (fn) {
-  return function () {
-    var result = fn.apply(this, arguments);
-
-    while ('function' == typeof result) {
-      result = result();
-    }
-
-    return result;
-  };
-}
-
-}).call(this)}).call(this,_dereq_('_process'),_dereq_("buffer").Buffer)
-},{"_process":98,"assert":21,"buffer":28,"debug":117}],117:[function(_dereq_,module,exports){
-(function (process){(function (){
-/**
- * This is the web browser implementation of `debug()`.
- *
- * Expose `debug()` as the module.
- */
-
-exports = module.exports = _dereq_('./debug');
-exports.log = log;
-exports.formatArgs = formatArgs;
-exports.save = save;
-exports.load = load;
-exports.useColors = useColors;
-exports.storage = 'undefined' != typeof chrome
-               && 'undefined' != typeof chrome.storage
-                  ? chrome.storage.local
-                  : localstorage();
-
-/**
- * Colors.
- */
-
-exports.colors = [
-  'lightseagreen',
-  'forestgreen',
-  'goldenrod',
-  'dodgerblue',
-  'darkorchid',
-  'crimson'
-];
-
-/**
- * Currently only WebKit-based Web Inspectors, Firefox >= v31,
- * and the Firebug extension (any Firefox version) are known
- * to support "%c" CSS customizations.
- *
- * TODO: add a `localStorage` variable to explicitly enable/disable colors
- */
-
-function useColors() {
-  // NB: In an Electron preload script, document will be defined but not fully
-  // initialized. Since we know we're in Chrome, we'll just detect this case
-  // explicitly
-  if (typeof window !== 'undefined' && window.process && window.process.type === 'renderer') {
-    return true;
-  }
-
-  // is webkit? http://stackoverflow.com/a/16459606/376773
-  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-  return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
-    // is firebug? http://stackoverflow.com/a/398120/376773
-    (typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
-    // is firefox >= v31?
-    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
-    // double check webkit in userAgent just in case we are in a worker
-    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
-}
-
-/**
- * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
- */
-
-exports.formatters.j = function(v) {
-  try {
-    return JSON.stringify(v);
-  } catch (err) {
-    return '[UnexpectedJSONParseError]: ' + err.message;
-  }
-};
-
-
-/**
- * Colorize log arguments if enabled.
- *
- * @api public
- */
-
-function formatArgs(args) {
-  var useColors = this.useColors;
-
-  args[0] = (useColors ? '%c' : '')
-    + this.namespace
-    + (useColors ? ' %c' : ' ')
-    + args[0]
-    + (useColors ? '%c ' : ' ')
-    + '+' + exports.humanize(this.diff);
-
-  if (!useColors) return;
-
-  var c = 'color: ' + this.color;
-  args.splice(1, 0, c, 'color: inherit')
-
-  // the final "%c" is somewhat tricky, because there could be other
-  // arguments passed either before or after the %c, so we need to
-  // figure out the correct index to insert the CSS into
-  var index = 0;
-  var lastC = 0;
-  args[0].replace(/%[a-zA-Z%]/g, function(match) {
-    if ('%%' === match) return;
-    index++;
-    if ('%c' === match) {
-      // we only are interested in the *last* %c
-      // (the user may have provided their own)
-      lastC = index;
-    }
-  });
-
-  args.splice(lastC, 0, c);
-}
-
-/**
- * Invokes `console.log()` when available.
- * No-op when `console.log` is not a "function".
- *
- * @api public
- */
-
-function log() {
-  // this hackery is required for IE8/9, where
-  // the `console.log` function doesn't have 'apply'
-  return 'object' === typeof console
-    && console.log
-    && Function.prototype.apply.call(console.log, console, arguments);
-}
-
-/**
- * Save `namespaces`.
- *
- * @param {String} namespaces
- * @api private
- */
-
-function save(namespaces) {
-  try {
-    if (null == namespaces) {
-      exports.storage.removeItem('debug');
-    } else {
-      exports.storage.debug = namespaces;
-    }
-  } catch(e) {}
-}
-
-/**
- * Load `namespaces`.
- *
- * @return {String} returns the previously persisted debug modes
- * @api private
- */
-
-function load() {
-  var r;
-  try {
-    r = exports.storage.debug;
-  } catch(e) {}
-
-  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
-  if (!r && typeof process !== 'undefined' && 'env' in process) {
-    r = process.env.DEBUG;
-  }
-
-  return r;
-}
-
-/**
- * Enable namespaces listed in `localStorage.debug` initially.
- */
-
-exports.enable(load());
-
-/**
- * Localstorage attempts to return the localstorage.
- *
- * This is necessary because safari throws
- * when a user disables cookies/localstorage
- * and you attempt to access it.
- *
- * @return {LocalStorage}
- * @api private
- */
-
-function localstorage() {
-  try {
-    return window.localStorage;
-  } catch (e) {}
-}
-
-}).call(this)}).call(this,_dereq_('_process'))
-},{"./debug":118,"_process":98}],118:[function(_dereq_,module,exports){
-
-/**
- * This is the common logic for both the Node.js and web browser
- * implementations of `debug()`.
- *
- * Expose `debug()` as the module.
- */
-
-exports = module.exports = createDebug.debug = createDebug['default'] = createDebug;
-exports.coerce = coerce;
-exports.disable = disable;
-exports.enable = enable;
-exports.enabled = enabled;
-exports.humanize = _dereq_('ms');
-
-/**
- * The currently active debug mode names, and names to skip.
- */
-
-exports.names = [];
-exports.skips = [];
-
-/**
- * Map of special "%n" handling functions, for the debug "format" argument.
- *
- * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
- */
-
-exports.formatters = {};
-
-/**
- * Previous log timestamp.
- */
-
-var prevTime;
-
-/**
- * Select a color.
- * @param {String} namespace
- * @return {Number}
- * @api private
- */
-
-function selectColor(namespace) {
-  var hash = 0, i;
-
-  for (i in namespace) {
-    hash  = ((hash << 5) - hash) + namespace.charCodeAt(i);
-    hash |= 0; // Convert to 32bit integer
-  }
-
-  return exports.colors[Math.abs(hash) % exports.colors.length];
-}
-
-/**
- * Create a debugger with the given `namespace`.
- *
- * @param {String} namespace
- * @return {Function}
- * @api public
- */
-
-function createDebug(namespace) {
-
-  function debug() {
-    // disabled?
-    if (!debug.enabled) return;
-
-    var self = debug;
-
-    // set `diff` timestamp
-    var curr = +new Date();
-    var ms = curr - (prevTime || curr);
-    self.diff = ms;
-    self.prev = prevTime;
-    self.curr = curr;
-    prevTime = curr;
-
-    // turn the `arguments` into a proper Array
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-
-    args[0] = exports.coerce(args[0]);
-
-    if ('string' !== typeof args[0]) {
-      // anything else let's inspect with %O
-      args.unshift('%O');
-    }
-
-    // apply any `formatters` transformations
-    var index = 0;
-    args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match, format) {
-      // if we encounter an escaped % then don't increase the array index
-      if (match === '%%') return match;
-      index++;
-      var formatter = exports.formatters[format];
-      if ('function' === typeof formatter) {
-        var val = args[index];
-        match = formatter.call(self, val);
-
-        // now we need to remove `args[index]` since it's inlined in the `format`
-        args.splice(index, 1);
-        index--;
-      }
-      return match;
-    });
-
-    // apply env-specific formatting (colors, etc.)
-    exports.formatArgs.call(self, args);
-
-    var logFn = debug.log || exports.log || console.log.bind(console);
-    logFn.apply(self, args);
-  }
-
-  debug.namespace = namespace;
-  debug.enabled = exports.enabled(namespace);
-  debug.useColors = exports.useColors();
-  debug.color = selectColor(namespace);
-
-  // env-specific initialization logic for debug instances
-  if ('function' === typeof exports.init) {
-    exports.init(debug);
-  }
-
-  return debug;
-}
-
-/**
- * Enables a debug mode by namespaces. This can include modes
- * separated by a colon and wildcards.
- *
- * @param {String} namespaces
- * @api public
- */
-
-function enable(namespaces) {
-  exports.save(namespaces);
-
-  exports.names = [];
-  exports.skips = [];
-
-  var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
-  var len = split.length;
-
-  for (var i = 0; i < len; i++) {
-    if (!split[i]) continue; // ignore empty strings
-    namespaces = split[i].replace(/\*/g, '.*?');
-    if (namespaces[0] === '-') {
-      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
-    } else {
-      exports.names.push(new RegExp('^' + namespaces + '$'));
-    }
-  }
-}
-
-/**
- * Disable debug output.
- *
- * @api public
- */
-
-function disable() {
-  exports.enable('');
-}
-
-/**
- * Returns true if the given mode name is enabled, false otherwise.
- *
- * @param {String} name
- * @return {Boolean}
- * @api public
- */
-
-function enabled(name) {
-  var i, len;
-  for (i = 0, len = exports.skips.length; i < len; i++) {
-    if (exports.skips[i].test(name)) {
-      return false;
-    }
-  }
-  for (i = 0, len = exports.names.length; i < len; i++) {
-    if (exports.names[i].test(name)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * Coerce `val`.
- *
- * @param {Mixed} val
- * @return {Mixed}
- * @api private
- */
-
-function coerce(val) {
-  if (val instanceof Error) return val.stack || val.message;
-  return val;
-}
-
-},{"ms":119}],119:[function(_dereq_,module,exports){
-/**
- * Helpers.
- */
-
-var s = 1000;
-var m = s * 60;
-var h = m * 60;
-var d = h * 24;
-var y = d * 365.25;
-
-/**
- * Parse or format the given `val`.
- *
- * Options:
- *
- *  - `long` verbose formatting [false]
- *
- * @param {String|Number} val
- * @param {Object} [options]
- * @throws {Error} throw an error if val is not a non-empty string or a number
- * @return {String|Number}
- * @api public
- */
-
-module.exports = function(val, options) {
-  options = options || {};
-  var type = typeof val;
-  if (type === 'string' && val.length > 0) {
-    return parse(val);
-  } else if (type === 'number' && isNaN(val) === false) {
-    return options.long ? fmtLong(val) : fmtShort(val);
-  }
-  throw new Error(
-    'val is not a non-empty string or a valid number. val=' +
-      JSON.stringify(val)
-  );
-};
-
-/**
- * Parse the given `str` and return milliseconds.
- *
- * @param {String} str
- * @return {Number}
- * @api private
- */
-
-function parse(str) {
-  str = String(str);
-  if (str.length > 100) {
-    return;
-  }
-  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
-    str
-  );
-  if (!match) {
-    return;
-  }
-  var n = parseFloat(match[1]);
-  var type = (match[2] || 'ms').toLowerCase();
-  switch (type) {
-    case 'years':
-    case 'year':
-    case 'yrs':
-    case 'yr':
-    case 'y':
-      return n * y;
-    case 'days':
-    case 'day':
-    case 'd':
-      return n * d;
-    case 'hours':
-    case 'hour':
-    case 'hrs':
-    case 'hr':
-    case 'h':
-      return n * h;
-    case 'minutes':
-    case 'minute':
-    case 'mins':
-    case 'min':
-    case 'm':
-      return n * m;
-    case 'seconds':
-    case 'second':
-    case 'secs':
-    case 'sec':
-    case 's':
-      return n * s;
-    case 'milliseconds':
-    case 'millisecond':
-    case 'msecs':
-    case 'msec':
-    case 'ms':
-      return n;
-    default:
-      return undefined;
-  }
-}
-
-/**
- * Short format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function fmtShort(ms) {
-  if (ms >= d) {
-    return Math.round(ms / d) + 'd';
-  }
-  if (ms >= h) {
-    return Math.round(ms / h) + 'h';
-  }
-  if (ms >= m) {
-    return Math.round(ms / m) + 'm';
-  }
-  if (ms >= s) {
-    return Math.round(ms / s) + 's';
-  }
-  return ms + 'ms';
-}
-
-/**
- * Long format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
-
-function fmtLong(ms) {
-  return plural(ms, d, 'day') ||
-    plural(ms, h, 'hour') ||
-    plural(ms, m, 'minute') ||
-    plural(ms, s, 'second') ||
-    ms + ' ms';
-}
-
-/**
- * Pluralization helper.
- */
-
-function plural(ms, n, name) {
-  if (ms < n) {
-    return;
-  }
-  if (ms < n * 1.5) {
-    return Math.floor(ms / n) + ' ' + name;
-  }
-  return Math.ceil(ms / n) + ' ' + name + 's';
-}
-
-},{}],120:[function(_dereq_,module,exports){
+},{}],78:[function(_dereq_,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = _dereq_('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -21770,7 +14754,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,_dereq_("timers").setImmediate,_dereq_("timers").clearImmediate)
-},{"process/browser.js":98,"timers":120}],121:[function(_dereq_,module,exports){
+},{"process/browser.js":77,"timers":78}],79:[function(_dereq_,module,exports){
 // TinyColor v1.4.2
 // https://github.com/bgrins/TinyColor
 // Brian Grinstead, MIT License
@@ -22967,78 +15951,7 @@ else {
 
 })(Math);
 
-},{}],122:[function(_dereq_,module,exports){
-(function (global){(function (){
-
-/**
- * Module exports.
- */
-
-module.exports = deprecate;
-
-/**
- * Mark that a method should not be used.
- * Returns a modified function which warns once by default.
- *
- * If `localStorage.noDeprecation = true` is set, then it is a no-op.
- *
- * If `localStorage.throwDeprecation = true` is set, then deprecated functions
- * will throw an Error when invoked.
- *
- * If `localStorage.traceDeprecation = true` is set, then deprecated functions
- * will invoke `console.trace()` instead of `console.error()`.
- *
- * @param {Function} fn - the function to deprecate
- * @param {String} msg - the string to print to the console when `fn` is invoked
- * @returns {Function} a new "deprecated" version of `fn`
- * @api public
- */
-
-function deprecate (fn, msg) {
-  if (config('noDeprecation')) {
-    return fn;
-  }
-
-  var warned = false;
-  function deprecated() {
-    if (!warned) {
-      if (config('throwDeprecation')) {
-        throw new Error(msg);
-      } else if (config('traceDeprecation')) {
-        console.trace(msg);
-      } else {
-        console.warn(msg);
-      }
-      warned = true;
-    }
-    return fn.apply(this, arguments);
-  }
-
-  return deprecated;
-}
-
-/**
- * Checks `localStorage` for boolean values for the given `name`.
- *
- * @param {String} name
- * @returns {Boolean}
- * @api private
- */
-
-function config (name) {
-  // accessing global.localStorage can trigger a DOMException in sandboxed iframes
-  try {
-    if (!global.localStorage) return false;
-  } catch (_) {
-    return false;
-  }
-  var val = global.localStorage[name];
-  if (null == val) return false;
-  return String(val).toLowerCase() === 'true';
-}
-
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],123:[function(_dereq_,module,exports){
+},{}],80:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -23771,7 +16684,7 @@ function toSolar(yearOrDate, monthOrResult, day, isIntercalaryOrResult, result) 
 }
 
 
-},{"../main":137,"object-assign":73}],124:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],81:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -23955,7 +16868,7 @@ assign(CopticCalendar.prototype, {
 main.calendars.coptic = CopticCalendar;
 
 
-},{"../main":137,"object-assign":73}],125:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],82:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -24183,7 +17096,7 @@ var centuries = {
 main.calendars.discworld = DiscworldCalendar;
 
 
-},{"../main":137,"object-assign":73}],126:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],83:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -24367,7 +17280,7 @@ assign(EthiopianCalendar.prototype, {
 main.calendars.ethiopian = EthiopianCalendar;
 
 
-},{"../main":137,"object-assign":73}],127:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],84:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -24641,7 +17554,7 @@ function mod(a, b) {
 main.calendars.hebrew = HebrewCalendar;
 
 
-},{"../main":137,"object-assign":73}],128:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],85:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -24822,7 +17735,7 @@ assign(IslamicCalendar.prototype, {
 main.calendars.islamic = IslamicCalendar;
 
 
-},{"../main":137,"object-assign":73}],129:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],86:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -25005,7 +17918,7 @@ assign(JulianCalendar.prototype, {
 main.calendars.julian = JulianCalendar;
 
 
-},{"../main":137,"object-assign":73}],130:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],87:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -25300,7 +18213,7 @@ function amod(a, b) {
 main.calendars.mayan = MayanCalendar;
 
 
-},{"../main":137,"object-assign":73}],131:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],88:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -25480,7 +18393,7 @@ assign(NanakshahiCalendar.prototype, {
 main.calendars.nanakshahi = NanakshahiCalendar;
 
 
-},{"../main":137,"object-assign":73}],132:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],89:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -25903,7 +18816,7 @@ assign(NepaliCalendar.prototype, {
 main.calendars.nepali = NepaliCalendar;
 
 
-},{"../main":137,"object-assign":73}],133:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],90:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -26093,7 +19006,7 @@ main.calendars.persian = PersianCalendar;
 main.calendars.jalali = PersianCalendar;
 
 
-},{"../main":137,"object-assign":73}],134:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],91:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -26279,7 +19192,7 @@ assign(TaiwanCalendar.prototype, {
 main.calendars.taiwan = TaiwanCalendar;
 
 
-},{"../main":137,"object-assign":73}],135:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],92:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -26465,7 +19378,7 @@ assign(ThaiCalendar.prototype, {
 main.calendars.thai = ThaiCalendar;
 
 
-},{"../main":137,"object-assign":73}],136:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],93:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -26830,7 +19743,7 @@ var ummalqura_dat = [
     79990];
 
 
-},{"../main":137,"object-assign":73}],137:[function(_dereq_,module,exports){
+},{"../main":94,"object-assign":67}],94:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -27735,7 +20648,7 @@ _exports.baseCalendar = BaseCalendar;
 _exports.calendars.gregorian = GregorianCalendar;
 
 
-},{"object-assign":73}],138:[function(_dereq_,module,exports){
+},{"object-assign":67}],95:[function(_dereq_,module,exports){
 /*
  * World Calendars
  * https://github.com/alexcjohnson/world-calendars
@@ -28237,7 +21150,7 @@ assign(main.baseCalendar.prototype, {
 });
 
 
-},{"./main":137,"object-assign":73}],139:[function(_dereq_,module,exports){
+},{"./main":94,"object-assign":67}],96:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -28300,7 +21213,7 @@ module.exports = [
     }
 ];
 
-},{}],140:[function(_dereq_,module,exports){
+},{}],97:[function(_dereq_,module,exports){
 'use strict';
 
 var ARROWPATHS = _dereq_('./arrow_paths');
@@ -28588,7 +21501,7 @@ module.exports = templatedArray('annotation', {
     }
 });
 
-},{"../../constants/axis_placeable_objects":263,"../../plot_api/plot_template":323,"../../plots/cartesian/constants":341,"../../plots/font_attributes":365,"./arrow_paths":139}],141:[function(_dereq_,module,exports){
+},{"../../constants/axis_placeable_objects":220,"../../plot_api/plot_template":280,"../../plots/cartesian/constants":298,"../../plots/font_attributes":322,"./arrow_paths":96}],98:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28670,7 +21583,7 @@ function calcAxisExpansion(ann, ax) {
     ann._extremes[axId] = extremes;
 }
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"./draw":146}],142:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"./draw":103}],99:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28800,7 +21713,7 @@ function clickData2r(d, ax) {
     return ax.type === 'log' ? ax.l2r(d) : ax.d2r(d);
 }
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"../../registry":378}],143:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"../../registry":335}],100:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -28871,7 +21784,7 @@ module.exports = function handleAnnotationCommonDefaults(annIn, annOut, fullLayo
     coerce('captureevents', !!hoverText);
 };
 
-},{"../../lib":287,"../color":157}],144:[function(_dereq_,module,exports){
+},{"../../lib":244,"../color":114}],101:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -28925,7 +21838,7 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
     }
 };
 
-},{"../../lib/to_log_range":312,"fast-isnumeric":33}],145:[function(_dereq_,module,exports){
+},{"../../lib/to_log_range":269,"fast-isnumeric":28}],102:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -29024,7 +21937,7 @@ function handleAnnotationDefaults(annIn, annOut, fullLayout) {
     }
 }
 
-},{"../../lib":287,"../../plots/array_container_defaults":329,"../../plots/cartesian/axes":334,"./attributes":140,"./common_defaults":143}],146:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/array_container_defaults":286,"../../plots/cartesian/axes":291,"./attributes":97,"./common_defaults":100}],103:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -29777,7 +22690,7 @@ function drawRaw(gd, options, index, subplotId, xa, ya) {
     } else annText.call(textLayout);
 }
 
-},{"../../lib":287,"../../lib/setcursor":307,"../../lib/svg_text_utils":310,"../../plot_api/plot_template":323,"../../plots/cartesian/axes":334,"../../plots/plots":371,"../../registry":378,"../color":157,"../dragelement":176,"../drawing":179,"../fx":197,"./draw_arrow_head":147,"@plotly/d3":20}],147:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../lib/setcursor":264,"../../lib/svg_text_utils":267,"../../plot_api/plot_template":280,"../../plots/cartesian/axes":291,"../../plots/plots":328,"../../registry":335,"../color":114,"../dragelement":133,"../drawing":136,"../fx":154,"./draw_arrow_head":104,"@plotly/d3":20}],104:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -29924,7 +22837,7 @@ module.exports = function drawArrowHead(el3, ends, options) {
     if(doEnd) drawhead(headStyle, end, endRot, scale);
 };
 
-},{"../../lib":287,"../color":157,"./arrow_paths":139,"@plotly/d3":20}],148:[function(_dereq_,module,exports){
+},{"../../lib":244,"../color":114,"./arrow_paths":96,"@plotly/d3":20}],105:[function(_dereq_,module,exports){
 'use strict';
 
 var drawModule = _dereq_('./draw');
@@ -29949,7 +22862,7 @@ module.exports = {
     convertCoords: _dereq_('./convert_coords')
 };
 
-},{"../../plots/cartesian/include_components":347,"./attributes":140,"./calc_autorange":141,"./click":142,"./convert_coords":144,"./defaults":145,"./draw":146}],149:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/include_components":304,"./attributes":97,"./calc_autorange":98,"./click":99,"./convert_coords":101,"./defaults":102,"./draw":103}],106:[function(_dereq_,module,exports){
 'use strict';
 
 var annAttrs = _dereq_('../annotations/attributes');
@@ -30018,7 +22931,7 @@ module.exports = overrideAll(templatedArray('annotation', {
     // zref: 'z'
 }), 'calc', 'from-root');
 
-},{"../../plot_api/edit_types":316,"../../plot_api/plot_template":323,"../annotations/attributes":140}],150:[function(_dereq_,module,exports){
+},{"../../plot_api/edit_types":273,"../../plot_api/plot_template":280,"../annotations/attributes":97}],107:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -30075,7 +22988,7 @@ function mockAnnAxes(ann, scene) {
     };
 }
 
-},{"../../lib":287,"../../plots/cartesian/axes":334}],151:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291}],108:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -30143,7 +23056,7 @@ function handleAnnotationDefaults(annIn, annOut, sceneLayout, opts) {
     }
 }
 
-},{"../../lib":287,"../../plots/array_container_defaults":329,"../../plots/cartesian/axes":334,"../annotations/common_defaults":143,"./attributes":149}],152:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/array_container_defaults":286,"../../plots/cartesian/axes":291,"../annotations/common_defaults":100,"./attributes":106}],109:[function(_dereq_,module,exports){
 'use strict';
 
 var drawRaw = _dereq_('../annotations/draw').drawRaw;
@@ -30187,7 +23100,7 @@ module.exports = function draw(scene) {
     }
 };
 
-},{"../../plots/gl3d/project":368,"../annotations/draw":146}],153:[function(_dereq_,module,exports){
+},{"../../plots/gl3d/project":325,"../annotations/draw":103}],110:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -30227,7 +23140,7 @@ function includeGL3D(layoutIn, layoutOut) {
     }
 }
 
-},{"../../lib":287,"../../registry":378,"./attributes":149,"./convert":150,"./defaults":151,"./draw":152}],154:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"./attributes":106,"./convert":107,"./defaults":108,"./draw":109}],111:[function(_dereq_,module,exports){
 'use strict';
 
 // a trimmed down version of:
@@ -30252,7 +23165,7 @@ _dereq_('world-calendars/dist/calendars/taiwan');
 _dereq_('world-calendars/dist/calendars/thai');
 _dereq_('world-calendars/dist/calendars/ummalqura');
 
-},{"world-calendars/dist/calendars/chinese":123,"world-calendars/dist/calendars/coptic":124,"world-calendars/dist/calendars/discworld":125,"world-calendars/dist/calendars/ethiopian":126,"world-calendars/dist/calendars/hebrew":127,"world-calendars/dist/calendars/islamic":128,"world-calendars/dist/calendars/julian":129,"world-calendars/dist/calendars/mayan":130,"world-calendars/dist/calendars/nanakshahi":131,"world-calendars/dist/calendars/nepali":132,"world-calendars/dist/calendars/persian":133,"world-calendars/dist/calendars/taiwan":134,"world-calendars/dist/calendars/thai":135,"world-calendars/dist/calendars/ummalqura":136,"world-calendars/dist/main":137,"world-calendars/dist/plus":138}],155:[function(_dereq_,module,exports){
+},{"world-calendars/dist/calendars/chinese":80,"world-calendars/dist/calendars/coptic":81,"world-calendars/dist/calendars/discworld":82,"world-calendars/dist/calendars/ethiopian":83,"world-calendars/dist/calendars/hebrew":84,"world-calendars/dist/calendars/islamic":85,"world-calendars/dist/calendars/julian":86,"world-calendars/dist/calendars/mayan":87,"world-calendars/dist/calendars/nanakshahi":88,"world-calendars/dist/calendars/nepali":89,"world-calendars/dist/calendars/persian":90,"world-calendars/dist/calendars/taiwan":91,"world-calendars/dist/calendars/thai":92,"world-calendars/dist/calendars/ummalqura":93,"world-calendars/dist/main":94,"world-calendars/dist/plus":95}],112:[function(_dereq_,module,exports){
 'use strict';
 
 var calendars = _dereq_('./calendars');
@@ -30518,7 +23431,7 @@ module.exports = {
     worldCalFmt: worldCalFmt
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"./calendars":154}],156:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"./calendars":111}],113:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -30550,7 +23463,7 @@ exports.borderLine = '#BEC8D9';
 // gives back exactly lightLine if the other colors are defaults.
 exports.lightFraction = 100 * (0xe - 0x4) / (0xf - 0x4);
 
-},{}],157:[function(_dereq_,module,exports){
+},{}],114:[function(_dereq_,module,exports){
 'use strict';
 
 var tinycolor = _dereq_('tinycolor2');
@@ -30716,7 +23629,7 @@ function cleanOne(val) {
     return 'rgb(' + rgbStr + ')';
 }
 
-},{"../../lib/array":273,"./attributes":156,"fast-isnumeric":33,"tinycolor2":121}],158:[function(_dereq_,module,exports){
+},{"../../lib/array":230,"./attributes":113,"fast-isnumeric":28,"tinycolor2":79}],115:[function(_dereq_,module,exports){
 'use strict';
 
 var axesAttrs = _dereq_('../../plots/cartesian/layout_attributes');
@@ -30862,7 +23775,7 @@ module.exports = overrideAll({
     }
 }, 'colorbars', 'from-root');
 
-},{"../../lib/extend":281,"../../plot_api/edit_types":316,"../../plots/cartesian/layout_attributes":349,"../../plots/font_attributes":365}],159:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"../../plot_api/edit_types":273,"../../plots/cartesian/layout_attributes":306,"../../plots/font_attributes":322}],116:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -30882,7 +23795,7 @@ module.exports = {
     }
 };
 
-},{}],160:[function(_dereq_,module,exports){
+},{}],117:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -30976,7 +23889,7 @@ module.exports = function colorbarDefaults(containerIn, containerOut, layout) {
     coerce('title.side', isVertical ? 'top' : 'right');
 };
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"../../plots/cartesian/prefix_suffix_defaults":353,"../../plots/cartesian/tick_label_defaults":358,"../../plots/cartesian/tick_mark_defaults":359,"../../plots/cartesian/tick_value_defaults":360,"./attributes":158}],161:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"../../plots/cartesian/prefix_suffix_defaults":310,"../../plots/cartesian/tick_label_defaults":315,"../../plots/cartesian/tick_mark_defaults":316,"../../plots/cartesian/tick_value_defaults":317,"./attributes":115}],118:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -31960,7 +24873,7 @@ module.exports = {
     draw: draw
 };
 
-},{"../../constants/alignment":262,"../../lib":287,"../../lib/extend":281,"../../lib/setcursor":307,"../../lib/svg_text_utils":310,"../../plots/cartesian/axes":334,"../../plots/cartesian/axis_defaults":336,"../../plots/cartesian/layout_attributes":349,"../../plots/cartesian/position_defaults":352,"../../plots/plots":371,"../../registry":378,"../color":157,"../colorscale/helpers":168,"../dragelement":176,"../drawing":179,"../titles":255,"./constants":159,"@plotly/d3":20,"tinycolor2":121}],162:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../lib":244,"../../lib/extend":238,"../../lib/setcursor":264,"../../lib/svg_text_utils":267,"../../plots/cartesian/axes":291,"../../plots/cartesian/axis_defaults":293,"../../plots/cartesian/layout_attributes":306,"../../plots/cartesian/position_defaults":309,"../../plots/plots":328,"../../registry":335,"../color":114,"../colorscale/helpers":125,"../dragelement":133,"../drawing":136,"../titles":212,"./constants":116,"@plotly/d3":20,"tinycolor2":79}],119:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -31970,7 +24883,7 @@ module.exports = function hasColorbar(container) {
     return Lib.isPlainObject(container.colorbar);
 };
 
-},{"../../lib":287}],163:[function(_dereq_,module,exports){
+},{"../../lib":244}],120:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -31984,7 +24897,7 @@ module.exports = {
     hasColorbar: _dereq_('./has_colorbar')
 };
 
-},{"./attributes":158,"./defaults":160,"./draw":161,"./has_colorbar":162}],164:[function(_dereq_,module,exports){
+},{"./attributes":115,"./defaults":117,"./draw":118,"./has_colorbar":119}],121:[function(_dereq_,module,exports){
 'use strict';
 
 var colorbarAttrs = _dereq_('../colorbar/attributes');
@@ -32165,7 +25078,7 @@ module.exports = function colorScaleAttrs(context, opts) {
     return attrs;
 };
 
-},{"../../lib/regex":303,"../../lib/sort_object_keys":308,"../colorbar/attributes":158,"./scales.js":172}],165:[function(_dereq_,module,exports){
+},{"../../lib/regex":260,"../../lib/sort_object_keys":265,"../colorbar/attributes":115,"./scales.js":129}],122:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -32236,7 +25149,7 @@ module.exports = function calc(gd, trace, opts) {
     }
 };
 
-},{"../../lib":287,"./helpers":168,"fast-isnumeric":33}],166:[function(_dereq_,module,exports){
+},{"../../lib":244,"./helpers":125,"fast-isnumeric":28}],123:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -32305,7 +25218,7 @@ module.exports = function crossTraceDefaults(fullData, fullLayout) {
     }
 };
 
-},{"../../lib":287,"./helpers":168}],167:[function(_dereq_,module,exports){
+},{"../../lib":244,"./helpers":125}],124:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -32422,7 +25335,7 @@ module.exports = function colorScaleDefaults(parentContIn, parentContOut, layout
     }
 };
 
-},{"../../lib":287,"../../registry":378,"../colorbar/defaults":160,"../colorbar/has_colorbar":162,"./scales":172,"fast-isnumeric":33}],168:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"../colorbar/defaults":117,"../colorbar/has_colorbar":119,"./scales":129,"fast-isnumeric":28}],125:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -32654,7 +25567,7 @@ module.exports = {
     makeColorScaleFuncFromTrace: makeColorScaleFuncFromTrace
 };
 
-},{"../../lib":287,"../color":157,"./scales":172,"@plotly/d3":20,"fast-isnumeric":33,"tinycolor2":121}],169:[function(_dereq_,module,exports){
+},{"../../lib":244,"../color":114,"./scales":129,"@plotly/d3":20,"fast-isnumeric":28,"tinycolor2":79}],126:[function(_dereq_,module,exports){
 'use strict';
 
 var scales = _dereq_('./scales');
@@ -32688,7 +25601,7 @@ module.exports = {
     makeColorScaleFuncFromTrace: helpers.makeColorScaleFuncFromTrace
 };
 
-},{"./attributes":164,"./calc":165,"./cross_trace_defaults":166,"./defaults":167,"./helpers":168,"./layout_attributes":170,"./layout_defaults":171,"./scales":172}],170:[function(_dereq_,module,exports){
+},{"./attributes":121,"./calc":122,"./cross_trace_defaults":123,"./defaults":124,"./helpers":125,"./layout_attributes":127,"./layout_defaults":128,"./scales":129}],127:[function(_dereq_,module,exports){
 'use strict';
 
 var extendFlat = _dereq_('../../lib/extend').extendFlat;
@@ -32734,7 +25647,7 @@ module.exports = {
     }))
 };
 
-},{"../../lib/extend":281,"./attributes":164,"./scales":172}],171:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"./attributes":121,"./scales":129}],128:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -32777,7 +25690,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     }
 };
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"./defaults":167,"./layout_attributes":170}],172:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"./defaults":124,"./layout_attributes":127}],129:[function(_dereq_,module,exports){
 'use strict';
 
 var tinycolor = _dereq_('tinycolor2');
@@ -32973,7 +25886,7 @@ module.exports = {
     isValid: isValidScale
 };
 
-},{"tinycolor2":121}],173:[function(_dereq_,module,exports){
+},{"tinycolor2":79}],130:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -32997,7 +25910,7 @@ module.exports = function align(v, dv, v0, v1, anchor) {
     return vc;
 };
 
-},{}],174:[function(_dereq_,module,exports){
+},{}],131:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -33026,7 +25939,7 @@ module.exports = function getCursor(x, y, xanchor, yanchor) {
     return cursorset[y][x];
 };
 
-},{"../../lib":287}],175:[function(_dereq_,module,exports){
+},{"../../lib":244}],132:[function(_dereq_,module,exports){
 'use strict';
 
 exports.selectMode = function(dragmode) {
@@ -33077,7 +25990,7 @@ exports.selectingOrDrawing = function(dragmode) {
     );
 };
 
-},{}],176:[function(_dereq_,module,exports){
+},{}],133:[function(_dereq_,module,exports){
 'use strict';
 
 var mouseOffset = _dereq_('mouse-event-offset');
@@ -33361,7 +26274,7 @@ function pointerOffset(e) {
     );
 }
 
-},{"../../lib":287,"../../plots/cartesian/constants":341,"./align":173,"./cursor":174,"./unhover":177,"has-hover":64,"has-passive-events":65,"mouse-event-offset":71}],177:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/constants":298,"./align":130,"./cursor":131,"./unhover":134,"has-hover":59,"has-passive-events":60,"mouse-event-offset":65}],134:[function(_dereq_,module,exports){
 'use strict';
 
 var Events = _dereq_('../../lib/events');
@@ -33408,7 +26321,7 @@ unhover.raw = function raw(gd, evt) {
     }
 };
 
-},{"../../lib/dom":279,"../../lib/events":280,"../../lib/throttle":311,"../fx/constants":191}],178:[function(_dereq_,module,exports){
+},{"../../lib/dom":236,"../../lib/events":237,"../../lib/throttle":268,"../fx/constants":148}],135:[function(_dereq_,module,exports){
 'use strict';
 
 exports.dash = {
@@ -33470,7 +26383,7 @@ exports.pattern = {
     editType: 'style',
 };
 
-},{}],179:[function(_dereq_,module,exports){
+},{}],136:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -34917,7 +27830,7 @@ drawing.setTextPointsScale = function(selection, xScale, yScale) {
     });
 };
 
-},{"../../components/fx/helpers":193,"../../constants/alignment":262,"../../constants/interactions":266,"../../constants/xmlns_namespaces":268,"../../lib":287,"../../lib/svg_text_utils":310,"../../registry":378,"../../traces/scatter/make_bubble_size_func":517,"../../traces/scatter/subtypes":525,"../color":157,"../colorscale":169,"./symbol_defs":180,"@plotly/d3":20,"fast-isnumeric":33,"tinycolor2":121}],180:[function(_dereq_,module,exports){
+},{"../../components/fx/helpers":150,"../../constants/alignment":219,"../../constants/interactions":223,"../../constants/xmlns_namespaces":225,"../../lib":244,"../../lib/svg_text_utils":267,"../../registry":335,"../../traces/scatter/make_bubble_size_func":474,"../../traces/scatter/subtypes":482,"../color":114,"../colorscale":126,"./symbol_defs":137,"@plotly/d3":20,"fast-isnumeric":28,"tinycolor2":79}],137:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -35472,7 +28385,7 @@ module.exports = {
     }
 };
 
-},{"@plotly/d3":20}],181:[function(_dereq_,module,exports){
+},{"@plotly/d3":20}],138:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -35555,7 +28468,7 @@ module.exports = {
     }
 };
 
-},{}],182:[function(_dereq_,module,exports){
+},{}],139:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -35633,7 +28546,7 @@ function calcOneAxis(calcTrace, trace, axis, coord) {
     baseExtremes.max = baseExtremes.max.concat(extremes.max);
 }
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"../../registry":378,"./compute_error":183,"fast-isnumeric":33}],183:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"../../registry":335,"./compute_error":140,"fast-isnumeric":28}],140:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -35725,7 +28638,7 @@ function makeComputeErrorValue(type, value) {
     }
 }
 
-},{}],184:[function(_dereq_,module,exports){
+},{}],141:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -35792,7 +28705,7 @@ module.exports = function(traceIn, traceOut, defaultColor, opts) {
     }
 };
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"../../registry":378,"./attributes":181,"fast-isnumeric":33}],185:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"../../registry":335,"./attributes":138,"fast-isnumeric":28}],142:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -35853,7 +28766,7 @@ function hoverInfo(calcPoint, trace, hoverPoint) {
     }
 }
 
-},{"../../lib":287,"../../plot_api/edit_types":316,"./attributes":181,"./calc":182,"./compute_error":183,"./defaults":184,"./plot":186,"./style":187}],186:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/edit_types":273,"./attributes":138,"./calc":139,"./compute_error":140,"./defaults":141,"./plot":143,"./style":144}],143:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -36016,7 +28929,7 @@ function errorCoords(d, xa, ya) {
     return out;
 }
 
-},{"../../traces/scatter/subtypes":525,"../drawing":179,"@plotly/d3":20,"fast-isnumeric":33}],187:[function(_dereq_,module,exports){
+},{"../../traces/scatter/subtypes":482,"../drawing":136,"@plotly/d3":20,"fast-isnumeric":28}],144:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -36044,7 +28957,7 @@ module.exports = function style(traces) {
     });
 };
 
-},{"../color":157,"@plotly/d3":20}],188:[function(_dereq_,module,exports){
+},{"../color":114,"@plotly/d3":20}],145:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -36069,7 +28982,7 @@ module.exports = {
     }
 };
 
-},{"../../lib/extend":281,"../../plots/font_attributes":365,"./layout_attributes":198}],189:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"../../plots/font_attributes":322,"./layout_attributes":155}],146:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -36120,7 +29033,7 @@ function paste(traceAttr, cd, cdAttr, fn) {
     }
 }
 
-},{"../../lib":287,"../../registry":378}],190:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335}],147:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -36149,7 +29062,7 @@ module.exports = function click(gd, evt, subplot) {
     }
 };
 
-},{"../../registry":378,"./hover":194}],191:[function(_dereq_,module,exports){
+},{"../../registry":335,"./hover":151}],148:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -36173,7 +29086,7 @@ module.exports = {
     HOVERID: '-hover'
 };
 
-},{}],192:[function(_dereq_,module,exports){
+},{}],149:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -36191,7 +29104,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     handleHoverLabelDefaults(traceIn, traceOut, coerce, opts);
 };
 
-},{"../../lib":287,"./attributes":188,"./hoverlabel_defaults":195}],193:[function(_dereq_,module,exports){
+},{"../../lib":244,"./attributes":145,"./hoverlabel_defaults":152}],150:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -36445,7 +29358,7 @@ exports.isXYhover = function(hovermode) {
     return !!xyHoverMode[hovermode];
 };
 
-},{"../../lib":287}],194:[function(_dereq_,module,exports){
+},{"../../lib":244}],151:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -38587,7 +31500,7 @@ function getBoundingClientRect(gd, node) {
     };
 }
 
-},{"../../lib":287,"../../lib/events":280,"../../lib/override_cursor":298,"../../lib/svg_text_utils":310,"../../plots/cartesian/axes":334,"../../registry":378,"../color":157,"../dragelement":176,"../drawing":179,"../legend/defaults":209,"../legend/draw":210,"./constants":191,"./helpers":193,"@plotly/d3":20,"fast-isnumeric":33,"tinycolor2":121}],195:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../lib/events":237,"../../lib/override_cursor":255,"../../lib/svg_text_utils":267,"../../plots/cartesian/axes":291,"../../registry":335,"../color":114,"../dragelement":133,"../drawing":136,"../legend/defaults":166,"../legend/draw":167,"./constants":148,"./helpers":150,"@plotly/d3":20,"fast-isnumeric":28,"tinycolor2":79}],152:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -38627,7 +31540,7 @@ module.exports = function handleHoverLabelDefaults(contIn, contOut, coerce, opts
     coerce('hoverlabel.align', opts.align);
 };
 
-},{"../../lib":287,"../color":157,"./helpers":193}],196:[function(_dereq_,module,exports){
+},{"../../lib":244,"../color":114,"./helpers":150}],153:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -38645,7 +31558,7 @@ module.exports = function handleHoverModeDefaults(layoutIn, layoutOut) {
     return coerce('hovermode');
 };
 
-},{"../../lib":287,"./layout_attributes":198}],197:[function(_dereq_,module,exports){
+},{"../../lib":244,"./layout_attributes":155}],154:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -38716,7 +31629,7 @@ function castHoverinfo(trace, fullLayout, ptNumber) {
     return Lib.castOption(trace, ptNumber, 'hoverinfo', _coerce);
 }
 
-},{"../../lib":287,"../dragelement":176,"./attributes":188,"./calc":189,"./click":190,"./constants":191,"./defaults":192,"./helpers":193,"./hover":194,"./layout_attributes":198,"./layout_defaults":199,"./layout_global_defaults":200,"@plotly/d3":20}],198:[function(_dereq_,module,exports){
+},{"../../lib":244,"../dragelement":133,"./attributes":145,"./calc":146,"./click":147,"./constants":148,"./defaults":149,"./helpers":150,"./hover":151,"./layout_attributes":155,"./layout_defaults":156,"./layout_global_defaults":157,"@plotly/d3":20}],155:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
@@ -38810,7 +31723,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/font_attributes":365,"./constants":191}],199:[function(_dereq_,module,exports){
+},{"../../plots/font_attributes":322,"./constants":148}],156:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -38851,7 +31764,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     Lib.coerceFont(coerce, 'hoverlabel.grouptitlefont', layoutOut.hoverlabel.font);
 };
 
-},{"../../lib":287,"./hoverlabel_defaults":195,"./hovermode_defaults":196,"./layout_attributes":198}],200:[function(_dereq_,module,exports){
+},{"../../lib":244,"./hoverlabel_defaults":152,"./hovermode_defaults":153,"./layout_attributes":155}],157:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -38866,7 +31779,7 @@ module.exports = function supplyLayoutGlobalDefaults(layoutIn, layoutOut) {
     handleHoverLabelDefaults(layoutIn, layoutOut, coerce);
 };
 
-},{"../../lib":287,"./hoverlabel_defaults":195,"./layout_attributes":198}],201:[function(_dereq_,module,exports){
+},{"../../lib":244,"./hoverlabel_defaults":152,"./layout_attributes":155}],158:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -39209,7 +32122,7 @@ module.exports = {
     contentDefaults: contentDefaults
 };
 
-},{"../../lib":287,"../../lib/regex":303,"../../plot_api/plot_template":323,"../../plots/cartesian/constants":341,"../../plots/domain":364}],202:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../lib/regex":260,"../../plot_api/plot_template":280,"../../plots/cartesian/constants":298,"../../plots/domain":321}],159:[function(_dereq_,module,exports){
 'use strict';
 
 var cartesianConstants = _dereq_('../../plots/cartesian/constants');
@@ -39311,7 +32224,7 @@ module.exports = templatedArray('image', {
     editType: 'arraydraw'
 });
 
-},{"../../constants/axis_placeable_objects":263,"../../plot_api/plot_template":323,"../../plots/cartesian/constants":341}],203:[function(_dereq_,module,exports){
+},{"../../constants/axis_placeable_objects":220,"../../plot_api/plot_template":280,"../../plots/cartesian/constants":298}],160:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -39383,7 +32296,7 @@ module.exports = function convertCoords(gd, ax, newType, doExtra) {
     }
 };
 
-},{"../../lib/to_log_range":312,"fast-isnumeric":33}],204:[function(_dereq_,module,exports){
+},{"../../lib/to_log_range":269,"fast-isnumeric":28}],161:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -39440,7 +32353,7 @@ function imageDefaults(imageIn, imageOut, fullLayout) {
     return imageOut;
 }
 
-},{"../../lib":287,"../../plots/array_container_defaults":329,"../../plots/cartesian/axes":334,"./attributes":202}],205:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/array_container_defaults":286,"../../plots/cartesian/axes":291,"./attributes":159}],162:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -39690,7 +32603,7 @@ module.exports = function draw(gd) {
     }
 };
 
-},{"../../constants/xmlns_namespaces":268,"../../plots/cartesian/axes":334,"../../plots/cartesian/axis_ids":338,"../drawing":179,"@plotly/d3":20}],206:[function(_dereq_,module,exports){
+},{"../../constants/xmlns_namespaces":225,"../../plots/cartesian/axes":291,"../../plots/cartesian/axis_ids":295,"../drawing":136,"@plotly/d3":20}],163:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -39706,7 +32619,7 @@ module.exports = {
     convertCoords: _dereq_('./convert_coords')
 };
 
-},{"../../plots/cartesian/include_components":347,"./attributes":202,"./convert_coords":203,"./defaults":204,"./draw":205}],207:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/include_components":304,"./attributes":159,"./convert_coords":160,"./defaults":161,"./draw":162}],164:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -39835,7 +32748,7 @@ module.exports = {
     editType: 'legend'
 };
 
-},{"../../plots/font_attributes":365,"../color/attributes":156}],208:[function(_dereq_,module,exports){
+},{"../../plots/font_attributes":322,"../color/attributes":113}],165:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -39851,7 +32764,7 @@ module.exports = {
     itemGap: 5
 };
 
-},{}],209:[function(_dereq_,module,exports){
+},{}],166:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -40001,7 +32914,7 @@ module.exports = function legendDefaults(layoutIn, layoutOut, fullData) {
     }
 };
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"../../plots/attributes":330,"../../plots/layout_attributes":369,"../../registry":378,"./attributes":207,"./helpers":213}],210:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"../../plots/attributes":287,"../../plots/layout_attributes":326,"../../registry":335,"./attributes":164,"./helpers":170}],167:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -40839,7 +33752,7 @@ function getYanchor(legendObj) {
         'top';
 }
 
-},{"../../constants/alignment":262,"../../lib":287,"../../lib/events":280,"../../lib/svg_text_utils":310,"../../plots/plots":371,"../../registry":378,"../color":157,"../dragelement":176,"../drawing":179,"./constants":208,"./get_legend_data":211,"./handle_click":212,"./helpers":213,"./style":215,"@plotly/d3":20}],211:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../lib":244,"../../lib/events":237,"../../lib/svg_text_utils":267,"../../plots/plots":328,"../../registry":335,"../color":114,"../dragelement":133,"../drawing":136,"./constants":165,"./get_legend_data":168,"./handle_click":169,"./helpers":170,"./style":172,"@plotly/d3":20}],168:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -41015,7 +33928,7 @@ module.exports = function getLegendData(calcdata, opts) {
     return legendData;
 };
 
-},{"../../registry":378,"./helpers":213}],212:[function(_dereq_,module,exports){
+},{"../../registry":335,"./helpers":170}],169:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -41257,7 +34170,7 @@ module.exports = function handleClick(g, gd, numClicks) {
     }
 };
 
-},{"../../lib":287,"../../registry":378}],213:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335}],170:[function(_dereq_,module,exports){
 'use strict';
 
 exports.isGrouped = function isGrouped(legendLayout) {
@@ -41272,7 +34185,7 @@ exports.isReversed = function isReversed(legendLayout) {
     return (legendLayout.traceorder || '').indexOf('reversed') !== -1;
 };
 
-},{}],214:[function(_dereq_,module,exports){
+},{}],171:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -41287,7 +34200,7 @@ module.exports = {
     style: _dereq_('./style')
 };
 
-},{"./attributes":207,"./defaults":209,"./draw":210,"./style":215}],215:[function(_dereq_,module,exports){
+},{"./attributes":164,"./defaults":166,"./draw":167,"./style":172}],172:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -41974,7 +34887,7 @@ function dimAttr(v, dflt, max) {
     return v;
 }
 
-},{"../../lib":287,"../../registry":378,"../../traces/pie/helpers":492,"../../traces/pie/style_one":498,"../../traces/scatter/subtypes":525,"../color":157,"../colorscale/helpers":168,"../drawing":179,"./constants":208,"@plotly/d3":20}],216:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"../../traces/pie/helpers":449,"../../traces/pie/style_one":455,"../../traces/scatter/subtypes":482,"../color":114,"../colorscale/helpers":125,"../drawing":136,"./constants":165,"@plotly/d3":20}],173:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
@@ -42018,7 +34931,7 @@ module.exports = {
     }
 };
 
-},{"./constants":218}],217:[function(_dereq_,module,exports){
+},{"./constants":175}],174:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -42770,7 +35683,7 @@ function resetView(gd, subplotType) {
     Registry.call('_guiRelayout', gd, aObj);
 }
 
-},{"../../fonts/ploticon":270,"../../lib":287,"../../plots/cartesian/axis_ids":338,"../../plots/plots":371,"../../registry":378,"../shapes/draw":241}],218:[function(_dereq_,module,exports){
+},{"../../fonts/ploticon":227,"../../lib":244,"../../plots/cartesian/axis_ids":295,"../../plots/plots":328,"../../registry":335,"../shapes/draw":198}],175:[function(_dereq_,module,exports){
 'use strict';
 
 var modeBarButtons = _dereq_('./buttons');
@@ -42813,7 +35726,7 @@ module.exports = {
     foreButtons: foreButtons
 };
 
-},{"./buttons":217}],219:[function(_dereq_,module,exports){
+},{"./buttons":174}],176:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -42839,7 +35752,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     coerce('remove');
 };
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"../color":157,"./attributes":216}],220:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"../color":114,"./attributes":173}],177:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -42852,7 +35765,7 @@ module.exports = {
     manage: _dereq_('./manage')
 };
 
-},{"./attributes":216,"./defaults":219,"./manage":221}],221:[function(_dereq_,module,exports){
+},{"./attributes":173,"./defaults":176,"./manage":178}],178:[function(_dereq_,module,exports){
 'use strict';
 
 var axisIds = _dereq_('../../plots/cartesian/axis_ids');
@@ -43208,7 +36121,7 @@ function fillCustomButton(customButtons) {
     return customButtons;
 }
 
-},{"../../plots/cartesian/axis_ids":338,"../../registry":378,"../../traces/scatter/subtypes":525,"../fx/helpers":193,"./buttons":217,"./constants":218,"./modebar":222}],222:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/axis_ids":295,"../../registry":335,"../../traces/scatter/subtypes":482,"../fx/helpers":150,"./buttons":174,"./constants":175,"./modebar":179}],179:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -43216,6 +36129,8 @@ var isNumeric = _dereq_('fast-isnumeric');
 
 var Lib = _dereq_('../../lib');
 var Icons = _dereq_('../../fonts/ploticon');
+var version = _dereq_('../../version').version;
+
 var Parser = new DOMParser();
 
 /**
@@ -43494,6 +36409,10 @@ proto.hasButtons = function(buttons) {
     return true;
 };
 
+function jsVersion(str) {
+    return str + ' (v' + version + ')';
+}
+
 /**
  * @return {HTMLDivElement} The logo image wrapped in a group
  */
@@ -43503,7 +36422,7 @@ proto.getLogo = function() {
 
     a.href = 'https://plotly.com/';
     a.target = '_blank';
-    a.setAttribute('data-title', Lib._(this.graphInfo, 'Produced with Plotly'));
+    a.setAttribute('data-title', jsVersion(Lib._(this.graphInfo, 'Produced with Plotly.js')));
     a.className = 'modebar-btn plotlyjsicon modebar-btn--logo';
 
     a.appendChild(this.createIcon(Icons.newplotlylogo));
@@ -43545,7 +36464,7 @@ function createModeBar(gd, buttons) {
 
 module.exports = createModeBar;
 
-},{"../../fonts/ploticon":270,"../../lib":287,"@plotly/d3":20,"fast-isnumeric":33}],223:[function(_dereq_,module,exports){
+},{"../../fonts/ploticon":227,"../../lib":244,"../../version":509,"@plotly/d3":20,"fast-isnumeric":28}],180:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -43643,7 +36562,7 @@ module.exports = {
     editType: 'plot'
 };
 
-},{"../../plot_api/plot_template":323,"../../plots/font_attributes":365,"../color/attributes":156}],224:[function(_dereq_,module,exports){
+},{"../../plot_api/plot_template":280,"../../plots/font_attributes":322,"../color/attributes":113}],181:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -43664,7 +36583,7 @@ module.exports = {
     darkAmount: 10
 };
 
-},{}],225:[function(_dereq_,module,exports){
+},{}],182:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -43748,7 +36667,7 @@ function getPosDflt(containerOut, layout, counterAxes) {
     return [containerOut.domain[0], posY + constants.yPad];
 }
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"../../plots/array_container_defaults":329,"../color":157,"./attributes":223,"./constants":224}],226:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"../../plots/array_container_defaults":286,"../color":114,"./attributes":180,"./constants":181}],183:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -43995,7 +36914,7 @@ function reposition(gd, buttons, opts, axName, selector) {
     selector.attr('transform', strTranslate(lx, ly));
 }
 
-},{"../../constants/alignment":262,"../../lib":287,"../../lib/svg_text_utils":310,"../../plots/cartesian/axis_ids":338,"../../plots/plots":371,"../../registry":378,"../color":157,"../drawing":179,"./constants":224,"./get_update_object":227,"@plotly/d3":20}],227:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../lib":244,"../../lib/svg_text_utils":267,"../../plots/cartesian/axis_ids":295,"../../plots/plots":328,"../../registry":335,"../color":114,"../drawing":136,"./constants":181,"./get_update_object":184,"@plotly/d3":20}],184:[function(_dereq_,module,exports){
 'use strict';
 
 var d3Time = _dereq_('d3-time');
@@ -44044,7 +36963,7 @@ function getXRange(axisLayout, buttonLayout) {
     return [range0, range1];
 }
 
-},{"../../lib":287,"d3-time":32}],228:[function(_dereq_,module,exports){
+},{"../../lib":244,"d3-time":27}],185:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -44063,7 +36982,7 @@ module.exports = {
     draw: _dereq_('./draw')
 };
 
-},{"./attributes":223,"./defaults":225,"./draw":226}],229:[function(_dereq_,module,exports){
+},{"./attributes":180,"./defaults":182,"./draw":183}],186:[function(_dereq_,module,exports){
 'use strict';
 
 var colorAttributes = _dereq_('../color/attributes');
@@ -44115,7 +37034,7 @@ module.exports = {
     editType: 'calc'
 };
 
-},{"../color/attributes":156}],230:[function(_dereq_,module,exports){
+},{"../color/attributes":113}],187:[function(_dereq_,module,exports){
 'use strict';
 
 var listAxes = _dereq_('../../plots/cartesian/axis_ids').list;
@@ -44141,7 +37060,7 @@ module.exports = function calcAutorange(gd) {
     }
 };
 
-},{"../../plots/cartesian/autorange":333,"../../plots/cartesian/axis_ids":338,"./constants":231}],231:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/autorange":290,"../../plots/cartesian/axis_ids":295,"./constants":188}],188:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -44189,7 +37108,7 @@ module.exports = {
     extraPad: 15
 };
 
-},{}],232:[function(_dereq_,module,exports){
+},{}],189:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -44267,7 +37186,7 @@ module.exports = function handleDefaults(layoutIn, layoutOut, axName) {
     containerOut._input = containerIn;
 };
 
-},{"../../lib":287,"../../plot_api/plot_template":323,"../../plots/cartesian/axis_ids":338,"./attributes":229,"./oppaxis_attributes":236}],233:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plot_api/plot_template":280,"../../plots/cartesian/axis_ids":295,"./attributes":186,"./oppaxis_attributes":193}],190:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -44903,7 +37822,7 @@ function drawGrabbers(rangeSlider, gd, axisOpts, opts) {
     grabAreaMax.attr('height', opts._height);
 }
 
-},{"../../lib":287,"../../lib/setcursor":307,"../../plots/cartesian":348,"../../plots/cartesian/axis_ids":338,"../../plots/plots":371,"../../registry":378,"../color":157,"../dragelement":176,"../drawing":179,"../titles":255,"./constants":231,"@plotly/d3":20}],234:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../lib/setcursor":264,"../../plots/cartesian":305,"../../plots/cartesian/axis_ids":295,"../../plots/plots":328,"../../registry":335,"../color":114,"../dragelement":133,"../drawing":136,"../titles":212,"./constants":188,"@plotly/d3":20}],191:[function(_dereq_,module,exports){
 'use strict';
 
 var axisIDs = _dereq_('../../plots/cartesian/axis_ids');
@@ -44970,7 +37889,7 @@ exports.autoMarginOpts = function(gd, ax) {
     };
 };
 
-},{"../../constants/alignment":262,"../../lib/svg_text_utils":310,"../../plots/cartesian/axis_ids":338,"./constants":231}],235:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../lib/svg_text_utils":267,"../../plots/cartesian/axis_ids":295,"./constants":188}],192:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -45001,7 +37920,7 @@ module.exports = {
     autoMarginOpts: helpers.autoMarginOpts
 };
 
-},{"../../lib":287,"./attributes":229,"./calc_autorange":230,"./defaults":232,"./draw":233,"./helpers":234,"./oppaxis_attributes":236}],236:[function(_dereq_,module,exports){
+},{"../../lib":244,"./attributes":186,"./calc_autorange":187,"./defaults":189,"./draw":190,"./helpers":191,"./oppaxis_attributes":193}],193:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -45027,7 +37946,7 @@ module.exports = {
     editType: 'calc'
 };
 
-},{}],237:[function(_dereq_,module,exports){
+},{}],194:[function(_dereq_,module,exports){
 'use strict';
 
 var annAttrs = _dereq_('../annotations/attributes');
@@ -45137,7 +38056,7 @@ module.exports = templatedArray('shape', {
     editType: 'arraydraw'
 });
 
-},{"../../constants/axis_placeable_objects":263,"../../lib/extend":281,"../../plot_api/plot_template":323,"../../traces/scatter/attributes":500,"../annotations/attributes":140,"../drawing/attributes":178}],238:[function(_dereq_,module,exports){
+},{"../../constants/axis_placeable_objects":220,"../../lib/extend":238,"../../plot_api/plot_template":280,"../../traces/scatter/attributes":457,"../annotations/attributes":97,"../drawing/attributes":135}],195:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -45249,7 +38168,7 @@ function shapeBounds(ax, v0, v1, path, paramsToUse) {
     if(max >= min) return [min, max];
 }
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"./constants":239,"./helpers":248}],239:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"./constants":196,"./helpers":205}],196:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -45304,7 +38223,7 @@ module.exports = {
     }
 };
 
-},{}],240:[function(_dereq_,module,exports){
+},{}],197:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -45426,7 +38345,7 @@ function handleShapeDefaults(shapeIn, shapeOut, fullLayout) {
     }
 }
 
-},{"../../lib":287,"../../plots/array_container_defaults":329,"../../plots/cartesian/axes":334,"./attributes":237,"./helpers":248}],241:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/array_container_defaults":286,"../../plots/cartesian/axes":291,"./attributes":194,"./helpers":205}],198:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -46191,7 +39110,7 @@ function eraseActiveShape(gd) {
     }
 }
 
-},{"../../lib":287,"../../lib/setcursor":307,"../../plot_api/plot_template":323,"../../plots/cartesian/axes":334,"../../plots/cartesian/handle_outline":345,"../../registry":378,"../color":157,"../dragelement":176,"../drawing":179,"./constants":239,"./draw_newshape/display_outlines":245,"./draw_newshape/helpers":246,"./helpers":248}],242:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../lib/setcursor":264,"../../plot_api/plot_template":280,"../../plots/cartesian/axes":291,"../../plots/cartesian/handle_outline":302,"../../registry":335,"../color":114,"../dragelement":133,"../drawing":136,"./constants":196,"./draw_newshape/display_outlines":202,"./draw_newshape/helpers":203,"./helpers":205}],199:[function(_dereq_,module,exports){
 'use strict';
 
 var dash = _dereq_('../../drawing/attributes').dash;
@@ -46267,7 +39186,7 @@ module.exports = {
     }
 };
 
-},{"../../../lib/extend":281,"../../drawing/attributes":178}],243:[function(_dereq_,module,exports){
+},{"../../../lib/extend":238,"../../drawing/attributes":135}],200:[function(_dereq_,module,exports){
 'use strict';
 
 var CIRCLE_SIDES = 32;  // should be divisible by 4
@@ -46283,7 +39202,7 @@ module.exports = {
     SQRT2: Math.sqrt(2)
 };
 
-},{}],244:[function(_dereq_,module,exports){
+},{}],201:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../color');
@@ -46306,7 +39225,7 @@ module.exports = function supplyDrawNewShapeDefaults(layoutIn, layoutOut, coerce
     coerce('activeshape.opacity');
 };
 
-},{"../../color":157}],245:[function(_dereq_,module,exports){
+},{"../../color":114}],202:[function(_dereq_,module,exports){
 'use strict';
 
 var dragElement = _dereq_('../../dragelement');
@@ -46592,7 +39511,7 @@ function recordPositions(polygonsOut, polygonsIn) {
     return polygonsOut;
 }
 
-},{"../../../plots/cartesian/handle_outline":345,"../../../registry":378,"../../dragelement":176,"../../dragelement/helpers":175,"./constants":243,"./helpers":246,"./newshapes":247}],246:[function(_dereq_,module,exports){
+},{"../../../plots/cartesian/handle_outline":302,"../../../registry":335,"../../dragelement":133,"../../dragelement/helpers":132,"./constants":200,"./helpers":203,"./newshapes":204}],203:[function(_dereq_,module,exports){
 'use strict';
 
 var parseSvgPath = _dereq_('parse-svg-path');
@@ -46921,7 +39840,7 @@ exports.ellipseOver = function(pos) {
     };
 };
 
-},{"../../../plots/cartesian/helpers":346,"./constants":243,"parse-svg-path":74}],247:[function(_dereq_,module,exports){
+},{"../../../plots/cartesian/helpers":303,"./constants":200,"parse-svg-path":68}],204:[function(_dereq_,module,exports){
 'use strict';
 
 var dragHelpers = _dereq_('../../dragelement/helpers');
@@ -47171,7 +40090,7 @@ function fixDatesForPaths(polygons, xaxis, yaxis) {
     return polygons;
 }
 
-},{"../../../plots/cartesian/handle_outline":345,"../../../plots/cartesian/helpers":346,"../../dragelement/helpers":175,"./constants":243,"./helpers":246}],248:[function(_dereq_,module,exports){
+},{"../../../plots/cartesian/handle_outline":302,"../../../plots/cartesian/helpers":303,"../../dragelement/helpers":132,"./constants":200,"./helpers":203}],205:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
@@ -47320,7 +40239,7 @@ exports.makeOptionsAndPlotinfo = function(gd, index) {
     };
 };
 
-},{"../../lib":287,"./constants":239}],249:[function(_dereq_,module,exports){
+},{"../../lib":244,"./constants":196}],206:[function(_dereq_,module,exports){
 'use strict';
 
 var drawModule = _dereq_('./draw');
@@ -47339,7 +40258,7 @@ module.exports = {
     drawOne: drawModule.drawOne
 };
 
-},{"../../plots/cartesian/include_components":347,"./attributes":237,"./calc_autorange":238,"./defaults":240,"./draw":241,"./draw_newshape/defaults":244}],250:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/include_components":304,"./attributes":194,"./calc_autorange":195,"./defaults":197,"./draw":198,"./draw_newshape/defaults":201}],207:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -47513,7 +40432,7 @@ module.exports = overrideAll(templatedArray('slider', {
     }
 }), 'arraydraw', 'from-root');
 
-},{"../../lib/extend":281,"../../plot_api/edit_types":316,"../../plot_api/plot_template":323,"../../plots/animation_attributes":328,"../../plots/font_attributes":365,"../../plots/pad_attributes":370,"./constants":251}],251:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"../../plot_api/edit_types":273,"../../plot_api/plot_template":280,"../../plots/animation_attributes":285,"../../plots/font_attributes":322,"../../plots/pad_attributes":327,"./constants":208}],208:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -47598,7 +40517,7 @@ module.exports = {
     currentValueInset: 0,
 };
 
-},{}],252:[function(_dereq_,module,exports){
+},{}],209:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -47705,7 +40624,7 @@ function stepDefaults(valueIn, valueOut) {
     }
 }
 
-},{"../../lib":287,"../../plots/array_container_defaults":329,"./attributes":250,"./constants":251}],253:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/array_container_defaults":286,"./attributes":207,"./constants":208}],210:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -48339,7 +41258,7 @@ function drawRail(sliderGroup, sliderOpts) {
     );
 }
 
-},{"../../constants/alignment":262,"../../lib":287,"../../lib/svg_text_utils":310,"../../plot_api/plot_template":323,"../../plots/plots":371,"../color":157,"../drawing":179,"./constants":251,"@plotly/d3":20}],254:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../lib":244,"../../lib/svg_text_utils":267,"../../plot_api/plot_template":280,"../../plots/plots":328,"../color":114,"../drawing":136,"./constants":208,"@plotly/d3":20}],211:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
@@ -48354,7 +41273,7 @@ module.exports = {
     draw: _dereq_('./draw')
 };
 
-},{"./attributes":250,"./constants":251,"./defaults":252,"./draw":253}],255:[function(_dereq_,module,exports){
+},{"./attributes":207,"./constants":208,"./defaults":209,"./draw":210}],212:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -48619,7 +41538,7 @@ module.exports = {
     draw: draw
 };
 
-},{"../../constants/alignment":262,"../../constants/interactions":266,"../../lib":287,"../../lib/svg_text_utils":310,"../../plots/plots":371,"../../registry":378,"../color":157,"../drawing":179,"@plotly/d3":20,"fast-isnumeric":33}],256:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../constants/interactions":223,"../../lib":244,"../../lib/svg_text_utils":267,"../../plots/plots":328,"../../registry":335,"../color":114,"../drawing":136,"@plotly/d3":20,"fast-isnumeric":28}],213:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../../plots/font_attributes');
@@ -48742,7 +41661,7 @@ module.exports = overrideAll(templatedArray('updatemenu', {
     }
 }), 'arraydraw', 'from-root');
 
-},{"../../lib/extend":281,"../../plot_api/edit_types":316,"../../plot_api/plot_template":323,"../../plots/font_attributes":365,"../../plots/pad_attributes":370,"../color/attributes":156}],257:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"../../plot_api/edit_types":273,"../../plot_api/plot_template":280,"../../plots/font_attributes":322,"../../plots/pad_attributes":327,"../color/attributes":113}],214:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -48814,7 +41733,7 @@ module.exports = {
     }
 };
 
-},{}],258:[function(_dereq_,module,exports){
+},{}],215:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -48889,7 +41808,7 @@ function buttonDefaults(buttonIn, buttonOut) {
     }
 }
 
-},{"../../lib":287,"../../plots/array_container_defaults":329,"./attributes":256,"./constants":257}],259:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/array_container_defaults":286,"./attributes":213,"./constants":214}],216:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -49531,9 +42450,9 @@ function removeAllButtons(gButton, newMenuIndexAttr) {
         .selectAll('g.' + constants.dropdownButtonClassName).remove();
 }
 
-},{"../../constants/alignment":262,"../../lib":287,"../../lib/svg_text_utils":310,"../../plot_api/plot_template":323,"../../plots/plots":371,"../color":157,"../drawing":179,"./constants":257,"./scrollbox":261,"@plotly/d3":20}],260:[function(_dereq_,module,exports){
-arguments[4][254][0].apply(exports,arguments)
-},{"./attributes":256,"./constants":257,"./defaults":258,"./draw":259,"dup":254}],261:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../lib":244,"../../lib/svg_text_utils":267,"../../plot_api/plot_template":280,"../../plots/plots":328,"../color":114,"../drawing":136,"./constants":214,"./scrollbox":218,"@plotly/d3":20}],217:[function(_dereq_,module,exports){
+arguments[4][211][0].apply(exports,arguments)
+},{"./attributes":213,"./constants":214,"./defaults":215,"./draw":216,"dup":211}],218:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = ScrollBox;
@@ -49990,7 +42909,7 @@ ScrollBox.prototype.setTranslate = function setTranslate(translateX, translateY)
     }
 };
 
-},{"../../lib":287,"../color":157,"../drawing":179,"@plotly/d3":20}],262:[function(_dereq_,module,exports){
+},{"../../lib":244,"../color":114,"../drawing":136,"@plotly/d3":20}],219:[function(_dereq_,module,exports){
 'use strict';
 
 // fraction of some size to get to a named position
@@ -50047,7 +42966,7 @@ module.exports = {
     }
 };
 
-},{}],263:[function(_dereq_,module,exports){
+},{}],220:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -50070,7 +42989,7 @@ module.exports = {
     }
 };
 
-},{}],264:[function(_dereq_,module,exports){
+},{}],221:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -50078,7 +42997,7 @@ module.exports = {
     DATE_FORMAT_LINK: 'https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format'
 };
 
-},{}],265:[function(_dereq_,module,exports){
+},{}],222:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -50108,7 +43027,7 @@ module.exports = {
     }
 };
 
-},{}],266:[function(_dereq_,module,exports){
+},{}],223:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -50123,7 +43042,7 @@ module.exports = {
     DESELECTDIM: 0.2
 };
 
-},{}],267:[function(_dereq_,module,exports){
+},{}],224:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -50188,7 +43107,7 @@ module.exports = {
     MINUS_SIGN: '\u2212'
 };
 
-},{}],268:[function(_dereq_,module,exports){
+},{}],225:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -50203,7 +43122,7 @@ exports.svgAttrs = {
     'xmlns:xlink': exports.xlink
 };
 
-},{}],269:[function(_dereq_,module,exports){
+},{}],226:[function(_dereq_,module,exports){
 'use strict';
 
 exports.version = _dereq_('./version').version;
@@ -50287,7 +43206,7 @@ exports.Fx = {
 exports.Snapshot = _dereq_('./snapshot');
 exports.PlotSchema = _dereq_('./plot_api/plot_schema');
 
-},{"../build/plotcss":1,"./components/annotations":148,"./components/annotations3d":153,"./components/colorbar":163,"./components/colorscale":169,"./components/errorbars":185,"./components/fx":197,"./components/grid":201,"./components/images":206,"./components/legend":214,"./components/modebar":220,"./components/rangeselector":228,"./components/rangeslider":235,"./components/shapes":249,"./components/sliders":254,"./components/updatemenus":260,"./fonts/ploticon":270,"./locale-en":314,"./locale-en-us":313,"./plot_api":318,"./plot_api/plot_schema":322,"./plots/plots":371,"./registry":378,"./snapshot":383,"./traces/scatter":512,"./version":552,"native-promise-only":72}],270:[function(_dereq_,module,exports){
+},{"../build/plotcss":1,"./components/annotations":105,"./components/annotations3d":110,"./components/colorbar":120,"./components/colorscale":126,"./components/errorbars":142,"./components/fx":154,"./components/grid":158,"./components/images":163,"./components/legend":171,"./components/modebar":177,"./components/rangeselector":185,"./components/rangeslider":192,"./components/shapes":206,"./components/sliders":211,"./components/updatemenus":217,"./fonts/ploticon":227,"./locale-en":271,"./locale-en-us":270,"./plot_api":275,"./plot_api/plot_schema":279,"./plots/plots":328,"./registry":335,"./snapshot":340,"./traces/scatter":469,"./version":509,"native-promise-only":66}],227:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -50459,7 +43378,7 @@ module.exports = {
     }
 };
 
-},{}],271:[function(_dereq_,module,exports){
+},{}],228:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -50514,7 +43433,7 @@ exports.isBottomAnchor = function isBottomAnchor(opts) {
     );
 };
 
-},{}],272:[function(_dereq_,module,exports){
+},{}],229:[function(_dereq_,module,exports){
 'use strict';
 
 var modModule = _dereq_('./mod');
@@ -50747,7 +43666,7 @@ module.exports = {
     pathAnnulus: pathAnnulus
 };
 
-},{"./mod":294}],273:[function(_dereq_,module,exports){
+},{"./mod":251}],230:[function(_dereq_,module,exports){
 'use strict';
 
 var isArray = Array.isArray;
@@ -50889,7 +43808,7 @@ function _rowLength(z, fn, len0) {
     return 0;
 }
 
-},{}],274:[function(_dereq_,module,exports){
+},{}],231:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -50913,7 +43832,7 @@ module.exports = function cleanNumber(v) {
     return BADNUM;
 };
 
-},{"../constants/numerical":267,"fast-isnumeric":33}],275:[function(_dereq_,module,exports){
+},{"../constants/numerical":224,"fast-isnumeric":28}],232:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -50933,7 +43852,7 @@ module.exports = function clearGlCanvases(gd) {
     }
 };
 
-},{}],276:[function(_dereq_,module,exports){
+},{}],233:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -50948,7 +43867,7 @@ module.exports = function clearResponsive(gd) {
     }
 };
 
-},{}],277:[function(_dereq_,module,exports){
+},{}],234:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -51393,7 +44312,7 @@ function validate(value, opts) {
 }
 exports.validate = validate;
 
-},{"../components/color":157,"../components/colorscale/scales":172,"../constants/interactions":266,"../plots/attributes":330,"./array":273,"./mod":294,"./nested_property":295,"./regex":303,"fast-isnumeric":33,"tinycolor2":121}],278:[function(_dereq_,module,exports){
+},{"../components/color":114,"../components/colorscale/scales":129,"../constants/interactions":223,"../plots/attributes":287,"./array":230,"./mod":251,"./nested_property":252,"./regex":260,"fast-isnumeric":28,"tinycolor2":79}],235:[function(_dereq_,module,exports){
 'use strict';
 
 var timeFormat = _dereq_('d3-time-format').timeFormat;
@@ -51997,7 +44916,7 @@ exports.findExactDates = function(data, calendar) {
     };
 };
 
-},{"../constants/numerical":267,"../registry":378,"./loggers":291,"./mod":294,"d3-time-format":30,"fast-isnumeric":33}],279:[function(_dereq_,module,exports){
+},{"../constants/numerical":224,"../registry":335,"./loggers":248,"./mod":251,"d3-time-format":25,"fast-isnumeric":28}],236:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -52167,7 +45086,7 @@ module.exports = {
     equalDomRects: equalDomRects
 };
 
-},{"./loggers":291,"./matrix":293,"@plotly/d3":20,"gl-mat4":49}],280:[function(_dereq_,module,exports){
+},{"./loggers":248,"./matrix":250,"@plotly/d3":20,"gl-mat4":44}],237:[function(_dereq_,module,exports){
 'use strict';
 
 /* global jQuery:false */
@@ -52331,7 +45250,7 @@ var Events = {
 
 module.exports = Events;
 
-},{"events":27}],281:[function(_dereq_,module,exports){
+},{"events":22}],238:[function(_dereq_,module,exports){
 'use strict';
 
 var isPlainObject = _dereq_('./is_plain_object.js');
@@ -52436,7 +45355,7 @@ function _extend(inputs, isDeep, keepAllKeys, noArrayCopies) {
     return target;
 }
 
-},{"./is_plain_object.js":288}],282:[function(_dereq_,module,exports){
+},{"./is_plain_object.js":245}],239:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -52478,7 +45397,7 @@ module.exports = function filterUnique(array) {
     return out;
 };
 
-},{}],283:[function(_dereq_,module,exports){
+},{}],240:[function(_dereq_,module,exports){
 'use strict';
 
 /** Filter out object items with visible !== true
@@ -52518,7 +45437,7 @@ function isCalcData(cont) {
     );
 }
 
-},{}],284:[function(_dereq_,module,exports){
+},{}],241:[function(_dereq_,module,exports){
 'use strict';
 
 var mod = _dereq_('./mod').mod;
@@ -52754,7 +45673,7 @@ exports.findPointOnPath = function findPointOnPath(path, val, coord, opts) {
     return pt;
 };
 
-},{"./mod":294}],285:[function(_dereq_,module,exports){
+},{"./mod":251}],242:[function(_dereq_,module,exports){
 'use strict';
 
 // Simple helper functions
@@ -52762,7 +45681,7 @@ exports.findPointOnPath = function findPointOnPath(path, val, coord, opts) {
 
 module.exports = function identity(d) { return d; };
 
-},{}],286:[function(_dereq_,module,exports){
+},{}],243:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function incrementNumeric(x, delta) {
@@ -52795,7 +45714,7 @@ module.exports = function incrementNumeric(x, delta) {
     return newX;
 };
 
-},{}],287:[function(_dereq_,module,exports){
+},{}],244:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -54183,7 +47102,7 @@ lib.getPositionFromD3Event = function() {
     }
 };
 
-},{"../constants/numerical":267,"./anchor_utils":271,"./angles":272,"./array":273,"./clean_number":274,"./clear_responsive":276,"./coerce":277,"./dates":278,"./dom":279,"./extend":281,"./filter_unique":282,"./filter_visible":283,"./geometry2d":284,"./identity":285,"./increment":286,"./is_plain_object":288,"./keyed_container":289,"./localize":290,"./loggers":291,"./make_trace_groups":292,"./matrix":293,"./mod":294,"./nested_property":295,"./noop":296,"./notifier":297,"./preserve_drawing_buffer":300,"./push_unique":301,"./regex":303,"./relative_attr":304,"./relink_private":305,"./search":306,"./sort_object_keys":308,"./stats":309,"./throttle":311,"./to_log_range":312,"@plotly/d3":20,"d3-format":29,"d3-time-format":30,"fast-isnumeric":33}],288:[function(_dereq_,module,exports){
+},{"../constants/numerical":224,"./anchor_utils":228,"./angles":229,"./array":230,"./clean_number":231,"./clear_responsive":233,"./coerce":234,"./dates":235,"./dom":236,"./extend":238,"./filter_unique":239,"./filter_visible":240,"./geometry2d":241,"./identity":242,"./increment":243,"./is_plain_object":245,"./keyed_container":246,"./localize":247,"./loggers":248,"./make_trace_groups":249,"./matrix":250,"./mod":251,"./nested_property":252,"./noop":253,"./notifier":254,"./preserve_drawing_buffer":257,"./push_unique":258,"./regex":260,"./relative_attr":261,"./relink_private":262,"./search":263,"./sort_object_keys":265,"./stats":266,"./throttle":268,"./to_log_range":269,"@plotly/d3":20,"d3-format":24,"d3-time-format":25,"fast-isnumeric":28}],245:[function(_dereq_,module,exports){
 'use strict';
 
 // more info: http://stackoverflow.com/questions/18531624/isplainobject-thing
@@ -54202,7 +47121,7 @@ module.exports = function isPlainObject(obj) {
     );
 };
 
-},{}],289:[function(_dereq_,module,exports){
+},{}],246:[function(_dereq_,module,exports){
 'use strict';
 
 var nestedProperty = _dereq_('./nested_property');
@@ -54387,7 +47306,7 @@ module.exports = function keyedContainer(baseObj, path, keyName, valueName) {
     return obj;
 };
 
-},{"./nested_property":295}],290:[function(_dereq_,module,exports){
+},{"./nested_property":252}],247:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -54434,7 +47353,7 @@ module.exports = function localize(gd, s) {
     return s;
 };
 
-},{"../registry":378}],291:[function(_dereq_,module,exports){
+},{"../registry":335}],248:[function(_dereq_,module,exports){
 'use strict';
 
 /* eslint-disable no-console */
@@ -54511,7 +47430,7 @@ loggers.error = function() {
     }
 };
 
-},{"../plot_api/plot_config":321,"./notifier":297}],292:[function(_dereq_,module,exports){
+},{"../plot_api/plot_config":278,"./notifier":254}],249:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -54546,7 +47465,7 @@ module.exports = function makeTraceGroups(traceLayer, cdModule, cls) {
     return traces;
 };
 
-},{"@plotly/d3":20}],293:[function(_dereq_,module,exports){
+},{"@plotly/d3":20}],250:[function(_dereq_,module,exports){
 'use strict';
 
 var mat4X4 = _dereq_('gl-mat4');
@@ -54689,7 +47608,7 @@ exports.inverseTransformMatrix = function(m) {
     ];
 };
 
-},{"gl-mat4":49}],294:[function(_dereq_,module,exports){
+},{"gl-mat4":44}],251:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -54716,7 +47635,7 @@ module.exports = {
     modHalf: modHalf
 };
 
-},{}],295:[function(_dereq_,module,exports){
+},{}],252:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -54953,7 +47872,7 @@ function badContainer(container, propStr, propParts) {
     };
 }
 
-},{"./array":273,"fast-isnumeric":33}],296:[function(_dereq_,module,exports){
+},{"./array":230,"fast-isnumeric":28}],253:[function(_dereq_,module,exports){
 'use strict';
 
 // Simple helper functions
@@ -54961,7 +47880,7 @@ function badContainer(container, propStr, propParts) {
 
 module.exports = function noop() {};
 
-},{}],297:[function(_dereq_,module,exports){
+},{}],254:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -55040,7 +47959,7 @@ module.exports = function(text, displayLength) {
         });
 };
 
-},{"@plotly/d3":20,"fast-isnumeric":33}],298:[function(_dereq_,module,exports){
+},{"@plotly/d3":20,"fast-isnumeric":28}],255:[function(_dereq_,module,exports){
 'use strict';
 
 var setCursor = _dereq_('./setcursor');
@@ -55079,7 +47998,7 @@ module.exports = function overrideCursor(el3, csr) {
     }
 };
 
-},{"./setcursor":307}],299:[function(_dereq_,module,exports){
+},{"./setcursor":264}],256:[function(_dereq_,module,exports){
 'use strict';
 
 var dot = _dereq_('./matrix').dot;
@@ -55322,7 +48241,7 @@ polygon.filter = function filter(pts, tolerance) {
     };
 };
 
-},{"../constants/numerical":267,"./matrix":293}],300:[function(_dereq_,module,exports){
+},{"../constants/numerical":224,"./matrix":250}],257:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -55384,7 +48303,7 @@ function getUserAgent() {
     return ua;
 }
 
-},{"fast-isnumeric":33,"is-mobile":69}],301:[function(_dereq_,module,exports){
+},{"fast-isnumeric":28,"is-mobile":63}],258:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -55414,7 +48333,7 @@ module.exports = function pushUnique(array, item) {
     return array;
 };
 
-},{}],302:[function(_dereq_,module,exports){
+},{}],259:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -55606,7 +48525,7 @@ queue.plotDo = function(gd, func, args) {
 
 module.exports = queue;
 
-},{"../lib":287,"../plot_api/plot_config":321}],303:[function(_dereq_,module,exports){
+},{"../lib":244,"../plot_api/plot_config":278}],260:[function(_dereq_,module,exports){
 'use strict';
 
 /*
@@ -55628,7 +48547,7 @@ exports.counter = function(head, tail, openEnded, matchBeginning) {
     return new RegExp(startWithPrefix + head + '([2-9]|[1-9][0-9]+)?' + fullTail);
 };
 
-},{}],304:[function(_dereq_,module,exports){
+},{}],261:[function(_dereq_,module,exports){
 'use strict';
 
 // ASCEND: chop off the last nesting level - either [<n>] or .<key> - to ascend
@@ -55672,7 +48591,7 @@ module.exports = function(baseAttr, relativeAttr) {
     return baseAttr + relativeAttr;
 };
 
-},{}],305:[function(_dereq_,module,exports){
+},{}],262:[function(_dereq_,module,exports){
 'use strict';
 
 var isArrayOrTypedArray = _dereq_('./array').isArrayOrTypedArray;
@@ -55720,7 +48639,7 @@ module.exports = function relinkPrivateKeys(toContainer, fromContainer) {
     }
 };
 
-},{"./array":273,"./is_plain_object":288}],306:[function(_dereq_,module,exports){
+},{"./array":230,"./is_plain_object":245}],263:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -55912,7 +48831,7 @@ exports.findIndexOfMin = function(arr, fn) {
     return ind;
 };
 
-},{"../constants/numerical":267,"./identity":285,"./loggers":291,"fast-isnumeric":33}],307:[function(_dereq_,module,exports){
+},{"../constants/numerical":224,"./identity":242,"./loggers":248,"fast-isnumeric":28}],264:[function(_dereq_,module,exports){
 'use strict';
 
 // works with our CSS cursor classes (see css/_cursor.scss)
@@ -55926,14 +48845,14 @@ module.exports = function setCursor(el3, csr) {
     if(csr) el3.classed('cursor-' + csr, true);
 };
 
-},{}],308:[function(_dereq_,module,exports){
+},{}],265:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function sortObjectKeys(obj) {
     return Object.keys(obj).sort();
 };
 
-},{}],309:[function(_dereq_,module,exports){
+},{}],266:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -56034,7 +48953,7 @@ exports.interp = function(arr, n) {
     return frac * arr[Math.ceil(n)] + (1 - frac) * arr[Math.floor(n)];
 };
 
-},{"./array":273,"fast-isnumeric":33}],310:[function(_dereq_,module,exports){
+},{"./array":230,"fast-isnumeric":28}],267:[function(_dereq_,module,exports){
 'use strict';
 
 /* global MathJax:false */
@@ -56965,7 +49884,7 @@ exports.makeEditable = function(context, options) {
     return d3.rebind(context, dispatch, 'on');
 };
 
-},{"../constants/alignment":262,"../constants/xmlns_namespaces":268,"../lib":287,"@plotly/d3":20}],311:[function(_dereq_,module,exports){
+},{"../constants/alignment":219,"../constants/xmlns_namespaces":225,"../lib":244,"@plotly/d3":20}],268:[function(_dereq_,module,exports){
 'use strict';
 
 var timerCache = {};
@@ -57060,7 +49979,7 @@ function _clearTimeout(cache) {
     }
 }
 
-},{}],312:[function(_dereq_,module,exports){
+},{}],269:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -57080,7 +49999,7 @@ module.exports = function toLogRange(val, range) {
     return newVal;
 };
 
-},{"fast-isnumeric":33}],313:[function(_dereq_,module,exports){
+},{"fast-isnumeric":28}],270:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -57094,7 +50013,7 @@ module.exports = {
     }
 };
 
-},{}],314:[function(_dereq_,module,exports){
+},{}],271:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -57129,7 +50048,7 @@ module.exports = {
     }
 };
 
-},{}],315:[function(_dereq_,module,exports){
+},{}],272:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -57178,7 +50097,7 @@ module.exports = function containerArrayMatch(astr) {
     return {array: arrayStr, index: Number(match[1]), property: match[3] || ''};
 };
 
-},{"../registry":378}],316:[function(_dereq_,module,exports){
+},{"../registry":335}],273:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -57293,7 +50212,7 @@ function overrideOne(attr, editTypeOverride, overrideContainers, key) {
     }
 }
 
-},{"../lib":287}],317:[function(_dereq_,module,exports){
+},{"../lib":244}],274:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -57987,7 +50906,7 @@ exports.clearAxisTypes = function(gd, traces, layoutUpdate) {
     }
 };
 
-},{"../components/color":157,"../lib":287,"../plots/cartesian/axis_ids":338,"../plots/plots":371,"../registry":378,"fast-isnumeric":33,"gl-mat4/fromQuat":39}],318:[function(_dereq_,module,exports){
+},{"../components/color":114,"../lib":244,"../plots/cartesian/axis_ids":295,"../plots/plots":328,"../registry":335,"fast-isnumeric":28,"gl-mat4/fromQuat":34}],275:[function(_dereq_,module,exports){
 'use strict';
 
 var main = _dereq_('./plot_api');
@@ -58022,7 +50941,7 @@ var templateApi = _dereq_('./template_api');
 exports.makeTemplate = templateApi.makeTemplate;
 exports.validateTemplate = templateApi.validateTemplate;
 
-},{"../snapshot/download":380,"./plot_api":320,"./template_api":325,"./to_image":326,"./validate":327}],319:[function(_dereq_,module,exports){
+},{"../snapshot/download":337,"./plot_api":277,"./template_api":282,"./to_image":283,"./validate":284}],276:[function(_dereq_,module,exports){
 'use strict';
 
 var isPlainObject = _dereq_('../lib/is_plain_object');
@@ -58226,7 +51145,7 @@ exports.applyContainerArrayChanges = function applyContainerArrayChanges(gd, np,
     return true;
 };
 
-},{"../lib/is_plain_object":288,"../lib/loggers":291,"../lib/noop":296,"../lib/search":306,"../registry":378,"./container_array_match":315}],320:[function(_dereq_,module,exports){
+},{"../lib/is_plain_object":245,"../lib/loggers":248,"../lib/noop":253,"../lib/search":263,"../registry":335,"./container_array_match":272}],277:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -62072,7 +54991,7 @@ exports._guiUpdate = guiEdit(update);
 
 exports._storeDirectGUIEdit = _storeDirectGUIEdit;
 
-},{"../components/color":157,"../components/drawing":179,"../constants/xmlns_namespaces":268,"../lib":287,"../lib/events":280,"../lib/queue":302,"../plots/cartesian/axes":334,"../plots/cartesian/constants":341,"../plots/cartesian/graph_interact":344,"../plots/cartesian/select":355,"../plots/plots":371,"../registry":378,"./edit_types":316,"./helpers":317,"./manage_arrays":319,"./plot_config":321,"./plot_schema":322,"./subroutines":324,"@plotly/d3":20,"fast-isnumeric":33,"has-hover":64}],321:[function(_dereq_,module,exports){
+},{"../components/color":114,"../components/drawing":136,"../constants/xmlns_namespaces":225,"../lib":244,"../lib/events":237,"../lib/queue":259,"../plots/cartesian/axes":291,"../plots/cartesian/constants":298,"../plots/cartesian/graph_interact":301,"../plots/cartesian/select":312,"../plots/plots":328,"../registry":335,"./edit_types":273,"./helpers":274,"./manage_arrays":276,"./plot_config":278,"./plot_schema":279,"./subroutines":281,"@plotly/d3":20,"fast-isnumeric":28,"has-hover":59}],278:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -62333,7 +55252,7 @@ module.exports = {
     dfltConfig: dfltConfig
 };
 
-},{}],322:[function(_dereq_,module,exports){
+},{}],279:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -62998,7 +55917,7 @@ function insertAttrs(baseAttrs, newAttrs, astr) {
     np.set(extendDeepAll(np.get() || {}, newAttrs));
 }
 
-},{"../lib":287,"../plots/animation_attributes":328,"../plots/attributes":330,"../plots/frame_attributes":366,"../plots/layout_attributes":369,"../registry":378,"./edit_types":316,"./plot_config":321}],323:[function(_dereq_,module,exports){
+},{"../lib":244,"../plots/animation_attributes":285,"../plots/attributes":287,"../plots/frame_attributes":323,"../plots/layout_attributes":326,"../registry":335,"./edit_types":273,"./plot_config":278}],280:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -63297,7 +56216,7 @@ exports.arrayEditor = function(parentIn, containerStr, itemOut) {
     };
 };
 
-},{"../lib":287,"../plots/attributes":330}],324:[function(_dereq_,module,exports){
+},{"../lib":244,"../plots/attributes":287}],281:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -64013,7 +56932,7 @@ exports.drawMarginPushers = function(gd) {
     Registry.getComponentMethod('colorbar', 'draw')(gd);
 };
 
-},{"../components/color":157,"../components/drawing":179,"../components/modebar":220,"../components/titles":255,"../constants/alignment":262,"../lib":287,"../lib/clear_gl_canvases":275,"../plots/cartesian/autorange":333,"../plots/cartesian/axes":334,"../plots/cartesian/constraints":342,"../plots/plots":371,"../registry":378,"@plotly/d3":20}],325:[function(_dereq_,module,exports){
+},{"../components/color":114,"../components/drawing":136,"../components/modebar":177,"../components/titles":212,"../constants/alignment":219,"../lib":244,"../lib/clear_gl_canvases":232,"../plots/cartesian/autorange":290,"../plots/cartesian/axes":291,"../plots/cartesian/constraints":299,"../plots/plots":328,"../registry":335,"@plotly/d3":20}],282:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -64466,7 +57385,7 @@ function format(opts) {
     return opts;
 }
 
-},{"../lib":287,"../plots/attributes":330,"../plots/plots":371,"./plot_config":321,"./plot_schema":322,"./plot_template":323}],326:[function(_dereq_,module,exports){
+},{"../lib":244,"../plots/attributes":287,"../plots/plots":328,"./plot_config":278,"./plot_schema":279,"./plot_template":280}],283:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -64673,7 +57592,7 @@ function toImage(gd, opts) {
 
 module.exports = toImage;
 
-},{"../lib":287,"../plots/plots":371,"../snapshot/helpers":382,"../snapshot/svgtoimg":384,"../snapshot/tosvg":386,"../version":552,"./plot_api":320,"fast-isnumeric":33}],327:[function(_dereq_,module,exports){
+},{"../lib":244,"../plots/plots":328,"../snapshot/helpers":339,"../snapshot/svgtoimg":341,"../snapshot/tosvg":343,"../version":509,"./plot_api":277,"fast-isnumeric":28}],284:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -65096,7 +58015,7 @@ function convertPathToAttributeString(path) {
     return astr;
 }
 
-},{"../lib":287,"../plots/plots":371,"./plot_config":321,"./plot_schema":322}],328:[function(_dereq_,module,exports){
+},{"../lib":244,"../plots/plots":328,"./plot_config":278,"./plot_schema":279}],285:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -65184,7 +58103,7 @@ module.exports = {
     }
 };
 
-},{}],329:[function(_dereq_,module,exports){
+},{}],286:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -65271,7 +58190,7 @@ module.exports = function handleArrayContainerDefaults(parentObjIn, parentObjOut
     return contOut;
 };
 
-},{"../lib":287,"../plot_api/plot_template":323}],330:[function(_dereq_,module,exports){
+},{"../lib":244,"../plot_api/plot_template":280}],287:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('./font_attributes');
@@ -65393,7 +58312,7 @@ module.exports = {
     }
 };
 
-},{"../components/fx/attributes":188,"./font_attributes":365}],331:[function(_dereq_,module,exports){
+},{"../components/fx/attributes":145,"./font_attributes":322}],288:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -65488,7 +58407,7 @@ module.exports = function alignPeriod(trace, ax, axLetter, vals) {
     };
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"fast-isnumeric":33}],332:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"fast-isnumeric":28}],289:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -65505,7 +58424,7 @@ module.exports = {
     }
 };
 
-},{}],333:[function(_dereq_,module,exports){
+},{}],290:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -66132,7 +59051,7 @@ function goodNumber(v) {
 function lessOrEqual(v0, v1) { return v0 <= v1; }
 function greaterOrEqual(v0, v1) { return v0 >= v1; }
 
-},{"../../components/drawing":179,"../../constants/numerical":267,"../../lib":287,"../../registry":378,"./axis_ids":338,"@plotly/d3":20,"fast-isnumeric":33}],334:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../../constants/numerical":224,"../../lib":244,"../../registry":335,"./axis_ids":295,"@plotly/d3":20,"fast-isnumeric":28}],291:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -69974,7 +62893,7 @@ function hideCounterAxisInsideTickLabels(ax, opts) {
     }
 }
 
-},{"../../components/color":157,"../../components/drawing":179,"../../components/titles":255,"../../constants/alignment":262,"../../constants/numerical":267,"../../lib":287,"../../lib/svg_text_utils":310,"../../plots/plots":371,"../../registry":378,"./autorange":333,"./axis_autotype":335,"./axis_ids":338,"./clean_ticks":340,"./layout_attributes":349,"./set_convert":356,"@plotly/d3":20,"fast-isnumeric":33}],335:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/drawing":136,"../../components/titles":212,"../../constants/alignment":219,"../../constants/numerical":224,"../../lib":244,"../../lib/svg_text_utils":267,"../../plots/plots":328,"../../registry":335,"./autorange":290,"./axis_autotype":292,"./axis_ids":295,"./clean_ticks":297,"./layout_attributes":306,"./set_convert":313,"@plotly/d3":20,"fast-isnumeric":28}],292:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -70096,7 +63015,7 @@ function multiCategory(a) {
     return isArrayOrTypedArray(a[0]) && isArrayOrTypedArray(a[1]);
 }
 
-},{"../../constants/numerical":267,"../../lib":287,"fast-isnumeric":33}],336:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"fast-isnumeric":28}],293:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -70409,7 +63328,7 @@ function indexOfDay(v) {
     ];
 }
 
-},{"../../lib":287,"../../registry":378,"../array_container_defaults":329,"./category_order_defaults":339,"./constants":341,"./layout_attributes":349,"./line_grid_defaults":351,"./prefix_suffix_defaults":353,"./set_convert":356,"./tick_label_defaults":358,"./tick_mark_defaults":359,"./tick_value_defaults":360,"fast-isnumeric":33}],337:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"../array_container_defaults":286,"./category_order_defaults":296,"./constants":298,"./layout_attributes":306,"./line_grid_defaults":308,"./prefix_suffix_defaults":310,"./set_convert":313,"./tick_label_defaults":315,"./tick_mark_defaults":316,"./tick_value_defaults":317,"fast-isnumeric":28}],294:[function(_dereq_,module,exports){
 'use strict';
 
 var docs = _dereq_('../../constants/docs');
@@ -70458,7 +63377,7 @@ module.exports = {
     descriptionWithDates: descriptionWithDates
 };
 
-},{"../../constants/docs":264}],338:[function(_dereq_,module,exports){
+},{"../../constants/docs":221}],295:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -70606,7 +63525,7 @@ exports.isLinked = function(fullLayout, axId) {
     );
 };
 
-},{"../../registry":378,"./constants":341}],339:[function(_dereq_,module,exports){
+},{"../../registry":335,"./constants":298}],296:[function(_dereq_,module,exports){
 'use strict';
 
 function findCategories(ax, opts) {
@@ -70692,7 +63611,7 @@ module.exports = function handleCategoryOrderDefaults(containerIn, containerOut,
     }
 };
 
-},{}],340:[function(_dereq_,module,exports){
+},{}],297:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -70776,7 +63695,7 @@ exports.tick0 = function(tick0, axType, calendar, dtick) {
     return isNumeric(tick0) ? Number(tick0) : 0;
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"fast-isnumeric":33}],341:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"fast-isnumeric":28}],298:[function(_dereq_,module,exports){
 'use strict';
 
 var counterRegex = _dereq_('../../lib/regex').counter;
@@ -70860,7 +63779,7 @@ module.exports = {
     }
 };
 
-},{"../../lib/regex":303}],342:[function(_dereq_,module,exports){
+},{"../../lib/regex":260}],299:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -71503,7 +64422,7 @@ function updateDomain(ax, factor) {
     ax.setScale();
 }
 
-},{"../../constants/alignment":262,"../../constants/numerical":267,"../../lib":287,"./autorange":333,"./axis_ids":338,"./layout_attributes":349,"./scale_zoom":354,"./set_convert":356}],343:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219,"../../constants/numerical":224,"../../lib":244,"./autorange":290,"./axis_ids":295,"./layout_attributes":306,"./scale_zoom":311,"./set_convert":313}],300:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -72835,7 +65754,7 @@ module.exports = {
     attachWheelEventHandler: attachWheelEventHandler
 };
 
-},{"../../components/color":157,"../../components/dragelement":176,"../../components/dragelement/helpers":175,"../../components/drawing":179,"../../components/fx":197,"../../constants/alignment":262,"../../lib":287,"../../lib/clear_gl_canvases":275,"../../lib/setcursor":307,"../../lib/svg_text_utils":310,"../../plot_api/subroutines":324,"../../registry":378,"../plots":371,"./axes":334,"./axis_ids":338,"./constants":341,"./scale_zoom":354,"./select":355,"@plotly/d3":20,"has-passive-events":65,"tinycolor2":121}],344:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/dragelement":133,"../../components/dragelement/helpers":132,"../../components/drawing":136,"../../components/fx":154,"../../constants/alignment":219,"../../lib":244,"../../lib/clear_gl_canvases":232,"../../lib/setcursor":264,"../../lib/svg_text_utils":267,"../../plot_api/subroutines":281,"../../registry":335,"../plots":328,"./axes":291,"./axis_ids":295,"./constants":298,"./scale_zoom":311,"./select":312,"@plotly/d3":20,"has-passive-events":60,"tinycolor2":79}],301:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -72994,7 +65913,7 @@ exports.updateFx = function(gd) {
     setCursor(fullLayout._draggers, cursor);
 };
 
-},{"../../components/dragelement":176,"../../components/fx":197,"../../lib/setcursor":307,"./constants":341,"./dragbox":343,"@plotly/d3":20}],345:[function(_dereq_,module,exports){
+},{"../../components/dragelement":133,"../../components/fx":154,"../../lib/setcursor":264,"./constants":298,"./dragbox":300,"@plotly/d3":20}],302:[function(_dereq_,module,exports){
 'use strict';
 
 function clearOutlineControllers(gd) {
@@ -73021,7 +65940,7 @@ module.exports = {
     clearSelect: clearSelect
 };
 
-},{}],346:[function(_dereq_,module,exports){
+},{}],303:[function(_dereq_,module,exports){
 'use strict';
 
 var strTranslate = _dereq_('../../lib').strTranslate;
@@ -73069,7 +65988,7 @@ module.exports = {
     getTransform: getTransform
 };
 
-},{"../../lib":287}],347:[function(_dereq_,module,exports){
+},{"../../lib":244}],304:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -73138,7 +66057,7 @@ module.exports = function makeIncludeComponents(containerArrayName) {
     };
 };
 
-},{"../../lib":287,"../../registry":378,"./axis_ids":338}],348:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"./axis_ids":295}],305:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -73747,7 +66666,7 @@ exports.toSVG = function(gd) {
 
 exports.updateFx = _dereq_('./graph_interact').updateFx;
 
-},{"../../components/drawing":179,"../../constants/xmlns_namespaces":268,"../../lib":287,"../../registry":378,"../get_data":367,"../plots":371,"./attributes":332,"./axis_ids":338,"./constants":341,"./graph_interact":344,"./layout_attributes":349,"./layout_defaults":350,"./transition_axes":361,"@plotly/d3":20}],349:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../../constants/xmlns_namespaces":225,"../../lib":244,"../../registry":335,"../get_data":324,"../plots":328,"./attributes":289,"./axis_ids":295,"./constants":298,"./graph_interact":301,"./layout_attributes":306,"./layout_defaults":307,"./transition_axes":318,"@plotly/d3":20}],306:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('../font_attributes');
@@ -74308,7 +67227,7 @@ module.exports = {
     }
 };
 
-},{"../../components/color/attributes":156,"../../components/drawing/attributes":178,"../../constants/numerical":267,"../../lib/extend":281,"../../plot_api/plot_template":323,"../../plots/cartesian/axis_format_attributes":337,"../font_attributes":365,"./constants":341}],350:[function(_dereq_,module,exports){
+},{"../../components/color/attributes":113,"../../components/drawing/attributes":135,"../../constants/numerical":224,"../../lib/extend":238,"../../plot_api/plot_template":280,"../../plots/cartesian/axis_format_attributes":294,"../font_attributes":322,"./constants":298}],307:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -74686,7 +67605,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
     });
 };
 
-},{"../../components/color":157,"../../components/fx/helpers":193,"../../components/fx/hovermode_defaults":196,"../../lib":287,"../../plot_api/plot_template":323,"../../registry":378,"../layout_attributes":369,"./axis_defaults":336,"./axis_ids":338,"./constants":341,"./constraints":342,"./layout_attributes":349,"./position_defaults":352,"./type_defaults":362}],351:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/fx/helpers":150,"../../components/fx/hovermode_defaults":153,"../../lib":244,"../../plot_api/plot_template":280,"../../registry":335,"../layout_attributes":326,"./axis_defaults":293,"./axis_ids":295,"./constants":298,"./constraints":299,"./layout_attributes":306,"./position_defaults":309,"./type_defaults":319}],308:[function(_dereq_,module,exports){
 'use strict';
 
 var colorMix = _dereq_('tinycolor2').mix;
@@ -74743,7 +67662,7 @@ module.exports = function handleLineGridDefaults(containerIn, containerOut, coer
     }
 };
 
-},{"../../components/color/attributes":156,"../../lib":287,"tinycolor2":121}],352:[function(_dereq_,module,exports){
+},{"../../components/color/attributes":113,"../../lib":244,"tinycolor2":79}],309:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -74822,7 +67741,7 @@ module.exports = function handlePositionDefaults(containerIn, containerOut, coer
     return containerOut;
 };
 
-},{"../../lib":287,"fast-isnumeric":33}],353:[function(_dereq_,module,exports){
+},{"../../lib":244,"fast-isnumeric":28}],310:[function(_dereq_,module,exports){
 'use strict';
 
 var getShowAttrDflt = _dereq_('./show_dflt');
@@ -74840,7 +67759,7 @@ module.exports = function handlePrefixSuffixDefaults(containerIn, containerOut, 
     if(tickSuffix) coerce('showticksuffix', showAttrDflt);
 };
 
-},{"./show_dflt":357}],354:[function(_dereq_,module,exports){
+},{"./show_dflt":314}],311:[function(_dereq_,module,exports){
 'use strict';
 
 var FROM_BL = _dereq_('../../constants/alignment').FROM_BL;
@@ -74860,7 +67779,7 @@ module.exports = function scaleZoom(ax, factor, centerFraction) {
     ax.setScale();
 };
 
-},{"../../constants/alignment":262}],355:[function(_dereq_,module,exports){
+},{"../../constants/alignment":219}],312:[function(_dereq_,module,exports){
 'use strict';
 
 var polybool = _dereq_('polybooljs');
@@ -75794,7 +68713,7 @@ module.exports = {
     selectOnClick: selectOnClick
 };
 
-},{"../../components/color":157,"../../components/dragelement/helpers":175,"../../components/drawing":179,"../../components/fx":197,"../../components/fx/helpers":193,"../../components/shapes/draw_newshape/display_outlines":245,"../../components/shapes/draw_newshape/helpers":246,"../../components/shapes/draw_newshape/newshapes":247,"../../lib":287,"../../lib/clear_gl_canvases":275,"../../lib/polygon":299,"../../lib/throttle":311,"../../plot_api/subroutines":324,"../../registry":378,"./axis_ids":338,"./constants":341,"./handle_outline":345,"./helpers":346,"polybooljs":75}],356:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/dragelement/helpers":132,"../../components/drawing":136,"../../components/fx":154,"../../components/fx/helpers":150,"../../components/shapes/draw_newshape/display_outlines":202,"../../components/shapes/draw_newshape/helpers":203,"../../components/shapes/draw_newshape/newshapes":204,"../../lib":244,"../../lib/clear_gl_canvases":232,"../../lib/polygon":256,"../../lib/throttle":268,"../../plot_api/subroutines":281,"../../registry":335,"./axis_ids":295,"./constants":298,"./handle_outline":302,"./helpers":303,"polybooljs":69}],313:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -76759,7 +69678,7 @@ module.exports = function setConvert(ax, fullLayout) {
     delete ax._forceTick0;
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"./axis_ids":338,"./constants":341,"@plotly/d3":20,"d3-time-format":30,"fast-isnumeric":33}],357:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"./axis_ids":295,"./constants":298,"@plotly/d3":20,"d3-time-format":25,"fast-isnumeric":28}],314:[function(_dereq_,module,exports){
 'use strict';
 
 /*
@@ -76790,7 +69709,7 @@ module.exports = function getShowAttrDflt(containerIn) {
     }
 };
 
-},{}],358:[function(_dereq_,module,exports){
+},{}],315:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -76857,7 +69776,7 @@ function tickformatstopDefaults(valueIn, valueOut) {
     }
 }
 
-},{"../../components/color":157,"../../lib":287,"../array_container_defaults":329,"./layout_attributes":349,"./show_dflt":357}],359:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../lib":244,"../array_container_defaults":286,"./layout_attributes":306,"./show_dflt":314}],316:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -76881,7 +69800,7 @@ module.exports = function handleTickMarkDefaults(containerIn, containerOut, coer
     }
 };
 
-},{"../../lib":287,"./layout_attributes":349}],360:[function(_dereq_,module,exports){
+},{"../../lib":244,"./layout_attributes":306}],317:[function(_dereq_,module,exports){
 'use strict';
 
 var cleanTicks = _dereq_('./clean_ticks');
@@ -76920,7 +69839,7 @@ module.exports = function handleTickValueDefaults(containerIn, containerOut, coe
     }
 };
 
-},{"../../lib":287,"./clean_ticks":340}],361:[function(_dereq_,module,exports){
+},{"../../lib":244,"./clean_ticks":297}],318:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -77125,7 +70044,7 @@ module.exports = function transitionAxes(gd, edits, transitionOpts, makeOnComple
     return Promise.resolve();
 };
 
-},{"../../components/drawing":179,"../../lib":287,"../../registry":378,"./axes":334,"@plotly/d3":20}],362:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../../lib":244,"../../registry":335,"./axes":291,"@plotly/d3":20}],319:[function(_dereq_,module,exports){
 'use strict';
 
 var traceIs = _dereq_('../../registry').traceIs;
@@ -77257,7 +70176,7 @@ function isBoxWithoutPositionCoords(trace, axLetter) {
     );
 }
 
-},{"../../registry":378,"./axis_autotype":335}],363:[function(_dereq_,module,exports){
+},{"../../registry":335,"./axis_autotype":292}],320:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -77676,7 +70595,7 @@ function crawl(attrs, callback, path, depth) {
     });
 }
 
-},{"../lib":287,"../registry":378}],364:[function(_dereq_,module,exports){
+},{"../lib":244,"../registry":335}],321:[function(_dereq_,module,exports){
 'use strict';
 
 var extendFlat = _dereq_('../lib/extend').extendFlat;
@@ -77773,7 +70692,7 @@ exports.defaults = function(containerOut, layout, coerce, dfltDomains) {
     if(!(y[0] < y[1])) containerOut.domain.y = dfltY.slice();
 };
 
-},{"../lib/extend":281}],365:[function(_dereq_,module,exports){
+},{"../lib/extend":238}],322:[function(_dereq_,module,exports){
 'use strict';
 
 /*
@@ -77828,7 +70747,7 @@ module.exports = function(opts) {
     return attrs;
 };
 
-},{}],366:[function(_dereq_,module,exports){
+},{}],323:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -77854,7 +70773,7 @@ module.exports = {
     }
 };
 
-},{}],367:[function(_dereq_,module,exports){
+},{}],324:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -77975,7 +70894,7 @@ exports.getSubplotData = function getSubplotData(data, type, subplotId) {
     return subplotData;
 };
 
-},{"../registry":378,"./cartesian/constants":341}],368:[function(_dereq_,module,exports){
+},{"../registry":335,"./cartesian/constants":298}],325:[function(_dereq_,module,exports){
 'use strict';
 
 function xformMatrix(m, v) {
@@ -78000,7 +70919,7 @@ function project(camera, v) {
 
 module.exports = project;
 
-},{}],369:[function(_dereq_,module,exports){
+},{}],326:[function(_dereq_,module,exports){
 'use strict';
 
 var fontAttrs = _dereq_('./font_attributes');
@@ -78228,7 +71147,7 @@ module.exports = {
     }
 };
 
-},{"../components/color/attributes":156,"../components/shapes/draw_newshape/attributes":242,"../lib/extend":281,"./animation_attributes":328,"./font_attributes":365,"./pad_attributes":370}],370:[function(_dereq_,module,exports){
+},{"../components/color/attributes":113,"../components/shapes/draw_newshape/attributes":199,"../lib/extend":238,"./animation_attributes":285,"./font_attributes":322,"./pad_attributes":327}],327:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -78267,7 +71186,7 @@ module.exports = function(opts) {
     };
 };
 
-},{}],371:[function(_dereq_,module,exports){
+},{}],328:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -81685,7 +74604,7 @@ plots.cleanBasePlot = function(desiredType, newFullData, newFullLayout, oldFullD
     }
 };
 
-},{"../components/color":157,"../constants/numerical":267,"../lib":287,"../plot_api/plot_schema":322,"../plot_api/plot_template":323,"../plots/get_data":367,"../registry":378,"./animation_attributes":328,"./attributes":330,"./cartesian/axis_ids":338,"./cartesian/handle_outline":345,"./command":363,"./font_attributes":365,"./frame_attributes":366,"./layout_attributes":369,"@plotly/d3":20,"d3-format":29,"d3-time-format":30,"fast-isnumeric":33}],372:[function(_dereq_,module,exports){
+},{"../components/color":114,"../constants/numerical":224,"../lib":244,"../plot_api/plot_schema":279,"../plot_api/plot_template":280,"../plots/get_data":324,"../registry":335,"./animation_attributes":285,"./attributes":287,"./cartesian/axis_ids":295,"./cartesian/handle_outline":302,"./command":320,"./font_attributes":322,"./frame_attributes":323,"./layout_attributes":326,"@plotly/d3":20,"d3-format":24,"d3-time-format":25,"fast-isnumeric":28}],329:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -81757,7 +74676,7 @@ module.exports = function handleSubplotDefaults(layoutIn, layoutOut, fullData, o
     }
 };
 
-},{"../lib":287,"../plot_api/plot_template":323,"./domain":364}],373:[function(_dereq_,module,exports){
+},{"../lib":244,"../plot_api/plot_template":280,"./domain":321}],330:[function(_dereq_,module,exports){
 'use strict';
 
 var docs = _dereq_('../constants/docs');
@@ -81838,7 +74757,7 @@ exports.texttemplateAttrs = function(opts, extra) {
     return texttemplate;
 };
 
-},{"../constants/docs":264}],374:[function(_dereq_,module,exports){
+},{"../constants/docs":221}],331:[function(_dereq_,module,exports){
 'use strict';
 
 var Ternary = _dereq_('./ternary');
@@ -81911,7 +74830,7 @@ exports.clean = function(newFullData, newFullLayout, oldFullData, oldFullLayout)
     }
 };
 
-},{"../../lib":287,"../../plots/get_data":367,"./layout_attributes":375,"./layout_defaults":376,"./ternary":377}],375:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/get_data":324,"./layout_attributes":332,"./layout_defaults":333,"./ternary":334}],332:[function(_dereq_,module,exports){
 'use strict';
 
 var colorAttrs = _dereq_('../../components/color/attributes');
@@ -82001,7 +74920,7 @@ attrs.aaxis.uirevision = attrs.baxis.uirevision = attrs.caxis.uirevision = {
     editType: 'none',
 };
 
-},{"../../components/color/attributes":156,"../../lib/extend":281,"../../plot_api/edit_types":316,"../cartesian/layout_attributes":349,"../domain":364}],376:[function(_dereq_,module,exports){
+},{"../../components/color/attributes":113,"../../lib/extend":238,"../../plot_api/edit_types":273,"../cartesian/layout_attributes":306,"../domain":321}],333:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -82127,7 +75046,7 @@ function handleAxisDefaults(containerIn, containerOut, options, ternaryLayoutOut
     coerce('layer');
 }
 
-},{"../../components/color":157,"../../lib":287,"../../plot_api/plot_template":323,"../cartesian/line_grid_defaults":351,"../cartesian/prefix_suffix_defaults":353,"../cartesian/tick_label_defaults":358,"../cartesian/tick_mark_defaults":359,"../cartesian/tick_value_defaults":360,"../subplot_defaults":372,"./layout_attributes":375}],377:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../lib":244,"../../plot_api/plot_template":280,"../cartesian/line_grid_defaults":308,"../cartesian/prefix_suffix_defaults":310,"../cartesian/tick_label_defaults":315,"../cartesian/tick_mark_defaults":316,"../cartesian/tick_value_defaults":317,"../subplot_defaults":329,"./layout_attributes":332}],334:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -82899,7 +75818,7 @@ function removeZoombox(gd) {
         .remove();
 }
 
-},{"../../components/color":157,"../../components/dragelement":176,"../../components/dragelement/helpers":175,"../../components/drawing":179,"../../components/fx":197,"../../components/titles":255,"../../lib":287,"../../lib/extend":281,"../../registry":378,"../cartesian/axes":334,"../cartesian/constants":341,"../cartesian/select":355,"../cartesian/set_convert":356,"../plots":371,"@plotly/d3":20,"tinycolor2":121}],378:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/dragelement":133,"../../components/dragelement/helpers":132,"../../components/drawing":136,"../../components/fx":154,"../../components/titles":212,"../../lib":244,"../../lib/extend":238,"../../registry":335,"../cartesian/axes":291,"../cartesian/constants":298,"../cartesian/select":312,"../cartesian/set_convert":313,"../plots":328,"@plotly/d3":20,"tinycolor2":79}],335:[function(_dereq_,module,exports){
 'use strict';
 
 var Loggers = _dereq_('./lib/loggers');
@@ -83357,7 +76276,7 @@ function getTraceType(traceType) {
     return traceType;
 }
 
-},{"./lib/dom":279,"./lib/extend":281,"./lib/is_plain_object":288,"./lib/loggers":291,"./lib/noop":296,"./lib/push_unique":301,"./plots/attributes":330,"./plots/layout_attributes":369}],379:[function(_dereq_,module,exports){
+},{"./lib/dom":236,"./lib/extend":238,"./lib/is_plain_object":245,"./lib/loggers":248,"./lib/noop":253,"./lib/push_unique":258,"./plots/attributes":287,"./plots/layout_attributes":326}],336:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -83517,7 +76436,7 @@ module.exports = function clonePlot(graphObj, options) {
     return plotTile;
 };
 
-},{"../lib":287,"../registry":378}],380:[function(_dereq_,module,exports){
+},{"../lib":244,"../registry":335}],337:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -83581,7 +76500,7 @@ function downloadImage(gd, opts) {
 
 module.exports = downloadImage;
 
-},{"../lib":287,"../plot_api/to_image":326,"./filesaver":381,"./helpers":382}],381:[function(_dereq_,module,exports){
+},{"../lib":244,"../plot_api/to_image":283,"./filesaver":338,"./helpers":339}],338:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -83649,7 +76568,7 @@ function fileSaver(url, name, format) {
 
 module.exports = fileSaver;
 
-},{"../lib":287,"./helpers":382}],382:[function(_dereq_,module,exports){
+},{"../lib":244,"./helpers":339}],339:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../registry');
@@ -83718,7 +76637,7 @@ exports.IMAGE_URL_PREFIX = /^data:image\/\w+;base64,/;
 
 exports.MSG_IE_BAD_FORMAT = 'Sorry IE does not support downloading from canvas. Try {format:\'svg\'} instead.';
 
-},{"../registry":378}],383:[function(_dereq_,module,exports){
+},{"../registry":335}],340:[function(_dereq_,module,exports){
 'use strict';
 
 var helpers = _dereq_('./helpers');
@@ -83735,7 +76654,7 @@ var Snapshot = {
 
 module.exports = Snapshot;
 
-},{"./cloneplot":379,"./download":380,"./helpers":382,"./svgtoimg":384,"./toimage":385,"./tosvg":386}],384:[function(_dereq_,module,exports){
+},{"./cloneplot":336,"./download":337,"./helpers":339,"./svgtoimg":341,"./toimage":342,"./tosvg":343}],341:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -83854,7 +76773,7 @@ function svgToImg(opts) {
 
 module.exports = svgToImg;
 
-},{"../lib":287,"./helpers":382,"events":27}],385:[function(_dereq_,module,exports){
+},{"../lib":244,"./helpers":339,"events":22}],342:[function(_dereq_,module,exports){
 'use strict';
 
 var EventEmitter = _dereq_('events').EventEmitter;
@@ -83923,7 +76842,7 @@ function toImage(gd, opts) {
 
 module.exports = toImage;
 
-},{"../lib":287,"../registry":378,"./cloneplot":379,"./helpers":382,"./svgtoimg":384,"./tosvg":386,"events":27}],386:[function(_dereq_,module,exports){
+},{"../lib":244,"../registry":335,"./cloneplot":336,"./helpers":339,"./svgtoimg":341,"./tosvg":343,"events":22}],343:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -84108,7 +77027,7 @@ module.exports = function toSVG(gd, format, scale) {
     return s;
 };
 
-},{"../components/color":157,"../components/drawing":179,"../constants/xmlns_namespaces":268,"../lib":287,"@plotly/d3":20}],387:[function(_dereq_,module,exports){
+},{"../components/color":114,"../components/drawing":136,"../constants/xmlns_namespaces":225,"../lib":244,"@plotly/d3":20}],344:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -84133,7 +77052,7 @@ module.exports = function arraysToCalcdata(cd, trace) {
     }
 };
 
-},{"../../lib":287}],388:[function(_dereq_,module,exports){
+},{"../../lib":244}],345:[function(_dereq_,module,exports){
 'use strict';
 
 var scatterAttrs = _dereq_('../scatter/attributes');
@@ -84314,7 +77233,7 @@ module.exports = {
     }
 };
 
-},{"../../components/colorscale/attributes":164,"../../components/drawing/attributes":178,"../../lib/extend":281,"../../plots/cartesian/axis_format_attributes":337,"../../plots/font_attributes":365,"../../plots/template_attributes":373,"../scatter/attributes":500,"./constants":390}],389:[function(_dereq_,module,exports){
+},{"../../components/colorscale/attributes":121,"../../components/drawing/attributes":135,"../../lib/extend":238,"../../plots/cartesian/axis_format_attributes":294,"../../plots/font_attributes":322,"../../plots/template_attributes":330,"../scatter/attributes":457,"./constants":347}],346:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -84389,7 +77308,7 @@ module.exports = function calc(gd, trace) {
     return cd;
 };
 
-},{"../../components/colorscale/calc":165,"../../components/colorscale/helpers":168,"../../plots/cartesian/align_period":331,"../../plots/cartesian/axes":334,"../scatter/calc_selection":502,"./arrays_to_calcdata":387}],390:[function(_dereq_,module,exports){
+},{"../../components/colorscale/calc":122,"../../components/colorscale/helpers":125,"../../plots/cartesian/align_period":288,"../../plots/cartesian/axes":291,"../scatter/calc_selection":459,"./arrays_to_calcdata":344}],347:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -84402,7 +77321,7 @@ module.exports = {
     eventDataKeys: ['value', 'label']
 };
 
-},{}],391:[function(_dereq_,module,exports){
+},{}],348:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -85177,7 +78096,7 @@ module.exports = {
     setGroupPositions: setGroupPositions
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"../../plots/cartesian/axes":334,"../../plots/cartesian/constraints":342,"../../registry":378,"./sieve.js":401,"fast-isnumeric":33}],392:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"../../plots/cartesian/axes":291,"../../plots/cartesian/constraints":299,"../../registry":335,"./sieve.js":358,"fast-isnumeric":28}],349:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -85356,7 +78275,7 @@ module.exports = {
     handleText: handleText
 };
 
-},{"../../components/color":157,"../../lib":287,"../../plots/cartesian/constraints":342,"../../registry":378,"../scatter/period_defaults":520,"../scatter/xy_defaults":527,"./attributes":388,"./style_defaults":403}],393:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../lib":244,"../../plots/cartesian/constraints":299,"../../registry":335,"../scatter/period_defaults":477,"../scatter/xy_defaults":484,"./attributes":345,"./style_defaults":360}],350:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt, trace) {
@@ -85377,7 +78296,7 @@ module.exports = function eventData(out, pt, trace) {
     return out;
 };
 
-},{}],394:[function(_dereq_,module,exports){
+},{}],351:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -85447,7 +78366,7 @@ exports.getLineWidth = function(trace, di) {
     return w;
 };
 
-},{"../../lib":287,"fast-isnumeric":33,"tinycolor2":121}],395:[function(_dereq_,module,exports){
+},{"../../lib":244,"fast-isnumeric":28,"tinycolor2":79}],352:[function(_dereq_,module,exports){
 'use strict';
 
 var Fx = _dereq_('../../components/fx');
@@ -85672,7 +78591,7 @@ module.exports = {
     getTraceColor: getTraceColor
 };
 
-},{"../../components/color":157,"../../components/fx":197,"../../constants/numerical":267,"../../lib":287,"../../plots/cartesian/axes":334,"../../registry":378,"./helpers":394}],396:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/fx":154,"../../constants/numerical":224,"../../lib":244,"../../plots/cartesian/axes":291,"../../registry":335,"./helpers":351}],353:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -85701,7 +78620,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"../scatter/marker_colorbar":518,"./arrays_to_calcdata":387,"./attributes":388,"./calc":389,"./cross_trace_calc":391,"./defaults":392,"./event_data":393,"./hover":395,"./layout_attributes":397,"./layout_defaults":398,"./plot":399,"./select":400,"./style":402}],397:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"../scatter/marker_colorbar":475,"./arrays_to_calcdata":344,"./attributes":345,"./calc":346,"./cross_trace_calc":348,"./defaults":349,"./event_data":350,"./hover":352,"./layout_attributes":354,"./layout_defaults":355,"./plot":356,"./select":357,"./style":359}],354:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -85733,7 +78652,7 @@ module.exports = {
     }
 };
 
-},{}],398:[function(_dereq_,module,exports){
+},{}],355:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -85785,7 +78704,7 @@ module.exports = function(layoutIn, layoutOut, fullData) {
     coerce('bargroupgap');
 };
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"../../registry":378,"./layout_attributes":397}],399:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"../../registry":335,"./layout_attributes":354}],356:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -86569,7 +79488,7 @@ module.exports = {
     toMoveInsideBar: toMoveInsideBar
 };
 
-},{"../../components/color":157,"../../components/drawing":179,"../../components/fx/helpers":193,"../../lib":287,"../../lib/svg_text_utils":310,"../../plots/cartesian/axes":334,"../../registry":378,"./attributes":388,"./constants":390,"./helpers":394,"./style":402,"./uniform_text":404,"@plotly/d3":20,"fast-isnumeric":33}],400:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/drawing":136,"../../components/fx/helpers":150,"../../lib":244,"../../lib/svg_text_utils":267,"../../plots/cartesian/axes":291,"../../registry":335,"./attributes":345,"./constants":347,"./helpers":351,"./style":359,"./uniform_text":361,"@plotly/d3":20,"fast-isnumeric":28}],357:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function selectPoints(searchInfo, selectionTester) {
@@ -86625,7 +79544,7 @@ function getCentroid(d, xa, ya, isHorizontal, isFunnel) {
     }
 }
 
-},{}],401:[function(_dereq_,module,exports){
+},{}],358:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Sieve;
@@ -86734,7 +79653,7 @@ Sieve.prototype.getLabel = function getLabel(position, value) {
     return prefix + label;
 };
 
-},{"../../constants/numerical":267,"../../lib":287}],402:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244}],359:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -86908,7 +79827,7 @@ module.exports = {
     resizeText: resizeText
 };
 
-},{"../../components/color":157,"../../components/drawing":179,"../../lib":287,"../../registry":378,"./attributes":388,"./helpers":394,"./uniform_text":404,"@plotly/d3":20}],403:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/drawing":136,"../../lib":244,"../../registry":335,"./attributes":345,"./helpers":351,"./uniform_text":361,"@plotly/d3":20}],360:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -86940,7 +79859,7 @@ module.exports = function handleStyleDefaults(traceIn, traceOut, coerce, default
     coerce('unselected.marker.color');
 };
 
-},{"../../components/color":157,"../../components/colorscale/defaults":167,"../../components/colorscale/helpers":168,"../../lib":287}],404:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/colorscale/defaults":124,"../../components/colorscale/helpers":125,"../../lib":244}],361:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -87019,7 +79938,7 @@ module.exports = {
     resizeText: resizeText
 };
 
-},{"../../lib":287,"@plotly/d3":20}],405:[function(_dereq_,module,exports){
+},{"../../lib":244,"@plotly/d3":20}],362:[function(_dereq_,module,exports){
 'use strict';
 
 var scatterAttrs = _dereq_('../scatter/attributes');
@@ -87254,7 +80173,7 @@ module.exports = {
     }
 };
 
-},{"../../components/color/attributes":156,"../../lib/extend":281,"../../plots/cartesian/axis_format_attributes":337,"../../plots/template_attributes":373,"../bar/attributes":388,"../scatter/attributes":500}],406:[function(_dereq_,module,exports){
+},{"../../components/color/attributes":113,"../../lib/extend":238,"../../plots/cartesian/axis_format_attributes":294,"../../plots/template_attributes":330,"../bar/attributes":345,"../scatter/attributes":457}],363:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -87700,7 +80619,7 @@ function computeNotchSpan(cdi, N) {
     return 1.57 * (cdi.q3 - cdi.q1) / Math.sqrt(N);
 }
 
-},{"../../constants/numerical":267,"../../lib":287,"../../plots/cartesian/align_period":331,"../../plots/cartesian/axes":334,"fast-isnumeric":33}],407:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"../../plots/cartesian/align_period":288,"../../plots/cartesian/axes":291,"fast-isnumeric":28}],364:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -87925,7 +80844,7 @@ module.exports = {
     setPositionOffset: setPositionOffset
 };
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"../../plots/cartesian/constraints":342}],408:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"../../plots/cartesian/constraints":299}],365:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -88235,7 +81154,7 @@ module.exports = {
     handlePointsDefaults: handlePointsDefaults
 };
 
-},{"../../components/color":157,"../../lib":287,"../../plots/cartesian/axis_autotype":335,"../../registry":378,"../bar/defaults":392,"../scatter/period_defaults":520,"./attributes":405}],409:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../lib":244,"../../plots/cartesian/axis_autotype":292,"../../registry":335,"../bar/defaults":349,"../scatter/period_defaults":477,"./attributes":362}],366:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt) {
@@ -88252,7 +81171,7 @@ module.exports = function eventData(out, pt) {
     return out;
 };
 
-},{}],410:[function(_dereq_,module,exports){
+},{}],367:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -88531,7 +81450,7 @@ module.exports = {
     hoverOnPoints: hoverOnPoints
 };
 
-},{"../../components/color":157,"../../components/fx":197,"../../lib":287,"../../plots/cartesian/axes":334}],411:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/fx":154,"../../lib":244,"../../plots/cartesian/axes":291}],368:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -88557,7 +81476,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"./attributes":405,"./calc":406,"./cross_trace_calc":407,"./defaults":408,"./event_data":409,"./hover":410,"./layout_attributes":412,"./layout_defaults":413,"./plot":414,"./select":415,"./style":416}],412:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"./attributes":362,"./calc":363,"./cross_trace_calc":364,"./defaults":365,"./event_data":366,"./hover":367,"./layout_attributes":369,"./layout_defaults":370,"./plot":371,"./select":372,"./style":373}],369:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -88584,7 +81503,7 @@ module.exports = {
     }
 };
 
-},{}],413:[function(_dereq_,module,exports){
+},{}],370:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -88622,7 +81541,7 @@ module.exports = {
     _supply: _supply
 };
 
-},{"../../lib":287,"../../registry":378,"./layout_attributes":412}],414:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"./layout_attributes":369}],371:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -88964,7 +81883,7 @@ module.exports = {
     plotBoxMean: plotBoxMean
 };
 
-},{"../../components/drawing":179,"../../lib":287,"@plotly/d3":20}],415:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../../lib":244,"@plotly/d3":20}],372:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function selectPoints(searchInfo, selectionTester) {
@@ -89005,7 +81924,7 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
-},{}],416:[function(_dereq_,module,exports){
+},{}],373:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -89071,7 +81990,7 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
-},{"../../components/color":157,"../../components/drawing":179,"@plotly/d3":20}],417:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/drawing":136,"@plotly/d3":20}],374:[function(_dereq_,module,exports){
 'use strict';
 
 var heatmapAttrs = _dereq_('../heatmap/attributes');
@@ -89235,7 +82154,7 @@ module.exports = extendFlat({
     })
 );
 
-},{"../../components/colorscale/attributes":164,"../../components/drawing/attributes":178,"../../constants/filter_ops":265,"../../lib/extend":281,"../../plots/cartesian/axis_format_attributes":337,"../../plots/font_attributes":365,"../heatmap/attributes":439,"../scatter/attributes":500}],418:[function(_dereq_,module,exports){
+},{"../../components/colorscale/attributes":121,"../../components/drawing/attributes":135,"../../constants/filter_ops":222,"../../lib/extend":238,"../../plots/cartesian/axis_format_attributes":294,"../../plots/font_attributes":322,"../heatmap/attributes":396,"../scatter/attributes":457}],375:[function(_dereq_,module,exports){
 'use strict';
 
 var Colorscale = _dereq_('../../components/colorscale');
@@ -89280,7 +82199,7 @@ module.exports = function calc(gd, trace) {
     return cd;
 };
 
-},{"../../components/colorscale":169,"../heatmap/calc":440,"./end_plus":428,"./set_contours":436}],419:[function(_dereq_,module,exports){
+},{"../../components/colorscale":126,"../heatmap/calc":397,"./end_plus":385,"./set_contours":393}],376:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function(pathinfo, contours) {
@@ -89362,7 +82281,7 @@ module.exports = function(pathinfo, contours) {
     }
 };
 
-},{}],420:[function(_dereq_,module,exports){
+},{}],377:[function(_dereq_,module,exports){
 'use strict';
 
 var Colorscale = _dereq_('../../components/colorscale');
@@ -89405,7 +82324,7 @@ module.exports = {
     calc: calc
 };
 
-},{"../../components/colorscale":169,"./end_plus":428,"./make_color_map":433}],421:[function(_dereq_,module,exports){
+},{"../../components/colorscale":126,"./end_plus":385,"./make_color_map":390}],378:[function(_dereq_,module,exports){
 'use strict';
 module.exports = {
     // some constants to help with marching squares algorithm
@@ -89475,7 +82394,7 @@ module.exports = {
     }
 };
 
-},{}],422:[function(_dereq_,module,exports){
+},{}],379:[function(_dereq_,module,exports){
 'use strict';
 var isNumeric = _dereq_('fast-isnumeric');
 
@@ -89560,7 +82479,7 @@ function handleConstraintValueDefaults(coerce, contours) {
     }
 }
 
-},{"../../components/color":157,"../../constants/filter_ops":265,"./label_defaults":432,"fast-isnumeric":33}],423:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../constants/filter_ops":222,"./label_defaults":389,"fast-isnumeric":28}],380:[function(_dereq_,module,exports){
 'use strict';
 
 var filterOps = _dereq_('../../constants/filter_ops');
@@ -89631,7 +82550,7 @@ function makeInequalitySettings(operation) {
     };
 }
 
-},{"../../constants/filter_ops":265,"fast-isnumeric":33}],424:[function(_dereq_,module,exports){
+},{"../../constants/filter_ops":222,"fast-isnumeric":28}],381:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function handleContourDefaults(traceIn, traceOut, coerce, coerce2) {
@@ -89652,7 +82571,7 @@ module.exports = function handleContourDefaults(traceIn, traceOut, coerce, coerc
     if(autoContour || !contourSize) coerce('ncontours');
 };
 
-},{}],425:[function(_dereq_,module,exports){
+},{}],382:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -89744,7 +82663,7 @@ function copyPathinfo(pi) {
     });
 }
 
-},{"../../lib":287}],426:[function(_dereq_,module,exports){
+},{"../../lib":244}],383:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -89800,7 +82719,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     }
 };
 
-},{"../../lib":287,"../heatmap/label_defaults":449,"../heatmap/xyz_defaults":454,"../scatter/period_defaults":520,"./attributes":417,"./constraint_defaults":422,"./contours_defaults":424,"./style_defaults":438}],427:[function(_dereq_,module,exports){
+},{"../../lib":244,"../heatmap/label_defaults":406,"../heatmap/xyz_defaults":411,"../scatter/period_defaults":477,"./attributes":374,"./constraint_defaults":379,"./contours_defaults":381,"./style_defaults":395}],384:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -89856,7 +82775,7 @@ module.exports = function emptyPathinfo(contours, plotinfo, cd0) {
     return pathinfo;
 };
 
-},{"../../lib":287,"./constraint_mapping":423,"./end_plus":428}],428:[function(_dereq_,module,exports){
+},{"../../lib":244,"./constraint_mapping":380,"./end_plus":385}],385:[function(_dereq_,module,exports){
 'use strict';
 
 /*
@@ -89867,7 +82786,7 @@ module.exports = function endPlus(contours) {
     return contours.end + contours.size / 1e6;
 };
 
-},{}],429:[function(_dereq_,module,exports){
+},{}],386:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -90162,7 +83081,7 @@ function getInterpPx(pi, loc, step) {
     }
 }
 
-},{"../../lib":287,"./constants":421}],430:[function(_dereq_,module,exports){
+},{"../../lib":244,"./constants":378}],387:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -90191,7 +83110,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode, opts) {
     return hoverData;
 };
 
-},{"../../components/color":157,"../heatmap/hover":446}],431:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../heatmap/hover":403}],388:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -90211,7 +83130,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"./attributes":417,"./calc":418,"./colorbar":420,"./defaults":426,"./hover":430,"./plot":435,"./style":437}],432:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"./attributes":374,"./calc":375,"./colorbar":377,"./defaults":383,"./hover":387,"./plot":392,"./style":394}],389:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -90232,7 +83151,7 @@ module.exports = function handleLabelDefaults(coerce, layout, lineColor, opts) {
     if(opts.hasHover !== false) coerce('zhoverformat');
 };
 
-},{"../../lib":287}],433:[function(_dereq_,module,exports){
+},{"../../lib":244}],390:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -90308,7 +83227,7 @@ module.exports = function makeColorMap(trace) {
     );
 };
 
-},{"../../components/colorscale":169,"./end_plus":428,"@plotly/d3":20}],434:[function(_dereq_,module,exports){
+},{"../../components/colorscale":126,"./end_plus":385,"@plotly/d3":20}],391:[function(_dereq_,module,exports){
 'use strict';
 
 var constants = _dereq_('./constants');
@@ -90392,7 +83311,7 @@ function getMarchingIndex(val, corners) {
     return (mi === 15) ? 0 : mi;
 }
 
-},{"./constants":421}],435:[function(_dereq_,module,exports){
+},{"./constants":378}],392:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -91074,7 +83993,7 @@ function makeClipMask(cd0) {
     return z;
 }
 
-},{"../../components/colorscale":169,"../../components/drawing":179,"../../lib":287,"../../lib/svg_text_utils":310,"../../plots/cartesian/axes":334,"../../plots/cartesian/set_convert":356,"../heatmap/plot":451,"./close_boundaries":419,"./constants":421,"./convert_to_constraints":425,"./empty_pathinfo":427,"./find_all_paths":429,"./make_crossings":434,"@plotly/d3":20}],436:[function(_dereq_,module,exports){
+},{"../../components/colorscale":126,"../../components/drawing":136,"../../lib":244,"../../lib/svg_text_utils":267,"../../plots/cartesian/axes":291,"../../plots/cartesian/set_convert":313,"../heatmap/plot":408,"./close_boundaries":376,"./constants":378,"./convert_to_constraints":382,"./empty_pathinfo":384,"./find_all_paths":386,"./make_crossings":391,"@plotly/d3":20}],393:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -91170,7 +84089,7 @@ function autoContours(start, end, ncontours) {
     return dummyAx;
 }
 
-},{"../../lib":287,"../../plots/cartesian/axes":334}],437:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291}],394:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -91242,7 +84161,7 @@ module.exports = function style(gd) {
     heatmapStyle(gd);
 };
 
-},{"../../components/drawing":179,"../heatmap/style":452,"./make_color_map":433,"@plotly/d3":20}],438:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../heatmap/style":409,"./make_color_map":390,"@plotly/d3":20}],395:[function(_dereq_,module,exports){
 'use strict';
 
 var colorscaleDefaults = _dereq_('../../components/colorscale/defaults');
@@ -91278,7 +84197,7 @@ module.exports = function handleStyleDefaults(traceIn, traceOut, coerce, layout,
     handleLabelDefaults(coerce, layout, lineColor, opts);
 };
 
-},{"../../components/colorscale/defaults":167,"./label_defaults":432}],439:[function(_dereq_,module,exports){
+},{"../../components/colorscale/defaults":124,"./label_defaults":389}],396:[function(_dereq_,module,exports){
 'use strict';
 
 var scatterAttrs = _dereq_('../scatter/attributes');
@@ -91385,7 +84304,7 @@ module.exports = extendFlat({
     colorScaleAttrs('', {cLetter: 'z', autoColorDflt: false})
 );
 
-},{"../../components/colorscale/attributes":164,"../../lib/extend":281,"../../plots/attributes":330,"../../plots/cartesian/axis_format_attributes":337,"../../plots/font_attributes":365,"../../plots/template_attributes":373,"../scatter/attributes":500}],440:[function(_dereq_,module,exports){
+},{"../../components/colorscale/attributes":121,"../../lib/extend":238,"../../plots/attributes":287,"../../plots/cartesian/axis_format_attributes":294,"../../plots/font_attributes":322,"../../plots/template_attributes":330,"../scatter/attributes":457}],397:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -91586,7 +84505,7 @@ function dropZonBreaks(x, y, z) {
     return newZ;
 }
 
-},{"../../components/colorscale/calc":165,"../../constants/numerical":267,"../../lib":287,"../../plots/cartesian/align_period":331,"../../plots/cartesian/axes":334,"../../registry":378,"../histogram2d/calc":469,"./clean_2d_array":441,"./convert_column_xyz":443,"./find_empties":445,"./interp2d":448,"./make_bound_array":450}],441:[function(_dereq_,module,exports){
+},{"../../components/colorscale/calc":122,"../../constants/numerical":224,"../../lib":244,"../../plots/cartesian/align_period":288,"../../plots/cartesian/axes":291,"../../registry":335,"../histogram2d/calc":426,"./clean_2d_array":398,"./convert_column_xyz":400,"./find_empties":402,"./interp2d":405,"./make_bound_array":407}],398:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -91655,7 +84574,7 @@ module.exports = function clean2dArray(zOld, trace, xa, ya) {
     return zNew;
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"fast-isnumeric":33}],442:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"fast-isnumeric":28}],399:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -91663,7 +84582,7 @@ module.exports = {
     max: 'zmax'
 };
 
-},{}],443:[function(_dereq_,module,exports){
+},{}],400:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -91744,7 +84663,7 @@ module.exports = function convertColumnData(trace, ax1, ax2, var1Name, var2Name,
     trace._after2before = after2before;
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"../../plots/cartesian/align_period":331}],444:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"../../plots/cartesian/align_period":288}],401:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -91785,7 +84704,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     colorscaleDefaults(traceIn, traceOut, layout, coerce, {prefix: '', cLetter: 'z'});
 };
 
-},{"../../components/colorscale/defaults":167,"../../lib":287,"../scatter/period_defaults":520,"./attributes":439,"./label_defaults":449,"./style_defaults":453,"./xyz_defaults":454}],445:[function(_dereq_,module,exports){
+},{"../../components/colorscale/defaults":124,"../../lib":244,"../scatter/period_defaults":477,"./attributes":396,"./label_defaults":406,"./style_defaults":410,"./xyz_defaults":411}],402:[function(_dereq_,module,exports){
 'use strict';
 
 var maxRowLength = _dereq_('../../lib').maxRowLength;
@@ -91882,7 +84801,7 @@ module.exports = function findEmpties(z) {
     return empties.sort(function(a, b) { return b[2] - a[2]; });
 };
 
-},{"../../lib":287}],446:[function(_dereq_,module,exports){
+},{"../../lib":244}],403:[function(_dereq_,module,exports){
 'use strict';
 
 var Fx = _dereq_('../../components/fx');
@@ -92015,7 +84934,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode, opts) {
     })];
 };
 
-},{"../../components/colorscale":169,"../../components/fx":197,"../../lib":287,"../../plots/cartesian/axes":334}],447:[function(_dereq_,module,exports){
+},{"../../components/colorscale":126,"../../components/fx":154,"../../lib":244,"../../plots/cartesian/axes":291}],404:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -92035,7 +84954,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"./attributes":439,"./calc":440,"./colorbar":442,"./defaults":444,"./hover":446,"./plot":451,"./style":452}],448:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"./attributes":396,"./calc":397,"./colorbar":399,"./defaults":401,"./hover":403,"./plot":408,"./style":409}],405:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -92160,7 +85079,7 @@ function iterateInterp2d(z, emptyPoints, overshoot) {
     return maxFractionalChange;
 }
 
-},{"../../lib":287}],449:[function(_dereq_,module,exports){
+},{"../../lib":244}],406:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -92175,7 +85094,7 @@ module.exports = function handleHeatmapLabelDefaults(coerce, layout) {
     Lib.coerceFont(coerce, 'textfont', fontDflt);
 };
 
-},{"../../lib":287}],450:[function(_dereq_,module,exports){
+},{"../../lib":244}],407:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -92255,7 +85174,7 @@ module.exports = function makeBoundArray(trace, arrayIn, v0In, dvIn, numbricks, 
     return arrayOut;
 };
 
-},{"../../lib":287,"../../registry":378}],451:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335}],408:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -92852,7 +85771,7 @@ function putColor(pixels, pxIndex, c) {
     pixels[pxIndex + 3] = Math.round(c[3] * 255);
 }
 
-},{"../../components/color":157,"../../components/colorscale":169,"../../components/drawing":179,"../../constants/alignment":262,"../../constants/xmlns_namespaces":268,"../../lib":287,"../../lib/svg_text_utils":310,"../../plots/cartesian/axes":334,"../../registry":378,"../scatter/format_labels":509,"@plotly/d3":20,"tinycolor2":121}],452:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/colorscale":126,"../../components/drawing":136,"../../constants/alignment":219,"../../constants/xmlns_namespaces":225,"../../lib":244,"../../lib/svg_text_utils":267,"../../plots/cartesian/axes":291,"../../registry":335,"../scatter/format_labels":466,"@plotly/d3":20,"tinycolor2":79}],409:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -92864,7 +85783,7 @@ module.exports = function style(gd) {
         });
 };
 
-},{"@plotly/d3":20}],453:[function(_dereq_,module,exports){
+},{"@plotly/d3":20}],410:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function handleStyleDefaults(traceIn, traceOut, coerce) {
@@ -92878,7 +85797,7 @@ module.exports = function handleStyleDefaults(traceIn, traceOut, coerce) {
     coerce('zhoverformat');
 };
 
-},{}],454:[function(_dereq_,module,exports){
+},{}],411:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -92969,7 +85888,7 @@ function isValidZ(z) {
     return (allRowsAreArrays && oneRowIsFilled && hasOneNumber);
 }
 
-},{"../../lib":287,"../../registry":378,"fast-isnumeric":33}],455:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"fast-isnumeric":28}],412:[function(_dereq_,module,exports){
 'use strict';
 
 var barAttrs = _dereq_('../bar/attributes');
@@ -93119,7 +86038,7 @@ module.exports = {
     }
 };
 
-},{"../../lib/extend":281,"../../plots/cartesian/axis_format_attributes":337,"../../plots/font_attributes":365,"../../plots/template_attributes":373,"../bar/attributes":388,"./bin_attributes":457,"./constants":461}],456:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"../../plots/cartesian/axis_format_attributes":294,"../../plots/font_attributes":322,"../../plots/template_attributes":330,"../bar/attributes":345,"./bin_attributes":414,"./constants":418}],413:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -93135,7 +86054,7 @@ module.exports = function doAvg(size, counts) {
     return total;
 };
 
-},{}],457:[function(_dereq_,module,exports){
+},{}],414:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function makeBinAttrs(axLetter, match) {
@@ -93156,7 +86075,7 @@ module.exports = function makeBinAttrs(axLetter, match) {
     };
 };
 
-},{}],458:[function(_dereq_,module,exports){
+},{}],415:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -93221,7 +86140,7 @@ module.exports = {
     }
 };
 
-},{"fast-isnumeric":33}],459:[function(_dereq_,module,exports){
+},{"fast-isnumeric":28}],416:[function(_dereq_,module,exports){
 'use strict';
 
 var numConstants = _dereq_('../../constants/numerical');
@@ -93388,7 +86307,7 @@ function dateParts(v, pa, calendar) {
     return parts;
 }
 
-},{"../../constants/numerical":267,"../../plots/cartesian/axes":334}],460:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../plots/cartesian/axes":291}],417:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -93960,14 +86879,14 @@ module.exports = {
     calcAllAutoBins: calcAllAutoBins
 };
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"../../registry":378,"../bar/arrays_to_calcdata":387,"./average":456,"./bin_functions":458,"./bin_label_vals":459,"./norm_functions":467,"fast-isnumeric":33}],461:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"../../registry":335,"../bar/arrays_to_calcdata":344,"./average":413,"./bin_functions":415,"./bin_label_vals":416,"./norm_functions":424,"fast-isnumeric":28}],418:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
     eventDataKeys: ['binNumber']
 };
 
-},{}],462:[function(_dereq_,module,exports){
+},{}],419:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -94236,7 +87155,7 @@ module.exports = function crossTraceDefaults(fullData, fullLayout) {
     }
 };
 
-},{"../../lib":287,"../../plots/cartesian/axis_ids":338,"../../plots/cartesian/constraints":342,"../../registry":378,"../bar/defaults":392}],463:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axis_ids":295,"../../plots/cartesian/constraints":299,"../../registry":335,"../bar/defaults":349}],420:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -94315,7 +87234,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     errorBarsSupplyDefaults(traceIn, traceOut, lineColor || Color.defaultLine, {axis: 'x', inherit: 'y'});
 };
 
-},{"../../components/color":157,"../../lib":287,"../../registry":378,"../bar/defaults":392,"../bar/style_defaults":403,"./attributes":455}],464:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../lib":244,"../../registry":335,"../bar/defaults":349,"../bar/style_defaults":360,"./attributes":412}],421:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt, trace, cd, pointNumber) {
@@ -94356,7 +87275,7 @@ module.exports = function eventData(out, pt, trace, cd, pointNumber) {
     return out;
 };
 
-},{}],465:[function(_dereq_,module,exports){
+},{}],422:[function(_dereq_,module,exports){
 'use strict';
 
 var barHover = _dereq_('../bar/hover').hoverPoints;
@@ -94380,7 +87299,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode, opts) {
     return pts;
 };
 
-},{"../../plots/cartesian/axes":334,"../bar/hover":395}],466:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/axes":291,"../bar/hover":352}],423:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -94421,7 +87340,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"../bar/cross_trace_calc":391,"../bar/layout_attributes":397,"../bar/layout_defaults":398,"../bar/plot":399,"../bar/select":400,"../bar/style":402,"../scatter/marker_colorbar":518,"./attributes":455,"./calc":460,"./cross_trace_defaults":462,"./defaults":463,"./event_data":464,"./hover":465}],467:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"../bar/cross_trace_calc":348,"../bar/layout_attributes":354,"../bar/layout_defaults":355,"../bar/plot":356,"../bar/select":357,"../bar/style":359,"../scatter/marker_colorbar":475,"./attributes":412,"./calc":417,"./cross_trace_defaults":419,"./defaults":420,"./event_data":421,"./hover":422}],424:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -94447,7 +87366,7 @@ module.exports = {
     }
 };
 
-},{}],468:[function(_dereq_,module,exports){
+},{}],425:[function(_dereq_,module,exports){
 'use strict';
 
 var histogramAttrs = _dereq_('../histogram/attributes');
@@ -94513,7 +87432,7 @@ module.exports = extendFlat(
     colorScaleAttrs('', {cLetter: 'z', autoColorDflt: false})
 );
 
-},{"../../components/colorscale/attributes":164,"../../lib/extend":281,"../../plots/attributes":330,"../../plots/cartesian/axis_format_attributes":337,"../../plots/template_attributes":373,"../heatmap/attributes":439,"../histogram/attributes":455,"../histogram/bin_attributes":457}],469:[function(_dereq_,module,exports){
+},{"../../components/colorscale/attributes":121,"../../lib/extend":238,"../../plots/attributes":287,"../../plots/cartesian/axis_format_attributes":294,"../../plots/template_attributes":330,"../heatmap/attributes":396,"../histogram/attributes":412,"../histogram/bin_attributes":414}],426:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -94724,7 +87643,7 @@ function getRanges(edges, uniqueVals, gapLow, gapHigh, ax, calendar) {
     return out;
 }
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"../histogram/average":456,"../histogram/bin_functions":458,"../histogram/bin_label_vals":459,"../histogram/calc":460,"../histogram/norm_functions":467}],470:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"../histogram/average":413,"../histogram/bin_functions":415,"../histogram/bin_label_vals":416,"../histogram/calc":417,"../histogram/norm_functions":424}],427:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -94754,7 +87673,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     coerce('yhoverformat');
 };
 
-},{"../../components/colorscale/defaults":167,"../../lib":287,"../heatmap/label_defaults":449,"../heatmap/style_defaults":453,"./attributes":468,"./sample_defaults":473}],471:[function(_dereq_,module,exports){
+},{"../../components/colorscale/defaults":124,"../../lib":244,"../heatmap/label_defaults":406,"../heatmap/style_defaults":410,"./attributes":425,"./sample_defaults":430}],428:[function(_dereq_,module,exports){
 'use strict';
 
 var heatmapHover = _dereq_('../heatmap/hover');
@@ -94780,7 +87699,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode, opts) {
     return pts;
 };
 
-},{"../../plots/cartesian/axes":334,"../heatmap/hover":446}],472:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/axes":291,"../heatmap/hover":403}],429:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -94803,7 +87722,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"../heatmap/calc":440,"../heatmap/colorbar":442,"../heatmap/plot":451,"../heatmap/style":452,"../histogram/cross_trace_defaults":462,"../histogram/event_data":464,"./attributes":468,"./defaults":470,"./hover":471}],473:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"../heatmap/calc":397,"../heatmap/colorbar":399,"../heatmap/plot":408,"../heatmap/style":409,"../histogram/cross_trace_defaults":419,"../histogram/event_data":421,"./attributes":425,"./defaults":427,"./hover":428}],430:[function(_dereq_,module,exports){
 'use strict';
 
 var Registry = _dereq_('../../registry');
@@ -94840,7 +87759,7 @@ module.exports = function handleSampleDefaults(traceIn, traceOut, coerce, layout
     coerce('autobiny');
 };
 
-},{"../../lib":287,"../../registry":378}],474:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335}],431:[function(_dereq_,module,exports){
 'use strict';
 
 var histogram2dAttrs = _dereq_('../histogram2d/attributes');
@@ -94894,7 +87813,7 @@ module.exports = extendFlat({
     })
 );
 
-},{"../../components/colorscale/attributes":164,"../../lib/extend":281,"../../plots/cartesian/axis_format_attributes":337,"../contour/attributes":417,"../histogram2d/attributes":468}],475:[function(_dereq_,module,exports){
+},{"../../components/colorscale/attributes":121,"../../lib/extend":238,"../../plots/cartesian/axis_format_attributes":294,"../contour/attributes":374,"../histogram2d/attributes":425}],432:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -94931,7 +87850,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     }
 };
 
-},{"../../lib":287,"../contour/contours_defaults":424,"../contour/style_defaults":438,"../heatmap/label_defaults":449,"../histogram2d/sample_defaults":473,"./attributes":474}],476:[function(_dereq_,module,exports){
+},{"../../lib":244,"../contour/contours_defaults":381,"../contour/style_defaults":395,"../heatmap/label_defaults":406,"../histogram2d/sample_defaults":430,"./attributes":431}],433:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -94953,7 +87872,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"../contour/calc":418,"../contour/colorbar":420,"../contour/hover":430,"../contour/plot":435,"../contour/style":437,"../histogram/cross_trace_defaults":462,"./attributes":474,"./defaults":475}],477:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"../contour/calc":375,"../contour/colorbar":377,"../contour/hover":387,"../contour/plot":392,"../contour/style":394,"../histogram/cross_trace_defaults":419,"./attributes":431,"./defaults":432}],434:[function(_dereq_,module,exports){
 'use strict';
 
 var baseAttrs = _dereq_('../../plots/attributes');
@@ -95049,7 +87968,7 @@ module.exports = extendFlat({
     transforms: undefined
 });
 
-},{"../../lib/extend":281,"../../plots/attributes":330,"../../plots/template_attributes":373,"./constants":479}],478:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"../../plots/attributes":287,"../../plots/template_attributes":330,"./constants":436}],435:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -95139,7 +88058,7 @@ function makeScaler(trace) {
     };
 }
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"./constants":479,"./helpers":482,"fast-isnumeric":33}],479:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"./constants":436,"./helpers":439,"fast-isnumeric":28}],436:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -95205,7 +88124,7 @@ module.exports = {
     ].join('; ')
 };
 
-},{}],480:[function(_dereq_,module,exports){
+},{}],437:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -95255,7 +88174,7 @@ module.exports = function supplyDefaults(traceIn, traceOut) {
     traceOut._length = null;
 };
 
-},{"../../lib":287,"../../snapshot/helpers":382,"./attributes":477,"./constants":479}],481:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../snapshot/helpers":339,"./attributes":434,"./constants":436}],438:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt) {
@@ -95269,20 +88188,20 @@ module.exports = function eventData(out, pt) {
     return out;
 };
 
-},{}],482:[function(_dereq_,module,exports){
+},{}],439:[function(_dereq_,module,exports){
 'use strict';
 
-var probeSync = _dereq_('probe-image-size/sync');
+// var probeSync = require('probe-image-size/sync');
 var dataUri = _dereq_('../../snapshot/helpers').IMAGE_URL_PREFIX;
 var Buffer = _dereq_('buffer/').Buffer;  // note: the trailing slash is important!
 
 exports.getImageSize = function(src) {
     var data = src.replace(dataUri, '');
     var buff = new Buffer(data, 'base64');
-    return probeSync(buff);
+    return { width: 100, height: 100 }
 };
 
-},{"../../snapshot/helpers":382,"buffer/":28,"probe-image-size/sync":97}],483:[function(_dereq_,module,exports){
+},{"../../snapshot/helpers":339,"buffer/":23}],440:[function(_dereq_,module,exports){
 'use strict';
 
 var Fx = _dereq_('../../components/fx');
@@ -95374,7 +88293,7 @@ module.exports = function hoverPoints(pointData, xval, yval) {
     })];
 };
 
-},{"../../components/fx":197,"../../lib":287,"./constants":479}],484:[function(_dereq_,module,exports){
+},{"../../components/fx":154,"../../lib":244,"./constants":436}],441:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -95395,7 +88314,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"./attributes":477,"./calc":478,"./defaults":480,"./event_data":481,"./hover":483,"./plot":485,"./style":486}],485:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"./attributes":434,"./calc":435,"./defaults":437,"./event_data":438,"./hover":440,"./plot":442,"./style":443}],442:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -95618,7 +88537,7 @@ module.exports = function plot(gd, plotinfo, cdimage, imageLayer) {
     });
 };
 
-},{"../../constants/xmlns_namespaces":268,"../../lib":287,"./constants":479,"@plotly/d3":20}],486:[function(_dereq_,module,exports){
+},{"../../constants/xmlns_namespaces":225,"../../lib":244,"./constants":436,"@plotly/d3":20}],443:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -95630,7 +88549,7 @@ module.exports = function style(gd) {
         });
 };
 
-},{"@plotly/d3":20}],487:[function(_dereq_,module,exports){
+},{"@plotly/d3":20}],444:[function(_dereq_,module,exports){
 'use strict';
 
 var baseAttrs = _dereq_('../../plots/attributes');
@@ -95845,7 +88764,7 @@ module.exports = {
     }
 };
 
-},{"../../components/color/attributes":156,"../../lib/extend":281,"../../plots/attributes":330,"../../plots/domain":364,"../../plots/font_attributes":365,"../../plots/template_attributes":373}],488:[function(_dereq_,module,exports){
+},{"../../components/color/attributes":113,"../../lib/extend":238,"../../plots/attributes":287,"../../plots/domain":321,"../../plots/font_attributes":322,"../../plots/template_attributes":330}],445:[function(_dereq_,module,exports){
 'use strict';
 
 var plots = _dereq_('../../plots/plots');
@@ -95860,7 +88779,7 @@ exports.clean = function(newFullData, newFullLayout, oldFullData, oldFullLayout)
     plots.cleanBasePlot(exports.name, newFullData, newFullLayout, oldFullData, oldFullLayout);
 };
 
-},{"../../plots/plots":371}],489:[function(_dereq_,module,exports){
+},{"../../plots/plots":328}],446:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -96037,7 +88956,7 @@ module.exports = {
     generateExtendedColors: generateExtendedColors
 };
 
-},{"../../components/color":157,"fast-isnumeric":33,"tinycolor2":121}],490:[function(_dereq_,module,exports){
+},{"../../components/color":114,"fast-isnumeric":28,"tinycolor2":79}],447:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -96160,7 +89079,7 @@ module.exports = {
     supplyDefaults: supplyDefaults
 };
 
-},{"../../lib":287,"../../plots/domain":364,"../bar/defaults":392,"./attributes":487,"fast-isnumeric":33}],491:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/domain":321,"../bar/defaults":349,"./attributes":444,"fast-isnumeric":28}],448:[function(_dereq_,module,exports){
 'use strict';
 
 var appendArrayMultiPointValues = _dereq_('../../components/fx/helpers').appendArrayMultiPointValues;
@@ -96202,7 +89121,7 @@ module.exports = function eventData(pt, trace) {
     return out;
 };
 
-},{"../../components/fx/helpers":193}],492:[function(_dereq_,module,exports){
+},{"../../components/fx/helpers":150}],449:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -96242,7 +89161,7 @@ exports.getRotationAngle = function(rotation) {
     return (rotation === 'auto' ? 0 : rotation) * Math.PI / 180;
 };
 
-},{"../../lib":287}],493:[function(_dereq_,module,exports){
+},{"../../lib":244}],450:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -96266,7 +89185,7 @@ module.exports = {
     }
 };
 
-},{"./attributes":487,"./base_plot":488,"./calc":489,"./defaults":490,"./layout_attributes":494,"./layout_defaults":495,"./plot":496,"./style":497,"./style_one":498}],494:[function(_dereq_,module,exports){
+},{"./attributes":444,"./base_plot":445,"./calc":446,"./defaults":447,"./layout_attributes":451,"./layout_defaults":452,"./plot":453,"./style":454,"./style_one":455}],451:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -96285,7 +89204,7 @@ module.exports = {
     }
 };
 
-},{}],495:[function(_dereq_,module,exports){
+},{}],452:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -96302,7 +89221,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut) {
     coerce('extendpiecolors');
 };
 
-},{"../../lib":287,"./layout_attributes":494}],496:[function(_dereq_,module,exports){
+},{"../../lib":244,"./layout_attributes":451}],453:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -97482,7 +90401,7 @@ module.exports = {
     computeTransform: computeTransform
 };
 
-},{"../../components/color":157,"../../components/drawing":179,"../../components/fx":197,"../../lib":287,"../../lib/svg_text_utils":310,"../../plots/plots":371,"../bar/constants":390,"../bar/uniform_text":404,"./event_data":491,"./helpers":492,"@plotly/d3":20}],497:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/drawing":136,"../../components/fx":154,"../../lib":244,"../../lib/svg_text_utils":267,"../../plots/plots":328,"../bar/constants":347,"../bar/uniform_text":361,"./event_data":448,"./helpers":449,"@plotly/d3":20}],454:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -97507,7 +90426,7 @@ module.exports = function style(gd) {
     });
 };
 
-},{"../bar/uniform_text":404,"./style_one":498,"@plotly/d3":20}],498:[function(_dereq_,module,exports){
+},{"../bar/uniform_text":361,"./style_one":455,"@plotly/d3":20}],455:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -97523,7 +90442,7 @@ module.exports = function styleOne(s, pt, trace) {
         .call(Color.stroke, lineColor);
 };
 
-},{"../../components/color":157,"./helpers":492}],499:[function(_dereq_,module,exports){
+},{"../../components/color":114,"./helpers":449}],456:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -97566,7 +90485,7 @@ module.exports = function arraysToCalcdata(cd, trace) {
     }
 };
 
-},{"../../lib":287}],500:[function(_dereq_,module,exports){
+},{"../../lib":244}],457:[function(_dereq_,module,exports){
 'use strict';
 
 var axisHoverFormat = _dereq_('../../plots/cartesian/axis_format_attributes').axisHoverFormat;
@@ -97916,7 +90835,7 @@ module.exports = {
     }),
 };
 
-},{"../../components/colorscale/attributes":164,"../../components/drawing":179,"../../components/drawing/attributes":178,"../../lib/extend":281,"../../plots/cartesian/axis_format_attributes":337,"../../plots/font_attributes":365,"../../plots/template_attributes":373,"./constants":504}],501:[function(_dereq_,module,exports){
+},{"../../components/colorscale/attributes":121,"../../components/drawing":136,"../../components/drawing/attributes":135,"../../lib/extend":238,"../../plots/cartesian/axis_format_attributes":294,"../../plots/font_attributes":322,"../../plots/template_attributes":330,"./constants":461}],458:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -98213,7 +91132,7 @@ module.exports = {
     getStackOpts: getStackOpts
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"../../plots/cartesian/align_period":331,"../../plots/cartesian/axes":334,"./arrays_to_calcdata":499,"./calc_selection":502,"./colorscale_calc":503,"./subtypes":525,"fast-isnumeric":33}],502:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"../../plots/cartesian/align_period":288,"../../plots/cartesian/axes":291,"./arrays_to_calcdata":456,"./calc_selection":459,"./colorscale_calc":460,"./subtypes":482,"fast-isnumeric":28}],459:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -98224,7 +91143,7 @@ module.exports = function calcSelection(cd, trace) {
     }
 };
 
-},{"../../lib":287}],503:[function(_dereq_,module,exports){
+},{"../../lib":244}],460:[function(_dereq_,module,exports){
 'use strict';
 
 var hasColorscale = _dereq_('../../components/colorscale/helpers').hasColorscale;
@@ -98259,7 +91178,7 @@ module.exports = function calcMarkerColorscale(gd, trace) {
     }
 };
 
-},{"../../components/colorscale/calc":165,"../../components/colorscale/helpers":168,"./subtypes":525}],504:[function(_dereq_,module,exports){
+},{"../../components/colorscale/calc":122,"../../components/colorscale/helpers":125,"./subtypes":482}],461:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -98279,7 +91198,7 @@ module.exports = {
     eventDataKeys: []
 };
 
-},{}],505:[function(_dereq_,module,exports){
+},{}],462:[function(_dereq_,module,exports){
 'use strict';
 
 var calc = _dereq_('./calc');
@@ -98451,7 +91370,7 @@ function getInterp(calcTrace, index, position, posAttr) {
     return pt0.s + (pt1.s - pt0.s) * (position - pt0[posAttr]) / (pt1[posAttr] - pt0[posAttr]);
 }
 
-},{"./calc":501}],506:[function(_dereq_,module,exports){
+},{"./calc":458}],463:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -98481,7 +91400,7 @@ module.exports = function crossTraceDefaults(fullData) {
     }
 };
 
-},{}],507:[function(_dereq_,module,exports){
+},{}],464:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -98568,7 +91487,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     Lib.coerceSelectionMarkerOpacity(traceOut, coerce);
 };
 
-},{"../../lib":287,"../../registry":378,"./attributes":500,"./constants":504,"./fillcolor_defaults":508,"./line_defaults":513,"./line_shape_defaults":515,"./marker_defaults":519,"./period_defaults":520,"./stack_defaults":523,"./subtypes":525,"./text_defaults":526,"./xy_defaults":527}],508:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335,"./attributes":457,"./constants":461,"./fillcolor_defaults":465,"./line_defaults":470,"./line_shape_defaults":472,"./marker_defaults":476,"./period_defaults":477,"./stack_defaults":480,"./subtypes":482,"./text_defaults":483,"./xy_defaults":484}],465:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -98596,7 +91515,7 @@ module.exports = function fillColorDefaults(traceIn, traceOut, defaultColor, coe
     ));
 };
 
-},{"../../components/color":157,"../../lib":287}],509:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../lib":244}],466:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -98614,7 +91533,7 @@ module.exports = function formatLabels(cdi, trace, fullLayout) {
     return labels;
 };
 
-},{"../../plots/cartesian/axes":334}],510:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/axes":291}],467:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -98654,7 +91573,7 @@ module.exports = function getTraceColor(trace, di) {
     }
 };
 
-},{"../../components/color":157,"./subtypes":525}],511:[function(_dereq_,module,exports){
+},{"../../components/color":114,"./subtypes":482}],468:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -98865,7 +91784,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
     }
 };
 
-},{"../../components/color":157,"../../components/fx":197,"../../lib":287,"../../registry":378,"./get_trace_color":510}],512:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/fx":154,"../../lib":244,"../../registry":335,"./get_trace_color":467}],469:[function(_dereq_,module,exports){
 'use strict';
 
 var subtypes = _dereq_('./subtypes');
@@ -98902,7 +91821,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"./arrays_to_calcdata":499,"./attributes":500,"./calc":501,"./cross_trace_calc":505,"./cross_trace_defaults":506,"./defaults":507,"./format_labels":509,"./hover":511,"./marker_colorbar":518,"./plot":521,"./select":522,"./style":524,"./subtypes":525}],513:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"./arrays_to_calcdata":456,"./attributes":457,"./calc":458,"./cross_trace_calc":462,"./cross_trace_defaults":463,"./defaults":464,"./format_labels":466,"./hover":468,"./marker_colorbar":475,"./plot":478,"./select":479,"./style":481,"./subtypes":482}],470:[function(_dereq_,module,exports){
 'use strict';
 
 var isArrayOrTypedArray = _dereq_('../../lib').isArrayOrTypedArray;
@@ -98925,7 +91844,7 @@ module.exports = function lineDefaults(traceIn, traceOut, defaultColor, layout, 
     if(!(opts || {}).noDash) coerce('line.dash');
 };
 
-},{"../../components/colorscale/defaults":167,"../../components/colorscale/helpers":168,"../../lib":287}],514:[function(_dereq_,module,exports){
+},{"../../components/colorscale/defaults":124,"../../components/colorscale/helpers":125,"../../lib":244}],471:[function(_dereq_,module,exports){
 'use strict';
 
 var numConstants = _dereq_('../../constants/numerical');
@@ -99377,7 +92296,7 @@ module.exports = function linePoints(d, opts) {
     return segments;
 };
 
-},{"../../constants/numerical":267,"../../lib":287,"./constants":504}],515:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"./constants":461}],472:[function(_dereq_,module,exports){
 'use strict';
 
 
@@ -99387,7 +92306,7 @@ module.exports = function handleLineShapeDefaults(traceIn, traceOut, coerce) {
     if(shape === 'spline') coerce('line.smoothing');
 };
 
-},{}],516:[function(_dereq_,module,exports){
+},{}],473:[function(_dereq_,module,exports){
 'use strict';
 
 var LINKEDFILLS = {tonextx: 1, tonexty: 1, tonext: 1};
@@ -99469,7 +92388,7 @@ module.exports = function linkTraces(gd, plotinfo, cdscatter) {
     return cdscatterSorted;
 };
 
-},{}],517:[function(_dereq_,module,exports){
+},{}],474:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -99505,7 +92424,7 @@ module.exports = function makeBubbleSizeFn(trace, factor) {
     };
 };
 
-},{"fast-isnumeric":33}],518:[function(_dereq_,module,exports){
+},{"fast-isnumeric":28}],475:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -99514,7 +92433,7 @@ module.exports = {
     max: 'cmax'
 };
 
-},{}],519:[function(_dereq_,module,exports){
+},{}],476:[function(_dereq_,module,exports){
 'use strict';
 
 var Color = _dereq_('../../components/color');
@@ -99587,7 +92506,7 @@ module.exports = function markerDefaults(traceIn, traceOut, defaultColor, layout
     }
 };
 
-},{"../../components/color":157,"../../components/colorscale/defaults":167,"../../components/colorscale/helpers":168,"./subtypes":525}],520:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../components/colorscale/defaults":124,"../../components/colorscale/helpers":125,"./subtypes":482}],477:[function(_dereq_,module,exports){
 'use strict';
 
 var dateTick0 = _dereq_('../../lib').dateTick0;
@@ -99626,7 +92545,7 @@ module.exports = function handlePeriodDefaults(traceIn, traceOut, layout, coerce
     }
 };
 
-},{"../../constants/numerical":267,"../../lib":287}],521:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244}],478:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -100178,7 +93097,7 @@ function selectMarkers(gd, idx, plotinfo, cdscatter, cdscatterAll) {
     });
 }
 
-},{"../../components/drawing":179,"../../lib":287,"../../lib/polygon":299,"../../registry":378,"./line_points":514,"./link_traces":516,"./subtypes":525,"@plotly/d3":20}],522:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../../lib":244,"../../lib/polygon":256,"../../registry":335,"./line_points":471,"./link_traces":473,"./subtypes":482,"@plotly/d3":20}],479:[function(_dereq_,module,exports){
 'use strict';
 
 var subtypes = _dereq_('./subtypes');
@@ -100223,7 +93142,7 @@ module.exports = function selectPoints(searchInfo, selectionTester) {
     return selection;
 };
 
-},{"./subtypes":525}],523:[function(_dereq_,module,exports){
+},{"./subtypes":482}],480:[function(_dereq_,module,exports){
 'use strict';
 
 var perStackAttrs = ['orientation', 'groupnorm', 'stackgaps'];
@@ -100320,7 +93239,7 @@ module.exports = function handleStackDefaults(traceIn, traceOut, layout, coerce)
     }
 };
 
-},{}],524:[function(_dereq_,module,exports){
+},{}],481:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -100382,7 +93301,7 @@ module.exports = {
     styleOnSelect: styleOnSelect
 };
 
-},{"../../components/drawing":179,"../../registry":378,"@plotly/d3":20}],525:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../../registry":335,"@plotly/d3":20}],482:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -100412,7 +93331,7 @@ module.exports = {
     }
 };
 
-},{"../../lib":287}],526:[function(_dereq_,module,exports){
+},{"../../lib":244}],483:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -100433,7 +93352,7 @@ module.exports = function(traceIn, traceOut, layout, coerce, opts) {
     }
 };
 
-},{"../../lib":287}],527:[function(_dereq_,module,exports){
+},{"../../lib":244}],484:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -100469,7 +93388,7 @@ module.exports = function handleXYDefaults(traceIn, traceOut, layout, coerce) {
     return len;
 };
 
-},{"../../lib":287,"../../registry":378}],528:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../registry":335}],485:[function(_dereq_,module,exports){
 'use strict';
 
 var hovertemplateAttrs = _dereq_('../../plots/template_attributes').hovertemplateAttrs;
@@ -100561,7 +93480,7 @@ module.exports = {
     hovertemplate: hovertemplateAttrs(),
 };
 
-},{"../../components/colorscale/attributes":164,"../../components/drawing/attributes":178,"../../lib/extend":281,"../../plots/attributes":330,"../../plots/template_attributes":373,"../scatter/attributes":500}],529:[function(_dereq_,module,exports){
+},{"../../components/colorscale/attributes":121,"../../components/drawing/attributes":135,"../../lib/extend":238,"../../plots/attributes":287,"../../plots/template_attributes":330,"../scatter/attributes":457}],486:[function(_dereq_,module,exports){
 'use strict';
 
 var isNumeric = _dereq_('fast-isnumeric');
@@ -100633,7 +93552,7 @@ module.exports = function calc(gd, trace) {
     return cd;
 };
 
-},{"../scatter/arrays_to_calcdata":499,"../scatter/calc":501,"../scatter/calc_selection":502,"../scatter/colorscale_calc":503,"fast-isnumeric":33}],530:[function(_dereq_,module,exports){
+},{"../scatter/arrays_to_calcdata":456,"../scatter/calc":458,"../scatter/calc_selection":459,"../scatter/colorscale_calc":460,"fast-isnumeric":28}],487:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -100728,7 +93647,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     Lib.coerceSelectionMarkerOpacity(traceOut, coerce);
 };
 
-},{"../../lib":287,"../scatter/constants":504,"../scatter/fillcolor_defaults":508,"../scatter/line_defaults":513,"../scatter/line_shape_defaults":515,"../scatter/marker_defaults":519,"../scatter/subtypes":525,"../scatter/text_defaults":526,"./attributes":528}],531:[function(_dereq_,module,exports){
+},{"../../lib":244,"../scatter/constants":461,"../scatter/fillcolor_defaults":465,"../scatter/line_defaults":470,"../scatter/line_shape_defaults":472,"../scatter/marker_defaults":476,"../scatter/subtypes":482,"../scatter/text_defaults":483,"./attributes":485}],488:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function eventData(out, pt, trace, cd, pointNumber) {
@@ -100752,7 +93671,7 @@ module.exports = function eventData(out, pt, trace, cd, pointNumber) {
     return out;
 };
 
-},{}],532:[function(_dereq_,module,exports){
+},{}],489:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../../plots/cartesian/axes');
@@ -100768,7 +93687,7 @@ module.exports = function formatLabels(cdi, trace, fullLayout) {
     return labels;
 };
 
-},{"../../plots/cartesian/axes":334}],533:[function(_dereq_,module,exports){
+},{"../../plots/cartesian/axes":291}],490:[function(_dereq_,module,exports){
 'use strict';
 
 var scatterHover = _dereq_('../scatter/hover');
@@ -100834,7 +93753,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode) {
     return scatterPointData;
 };
 
-},{"../scatter/hover":511}],534:[function(_dereq_,module,exports){
+},{"../scatter/hover":468}],491:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -100858,7 +93777,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/ternary":374,"../scatter/marker_colorbar":518,"../scatter/select":522,"../scatter/style":524,"./attributes":528,"./calc":529,"./defaults":530,"./event_data":531,"./format_labels":532,"./hover":533,"./plot":535}],535:[function(_dereq_,module,exports){
+},{"../../plots/ternary":331,"../scatter/marker_colorbar":475,"../scatter/select":479,"../scatter/style":481,"./attributes":485,"./calc":486,"./defaults":487,"./event_data":488,"./format_labels":489,"./hover":490,"./plot":492}],492:[function(_dereq_,module,exports){
 'use strict';
 
 var scatterPlot = _dereq_('../scatter/plot');
@@ -100882,7 +93801,7 @@ module.exports = function plot(gd, ternary, moduleCalcData) {
     scatterPlot(gd, plotinfo, moduleCalcData, scatterLayer);
 };
 
-},{"../scatter/plot":521}],536:[function(_dereq_,module,exports){
+},{"../scatter/plot":478}],493:[function(_dereq_,module,exports){
 'use strict';
 
 var boxAttrs = _dereq_('../box/attributes');
@@ -101038,7 +93957,7 @@ module.exports = {
     }
 };
 
-},{"../../lib/extend":281,"../../plots/cartesian/axis_format_attributes":337,"../box/attributes":405}],537:[function(_dereq_,module,exports){
+},{"../../lib/extend":238,"../../plots/cartesian/axis_format_attributes":294,"../box/attributes":362}],494:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -101206,7 +94125,7 @@ function calcSpan(trace, cdi, valAxis, bandwidth) {
     return spanOut;
 }
 
-},{"../../constants/numerical":267,"../../lib":287,"../../plots/cartesian/axes":334,"../box/calc":406,"./helpers":540}],538:[function(_dereq_,module,exports){
+},{"../../constants/numerical":224,"../../lib":244,"../../plots/cartesian/axes":291,"../box/calc":363,"./helpers":497}],495:[function(_dereq_,module,exports){
 'use strict';
 
 var setPositionOffset = _dereq_('../box/cross_trace_calc').setPositionOffset;
@@ -101241,7 +94160,7 @@ module.exports = function crossTraceCalc(gd, plotinfo) {
     }
 };
 
-},{"../box/cross_trace_calc":407}],539:[function(_dereq_,module,exports){
+},{"../box/cross_trace_calc":364}],496:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -101294,7 +94213,7 @@ module.exports = function supplyDefaults(traceIn, traceOut, defaultColor, layout
     if(!meanLineVisible) traceOut.meanline = {visible: false};
 };
 
-},{"../../components/color":157,"../../lib":287,"../box/defaults":408,"./attributes":536}],540:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../../lib":244,"../box/defaults":365,"./attributes":493}],497:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -101359,7 +94278,7 @@ exports.getKdeValue = function(calcItem, trace, valueDist) {
 
 exports.extractVal = function(o) { return o.v; };
 
-},{"../../lib":287}],541:[function(_dereq_,module,exports){
+},{"../../lib":244}],498:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -101466,7 +94385,7 @@ module.exports = function hoverPoints(pointData, xval, yval, hovermode, opts) {
     return closeData;
 };
 
-},{"../../lib":287,"../../plots/cartesian/axes":334,"../box/hover":410,"./helpers":540}],542:[function(_dereq_,module,exports){
+},{"../../lib":244,"../../plots/cartesian/axes":291,"../box/hover":367,"./helpers":497}],499:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -101491,7 +94410,7 @@ module.exports = {
     }
 };
 
-},{"../../plots/cartesian":348,"../box/defaults":408,"../box/select":415,"../scatter/style":524,"./attributes":536,"./calc":537,"./cross_trace_calc":538,"./defaults":539,"./hover":541,"./layout_attributes":543,"./layout_defaults":544,"./plot":545,"./style":546}],543:[function(_dereq_,module,exports){
+},{"../../plots/cartesian":305,"../box/defaults":365,"../box/select":372,"../scatter/style":481,"./attributes":493,"./calc":494,"./cross_trace_calc":495,"./defaults":496,"./hover":498,"./layout_attributes":500,"./layout_defaults":501,"./plot":502,"./style":503}],500:[function(_dereq_,module,exports){
 'use strict';
 
 var boxLayoutAttrs = _dereq_('../box/layout_attributes');
@@ -101506,7 +94425,7 @@ module.exports = {
     })
 };
 
-},{"../../lib":287,"../box/layout_attributes":412}],544:[function(_dereq_,module,exports){
+},{"../../lib":244,"../box/layout_attributes":369}],501:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../../lib');
@@ -101520,7 +94439,7 @@ module.exports = function supplyLayoutDefaults(layoutIn, layoutOut, fullData) {
     boxLayoutDefaults._supply(layoutIn, layoutOut, fullData, coerce, 'violin');
 };
 
-},{"../../lib":287,"../box/layout_defaults":413,"./layout_attributes":543}],545:[function(_dereq_,module,exports){
+},{"../../lib":244,"../box/layout_defaults":370,"./layout_attributes":500}],502:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -101702,7 +94621,7 @@ module.exports = function plot(gd, plotinfo, cdViolins, violinLayer) {
     });
 };
 
-},{"../../components/drawing":179,"../../lib":287,"../box/plot":414,"../scatter/line_points":514,"./helpers":540,"@plotly/d3":20}],546:[function(_dereq_,module,exports){
+},{"../../components/drawing":136,"../../lib":244,"../box/plot":371,"../scatter/line_points":471,"./helpers":497,"@plotly/d3":20}],503:[function(_dereq_,module,exports){
 'use strict';
 
 var d3 = _dereq_('@plotly/d3');
@@ -101749,7 +94668,7 @@ module.exports = function style(gd) {
     });
 };
 
-},{"../../components/color":157,"../scatter/style":524,"@plotly/d3":20}],547:[function(_dereq_,module,exports){
+},{"../../components/color":114,"../scatter/style":481,"@plotly/d3":20}],504:[function(_dereq_,module,exports){
 'use strict';
 
 var Axes = _dereq_('../plots/cartesian/axes');
@@ -102153,7 +95072,7 @@ function last(array, indices) {
     return array[indices[indices.length - 1]];
 }
 
-},{"../constants/numerical":267,"../lib":287,"../plot_api/plot_schema":322,"../plots/cartesian/axes":334,"./helpers":550}],548:[function(_dereq_,module,exports){
+},{"../constants/numerical":224,"../lib":244,"../plot_api/plot_schema":279,"../plots/cartesian/axes":291,"./helpers":507}],505:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -102413,7 +95332,7 @@ function getFilterFunc(opts, d2c, targetCalendar) {
     }
 }
 
-},{"../constants/filter_ops":265,"../lib":287,"../plots/cartesian/axes":334,"../registry":378,"./helpers":550}],549:[function(_dereq_,module,exports){
+},{"../constants/filter_ops":222,"../lib":244,"../plots/cartesian/axes":291,"../registry":335,"./helpers":507}],506:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -102657,7 +95576,7 @@ function transformOne(trace, state) {
     return newData;
 }
 
-},{"../lib":287,"../plot_api/plot_schema":322,"../plots/plots":371,"./helpers":550}],550:[function(_dereq_,module,exports){
+},{"../lib":244,"../plot_api/plot_schema":279,"../plots/plots":328,"./helpers":507}],507:[function(_dereq_,module,exports){
 'use strict';
 
 exports.pointsAccessorFunction = function(transforms, opts) {
@@ -102675,7 +95594,7 @@ exports.pointsAccessorFunction = function(transforms, opts) {
     return originalPointsAccessor;
 };
 
-},{}],551:[function(_dereq_,module,exports){
+},{}],508:[function(_dereq_,module,exports){
 'use strict';
 
 var Lib = _dereq_('../lib');
@@ -102813,7 +95732,7 @@ function getSortFunc(opts, d2c) {
     }
 }
 
-},{"../constants/numerical":267,"../lib":287,"../plots/cartesian/axes":334,"./helpers":550}],552:[function(_dereq_,module,exports){
+},{"../constants/numerical":224,"../lib":244,"../plots/cartesian/axes":291,"./helpers":507}],509:[function(_dereq_,module,exports){
 'use strict';
 
 // package version injected by `npm run preprocess`
